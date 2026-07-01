@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: f4b70462143689b448f054d6bf219328
+DefaultImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 21676
+  packageName: Rewired
+  packageVersion: 1.1.64.1
+  assetPath: Assets/Rewired/Internal/Assets/Libs/SDL3_Windows.zip
+  uploadId: 941574

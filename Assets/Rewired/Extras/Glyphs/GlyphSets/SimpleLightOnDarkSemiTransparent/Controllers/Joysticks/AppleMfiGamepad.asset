@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09563feea35117444a4feb79bda24352, type: 3}
+  m_Name: AppleMfiGamepad
+  m_EditorClassIdentifier: 
+  _baseKeys:
+  - controller/apple_mfi_gamepad
+  _glyphs:
+  - _key: left_stick/horizontal
+    _value: {fileID: 21300032, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: left_stick/right
+    _value: {fileID: 21300036, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: left_stick/left
+    _value: {fileID: 21300040, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: left_stick/vertical
+    _value: {fileID: 21300030, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: left_stick/up
+    _value: {fileID: 21300034, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: left_stick/down
+    _value: {fileID: 21300038, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_stick/horizontal
+    _value: {fileID: 21300048, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_stick/right
+    _value: {fileID: 21300052, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_stick/left
+    _value: {fileID: 21300056, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_stick/vertical
+    _value: {fileID: 21300046, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_stick/up
+    _value: {fileID: 21300050, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_stick/down
+    _value: {fileID: 21300054, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: a
+    _value: {fileID: 21300012, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: b
+    _value: {fileID: 21300014, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: x
+    _value: {fileID: 21300000, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: y
+    _value: {fileID: 21300002, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: left_shoulder
+    _value: {fileID: 21300008, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: left_trigger
+    _value: {fileID: 21300024, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_shoulder
+    _value: {fileID: 21300010, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_trigger
+    _value: {fileID: 21300026, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: options
+    _value: {fileID: 21300018, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: menu
+    _value: {fileID: 21300006, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: home
+    _value: {fileID: 21300022, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: pause
+    _value: {fileID: 21300016, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: share
+    _value: {fileID: 21300076, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: left_stick/button
+    _value: {fileID: 21300042, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_stick/button
+    _value: {fileID: 21300058, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: dpad/up
+    _value: {fileID: 21300068, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: dpad/right
+    _value: {fileID: 21300070, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: dpad/down
+    _value: {fileID: 21300072, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: dpad/left
+    _value: {fileID: 21300074, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: left_stick
+    _value: {fileID: 21300028, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: right_stick
+    _value: {fileID: 21300044, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: dpad
+    _value: {fileID: 21300060, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: dpad/horizontal
+    _value: {fileID: 21300066, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}
+  - _key: dpad/vertical
+    _value: {fileID: 21300064, guid: d219d39de12fc924c96e8106f88d74ee, type: 3}

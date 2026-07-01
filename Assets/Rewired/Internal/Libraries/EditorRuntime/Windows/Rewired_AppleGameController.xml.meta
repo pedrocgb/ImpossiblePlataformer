@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9996646f75a4b1f4fbf2ccaf62dd88fc
+timeCreated: 1780685957
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 21676
+  packageName: Rewired
+  packageVersion: 1.1.64.1
+  assetPath: Assets/Rewired/Internal/Libraries/EditorRuntime/Windows/Rewired_AppleGameController.xml
+  uploadId: 941574

@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: bbce2485d0c2e954fb45b7433ac225be
+DefaultImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 21676
+  packageName: Rewired
+  packageVersion: 1.1.64.1
+  assetPath: Assets/Rewired/Internal/Assets/Libs/SDL3_MacOS.zip
+  uploadId: 941574

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09563feea35117444a4feb79bda24352, type: 3}
+  m_Name: AppleTV2021Remote
+  m_EditorClassIdentifier: 
+  _baseKeys:
+  - controller/apple_tv_remote_2021
+  _glyphs:
+  - _key: touchpad/horizontal
+    _value: {fileID: 21300034, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: touchpad/vertical
+    _value: {fileID: 21300032, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: touchpad/up
+    _value: {fileID: 21300036, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: touchpad/right
+    _value: {fileID: 21300038, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: touchpad/down
+    _value: {fileID: 21300040, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: touchpad/left
+    _value: {fileID: 21300042, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: touchpad
+    _value: {fileID: 21300030, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: touchpad/button
+    _value: {fileID: 21300002, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: play
+    _value: {fileID: 21300078, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: back
+    _value: {fileID: 21300010, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: dpad/up
+    _value: {fileID: 21300052, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: dpad/right
+    _value: {fileID: 21300054, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: dpad/down
+    _value: {fileID: 21300056, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: dpad/left
+    _value: {fileID: 21300058, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: dpad
+    _value: {fileID: 21300044, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: dpad/horizontal
+    _value: {fileID: 21300050, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}
+  - _key: dpad/vertical
+    _value: {fileID: 21300048, guid: 12cbb60fadfb6f748bc0e976ee7ff2ec, type: 3}

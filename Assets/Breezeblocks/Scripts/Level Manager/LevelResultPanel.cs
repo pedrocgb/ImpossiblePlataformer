@@ -16,12 +16,18 @@ public sealed class LevelResultPanel : MonoBehaviour
     [SerializeField]
     private TMP_Text deathsText;
 
+    [SerializeField]
+    private TMP_Text totalDeathsText;
+
     [Title("Labels")]
     [SerializeField]
     private string timePrefix = "Time: ";
 
     [SerializeField]
     private string deathsPrefix = "Deaths: ";
+
+    [SerializeField]
+    private string totalDeathsPrefix = "Total Deaths: ";
 
     [Title("Animation")]
     [SerializeField]
@@ -61,11 +67,12 @@ public sealed class LevelResultPanel : MonoBehaviour
     /// <summary>
     /// Shows the win panel and fills its final level stats.
     /// </summary>
-    public void ShowWin(string levelTitle, string timeValue, int deathCount)
+    public void ShowWin(string levelTitle, string timeValue, int deathCount, int totalDeathCount)
     {
         SetText(titleText, levelTitle);
         SetText(timerText, $"{timePrefix}{timeValue}");
         SetText(deathsText, $"{deathsPrefix}{deathCount}");
+        SetText(totalDeathsText, $"{totalDeathsPrefix}{totalDeathCount}");
         FadeIn();
     }
 

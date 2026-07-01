@@ -41,5 +41,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Scenario
+    uniqueID: 601662457
+    locked: 0
+  - name: Details
+    uniqueID: 2084179151
+    locked: 0
+  - name: Player
+    uniqueID: 1673779457
+    locked: 0
+  - name: Player Top
+    uniqueID: 964971009
+    locked: 0
+  - name: OVERALL
+    uniqueID: 4103101187
+    locked: 0
   m_RenderingLayers:
   - Default

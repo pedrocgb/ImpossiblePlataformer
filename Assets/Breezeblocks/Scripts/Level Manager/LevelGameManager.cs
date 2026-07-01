@@ -127,6 +127,7 @@ public sealed class LevelGameManager : MonoBehaviour
         }
 
         deathCount++;
+        RegisterTotalDeath();
         resetQueued = true;
         LockDeadPlayer(player);
         PlayDeathAnimation(player);
@@ -152,7 +153,7 @@ public sealed class LevelGameManager : MonoBehaviour
 
         if (winPanel != null)
         {
-            winPanel.ShowWin(levelTitle, FormatTime(elapsedSeconds), deathCount);
+            winPanel.ShowWin(levelTitle, FormatTime(elapsedSeconds), deathCount, GetTotalDeaths());
         }
     }
 
@@ -389,5 +390,33 @@ public sealed class LevelGameManager : MonoBehaviour
     private static void ResumeGameTime()
     {
         Time.timeScale = 1f;
+    }
+
+    /// <summary>
+    /// Adds one death to the persistent all-time death counter.
+    /// </summary>
+    private static int RegisterTotalDeath()
+    {
+        if (PersistentDeathCounter.Current != null)
+        {
+            return PersistentDeathCounter.Current.RegisterDeath();
+        }
+
+        int totalDeaths = DeathSaveSystem.LoadTotalDeaths() + 1;
+        DeathSaveSystem.SaveTotalDeaths(totalDeaths);
+        return totalDeaths;
+    }
+
+    /// <summary>
+    /// Reads the persistent all-time death count for final level results.
+    /// </summary>
+    private static int GetTotalDeaths()
+    {
+        if (PersistentDeathCounter.Current != null)
+        {
+            return PersistentDeathCounter.Current.TotalDeaths;
+        }
+
+        return DeathSaveSystem.LoadTotalDeaths();
     }
 }

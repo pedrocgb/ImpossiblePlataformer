@@ -677,6 +677,7 @@ public sealed class PlayerMovement : MonoBehaviour, ILevelResettable
         jumpBufferTimer = 0f;
         variableJumpTimer = variableJumpDuration;
         velocity.y = jumpSpeed;
+        GameSfxPlayer.PlayPlayerJump();
     }
 
     /// <summary>

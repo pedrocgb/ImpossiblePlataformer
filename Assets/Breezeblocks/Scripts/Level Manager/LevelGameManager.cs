@@ -128,6 +128,7 @@ public sealed class LevelGameManager : MonoBehaviour
 
         deathCount++;
         RegisterTotalDeath();
+        GameSfxPlayer.PlayPlayerDeath();
         resetQueued = true;
         LockDeadPlayer(player);
         PlayDeathAnimation(player);
@@ -149,6 +150,7 @@ public sealed class LevelGameManager : MonoBehaviour
         levelEnded = true;
         ClearProgress();
         RefreshHud();
+        GameSfxPlayer.PlayWinZone();
         PauseGameTime();
 
         if (winPanel != null)
@@ -165,7 +167,7 @@ public sealed class LevelGameManager : MonoBehaviour
         SaveProgress();
         ResumeGameTime();
         Scene activeScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(activeScene.buildIndex);
+        LoadScene(activeScene.buildIndex);
     }
 
     /// <summary>
@@ -179,7 +181,7 @@ public sealed class LevelGameManager : MonoBehaviour
 
         if (nextIndex < SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene(nextIndex);
+            LoadScene(nextIndex);
             return;
         }
 
@@ -390,6 +392,20 @@ public sealed class LevelGameManager : MonoBehaviour
     private static void ResumeGameTime()
     {
         Time.timeScale = 1f;
+    }
+
+    /// <summary>
+    /// Loads a scene through the persistent fade manager when one is available.
+    /// </summary>
+    private static void LoadScene(int sceneBuildIndex)
+    {
+        if (SceneFadeUiManager.Current != null)
+        {
+            SceneFadeUiManager.Current.LoadScene(sceneBuildIndex);
+            return;
+        }
+
+        SceneManager.LoadScene(sceneBuildIndex);
     }
 
     /// <summary>

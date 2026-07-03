@@ -22,6 +22,11 @@ public sealed class LevelGameManager : MonoBehaviour
     /// </summary>
     public bool CanCompleteLevel => !levelEnded && !resetQueued;
 
+    /// <summary>
+    /// Gets whether the level has already ended through a win state.
+    /// </summary>
+    public bool HasLevelEnded => levelEnded;
+
     [Title("Level")]
     [SerializeField]
     private string levelTitle = "Level 1";
@@ -128,6 +133,7 @@ public sealed class LevelGameManager : MonoBehaviour
 
         deathCount++;
         RegisterTotalDeath();
+        RegisterCurrentLevelDeath();
         GameSfxPlayer.PlayPlayerDeath();
         resetQueued = true;
         LockDeadPlayer(player);
@@ -148,6 +154,7 @@ public sealed class LevelGameManager : MonoBehaviour
         }
 
         levelEnded = true;
+        UnlockNextLevel();
         ClearProgress();
         RefreshHud();
         GameSfxPlayer.PlayWinZone();
@@ -434,5 +441,21 @@ public sealed class LevelGameManager : MonoBehaviour
         }
 
         return DeathSaveSystem.LoadTotalDeaths();
+    }
+
+    /// <summary>
+    /// Adds one death to the persistent total for the active level.
+    /// </summary>
+    private static int RegisterCurrentLevelDeath()
+    {
+        return DeathSaveSystem.RegisterLevelDeath(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    /// <summary>
+    /// Unlocks the next level in Build Settings after this level is completed.
+    /// </summary>
+    private static void UnlockNextLevel()
+    {
+        GameSaveSystem.UnlockNextLevel(SceneManager.GetActiveScene().buildIndex);
     }
 }

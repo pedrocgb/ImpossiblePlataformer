@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Rewired;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -10,6 +11,13 @@ public sealed class PauseMenuController : MonoBehaviour
     [Title("References")]
     [SerializeField]
     private GameSettingsPanelController settingsPanel;
+
+    [Title("Input")]
+    [SerializeField, MinValue(0)]
+    private int rewiredPlayerId;
+
+    [SerializeField]
+    private string pauseMenuAction = "PauseMenu";
 
     [Title("Main Menu")]
     [SerializeField]
@@ -34,6 +42,8 @@ public sealed class PauseMenuController : MonoBehaviour
 
     private CanvasGroup canvasGroup;
     private Tween fadeTween;
+    private Rewired.Player rewiredPlayer;
+    private int pauseMenuActionId = -1;
     private float previousTimeScale = 1f;
     private bool isPaused;
     private bool isMuted;
@@ -45,6 +55,22 @@ public sealed class PauseMenuController : MonoBehaviour
     {
         canvasGroup = GetComponent<CanvasGroup>();
         HideImmediate();
+    }
+
+    /// <summary>
+    /// Resolves the configured Rewired player once Rewired has initialized.
+    /// </summary>
+    private void Start()
+    {
+        CacheRewiredPlayer();
+    }
+
+    /// <summary>
+    /// Polls the configured pause action and toggles the pause menu when it is pressed.
+    /// </summary>
+    private void Update()
+    {
+        ReadPauseInput();
     }
 
     /// <summary>
@@ -68,7 +94,7 @@ public sealed class PauseMenuController : MonoBehaviour
     /// </summary>
     public void OpenPauseMenu()
     {
-        if (isPaused)
+        if (isPaused || HasLevelEnded())
         {
             return;
         }
@@ -92,6 +118,25 @@ public sealed class PauseMenuController : MonoBehaviour
         isPaused = false;
         Time.timeScale = previousTimeScale <= 0f ? 1f : previousTimeScale;
         FadeMenu(0f, false);
+    }
+
+    /// <summary>
+    /// Switches between paused and unpaused menu states.
+    /// </summary>
+    public void TogglePauseMenu()
+    {
+        if (HasLevelEnded())
+        {
+            return;
+        }
+
+        if (isPaused)
+        {
+            ContinueGameplay();
+            return;
+        }
+
+        OpenPauseMenu();
     }
 
     /// <summary>
@@ -131,6 +176,80 @@ public sealed class PauseMenuController : MonoBehaviour
     }
 
     /// <summary>
+    /// Caches the Rewired player requested by the inspector settings when Rewired is available.
+    /// </summary>
+    private void CacheRewiredPlayer()
+    {
+        if (!ReInput.isReady)
+        {
+            rewiredPlayer = null;
+            return;
+        }
+
+        rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
+        CachePauseMenuAction();
+    }
+
+    /// <summary>
+    /// Resolves the configured pause action to an id for allocation-free polling.
+    /// </summary>
+    private void CachePauseMenuAction()
+    {
+        pauseMenuActionId = -1;
+
+        if (!ReInput.isReady || string.IsNullOrWhiteSpace(pauseMenuAction))
+        {
+            return;
+        }
+
+        InputAction inputAction = ReInput.mapping.GetAction(pauseMenuAction);
+
+        if (inputAction != null)
+        {
+            pauseMenuActionId = inputAction.id;
+        }
+    }
+
+    /// <summary>
+    /// Reads the configured Rewired pause action and toggles the pause menu on button down.
+    /// </summary>
+    private void ReadPauseInput()
+    {
+        if (rewiredPlayer == null)
+        {
+            CacheRewiredPlayer();
+        }
+
+        if (rewiredPlayer == null || pauseMenuActionId < 0)
+        {
+            return;
+        }
+
+        if (rewiredPlayer.GetButtonDown(pauseMenuActionId))
+        {
+            HandlePauseMenuPressed();
+        }
+    }
+
+    /// <summary>
+    /// Applies PauseMenu input priority to binding cancel, settings close, then pause toggle.
+    /// </summary>
+    private void HandlePauseMenuPressed()
+    {
+        if (HasLevelEnded())
+        {
+            return;
+        }
+
+        if (settingsPanel != null && settingsPanel.HandlePauseMenuInput())
+        {
+            return;
+        }
+
+        TogglePauseMenu();
+    }
+
+    /// <summary>
     /// Hides the pause menu instantly without changing time scale.
     /// </summary>
     private void HideImmediate()
@@ -149,6 +268,14 @@ public sealed class PauseMenuController : MonoBehaviour
         canvasGroup.interactable = canInteract;
         canvasGroup.blocksRaycasts = canInteract;
         fadeTween = canvasGroup.DOFade(targetAlpha, fadeDuration).SetEase(fadeEase).SetUpdate(true);
+    }
+
+    /// <summary>
+    /// Checks whether the active level has already entered its win state.
+    /// </summary>
+    private static bool HasLevelEnded()
+    {
+        return LevelGameManager.Current != null && LevelGameManager.Current.HasLevelEnded;
     }
 
     /// <summary>

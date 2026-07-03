@@ -3,15 +3,11 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
+[RequireComponent(typeof(CanvasGroup))]
 public sealed class SceneFadeUiManager : MonoBehaviour
 {
     public static SceneFadeUiManager Current { get; private set; }
-
-    [Title("References")]
-    [SerializeField, Required]
-    private Image fadeImage;
 
     [Title("Fade")]
     [SerializeField, MinValue(0f)]
@@ -23,14 +19,17 @@ public sealed class SceneFadeUiManager : MonoBehaviour
     [SerializeField]
     private bool dontDestroyOnLoad = true;
 
+    private CanvasGroup canvasGroup;
     private Tween fadeTween;
     private Coroutine loadRoutine;
 
     /// <summary>
-    /// Registers this fade manager as the active persistent scene fade service.
+    /// Caches the CanvasGroup and registers this fade manager as the active persistent scene fade service.
     /// </summary>
     private void Awake()
     {
+        canvasGroup = GetComponent<CanvasGroup>();
+
         if (Current != null && Current != this)
         {
             Destroy(gameObject);
@@ -46,11 +45,11 @@ public sealed class SceneFadeUiManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Fades in after a scene has loaded.
+    /// Starts the opening fade for scenes that begin with this manager already present.
     /// </summary>
     private void Start()
     {
-        FadeIn();
+        BeginSceneFadeIn();
     }
 
     /// <summary>
@@ -114,7 +113,7 @@ public sealed class SceneFadeUiManager : MonoBehaviour
     /// </summary>
     public void FadeIn()
     {
-        FadeTo(0f);
+        FadeTo(ClampAlpha(0f));
     }
 
     /// <summary>
@@ -122,7 +121,7 @@ public sealed class SceneFadeUiManager : MonoBehaviour
     /// </summary>
     public void FadeOut()
     {
-        FadeTo(1f);
+        FadeTo(ClampAlpha(1f));
     }
 
     /// <summary>
@@ -130,7 +129,7 @@ public sealed class SceneFadeUiManager : MonoBehaviour
     /// </summary>
     private IEnumerator LoadSceneRoutine(string sceneName)
     {
-        yield return FadeToRoutine(1f);
+        yield return FadeToRoutine(ClampAlpha(1f));
         Time.timeScale = 1f;
         yield return SceneManager.LoadSceneAsync(sceneName);
         loadRoutine = null;
@@ -141,7 +140,7 @@ public sealed class SceneFadeUiManager : MonoBehaviour
     /// </summary>
     private IEnumerator LoadSceneRoutine(int sceneBuildIndex)
     {
-        yield return FadeToRoutine(1f);
+        yield return FadeToRoutine(ClampAlpha(1f));
         Time.timeScale = 1f;
         yield return SceneManager.LoadSceneAsync(sceneBuildIndex);
         loadRoutine = null;
@@ -152,7 +151,7 @@ public sealed class SceneFadeUiManager : MonoBehaviour
     /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        FadeIn();
+        BeginSceneFadeIn();
     }
 
     /// <summary>
@@ -172,15 +171,66 @@ public sealed class SceneFadeUiManager : MonoBehaviour
     /// </summary>
     private Tween FadeTo(float alpha)
     {
-        if (fadeImage == null)
+        EnsureCanvasGroup();
+
+        if (canvasGroup == null)
         {
             return null;
         }
 
+        float targetAlpha = ClampAlpha(alpha);
         KillFadeTween();
-        fadeImage.raycastTarget = alpha > 0f;
-        fadeTween = fadeImage.DOFade(alpha, fadeDuration).SetEase(fadeEase).SetUpdate(true);
+        canvasGroup.blocksRaycasts = targetAlpha > 0f;
+        canvasGroup.interactable = targetAlpha > 0f;
+        fadeTween = canvasGroup
+            .DOFade(targetAlpha, fadeDuration)
+            .SetEase(fadeEase)
+            .SetUpdate(true)
+            .OnComplete(() =>
+            {
+                canvasGroup.alpha = ClampAlpha(canvasGroup.alpha);
+                canvasGroup.blocksRaycasts = canvasGroup.alpha > 0f;
+                canvasGroup.interactable = canvasGroup.alpha > 0f;
+            });
         return fadeTween;
+    }
+
+    /// <summary>
+    /// Starts each scene covered in black before fading to transparent.
+    /// </summary>
+    private void BeginSceneFadeIn()
+    {
+        EnsureCanvasGroup();
+
+        if (canvasGroup == null)
+        {
+            return;
+        }
+
+        KillFadeTween();
+        canvasGroup.alpha = ClampAlpha(1f);
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.interactable = true;
+        FadeIn();
+    }
+
+    /// <summary>
+    /// Caches the CanvasGroup again when Unity calls a method before Awake has finished.
+    /// </summary>
+    private void EnsureCanvasGroup()
+    {
+        if (canvasGroup == null)
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
+        }
+    }
+
+    /// <summary>
+    /// Clamps fade alpha values so tweens never target invalid transparency.
+    /// </summary>
+    private static float ClampAlpha(float alpha)
+    {
+        return Mathf.Clamp01(alpha);
     }
 
     /// <summary>

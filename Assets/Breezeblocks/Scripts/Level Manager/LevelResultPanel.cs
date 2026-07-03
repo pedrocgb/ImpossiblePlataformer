@@ -218,6 +218,8 @@ public sealed class LevelResultPanel : MonoBehaviour
         }
 
         itemGroup.alpha = 0f;
+        itemGroup.interactable = false;
+        itemGroup.blocksRaycasts = false;
         itemGroup.transform.localScale = Vector3.one * hiddenItemScale;
     }
 
@@ -226,6 +228,9 @@ public sealed class LevelResultPanel : MonoBehaviour
     /// </summary>
     private void SetButtonInteractable(bool isInteractable)
     {
+        SetGroupInteraction(nextLevelButtonGroup, isInteractable);
+        SetGroupInteraction(quitButtonGroup, isInteractable);
+
         if (nextLevelButton != null)
         {
             nextLevelButton.interactable = isInteractable;
@@ -235,6 +240,20 @@ public sealed class LevelResultPanel : MonoBehaviour
         {
             quitButton.interactable = isInteractable;
         }
+    }
+
+    /// <summary>
+    /// Sets whether a button CanvasGroup can receive UI raycasts.
+    /// </summary>
+    private static void SetGroupInteraction(CanvasGroup group, bool isInteractable)
+    {
+        if (group == null)
+        {
+            return;
+        }
+
+        group.interactable = isInteractable;
+        group.blocksRaycasts = isInteractable;
     }
 
     /// <summary>

@@ -103,6 +103,13 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     private CanvasGroup canvasGroup;
     private Tween fadeTween;
     private Resolution[] availableResolutions = new Resolution[0];
+    private bool isOpen;
+    private bool isApplyingSavedSettings;
+
+    /// <summary>
+    /// Gets whether the settings panel is currently open for player interaction.
+    /// </summary>
+    public bool IsOpen => isOpen;
 
     /// <summary>
     /// Caches the same-object CanvasGroup used by the settings panel.
@@ -112,6 +119,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
         SetupVideoControls();
         SetupAudioControls();
+        LoadAndApplySavedSettings();
         HideImmediate();
     }
 
@@ -136,6 +144,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     /// </summary>
     public void Open()
     {
+        LoadAndApplySavedSettings();
         Show();
         ShowVideoSettings();
     }
@@ -152,6 +161,26 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         }
 
         Hide();
+    }
+
+    /// <summary>
+    /// Gives settings first chance to consume the PauseMenu input before the pause menu toggles.
+    /// </summary>
+    public bool HandlePauseMenuInput()
+    {
+        if (controlsBridge != null && controlsBridge.CancelPendingBinding())
+        {
+            return true;
+        }
+
+        if (!isOpen)
+        {
+            return false;
+        }
+
+        controlsBridge?.CloseMapperIfValid();
+        Hide();
+        return true;
     }
 
     /// <summary>
@@ -200,6 +229,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
 
         Resolution resolution = availableResolutions[optionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
+        SaveVideoSettingsIfNeeded();
     }
 
     /// <summary>
@@ -229,6 +259,8 @@ public sealed class GameSettingsPanelController : MonoBehaviour
                 displayCanvases[i].targetDisplay = optionIndex;
             }
         }
+
+        SaveVideoSettingsIfNeeded();
     }
 
     /// <summary>
@@ -250,6 +282,8 @@ public sealed class GameSettingsPanelController : MonoBehaviour
                 Screen.fullScreenMode = FullScreenMode.Windowed;
                 break;
         }
+
+        SaveVideoSettingsIfNeeded();
     }
 
     /// <summary>
@@ -258,6 +292,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     public void ApplyVsync(bool isEnabled)
     {
         QualitySettings.vSyncCount = isEnabled ? 1 : 0;
+        SaveVideoSettingsIfNeeded();
     }
 
     /// <summary>
@@ -271,6 +306,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         }
 
         Application.targetFrameRate = frameRateOptions[optionIndex];
+        SaveVideoSettingsIfNeeded();
     }
 
     /// <summary>
@@ -279,6 +315,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     public void ApplyMasterVolume(float volume)
     {
         SetMixerVolume(masterVolumeParameter, volume);
+        SaveAudioSettingsIfNeeded();
     }
 
     /// <summary>
@@ -287,6 +324,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     public void ApplyMusicVolume(float volume)
     {
         SetMixerVolume(musicVolumeParameter, volume);
+        SaveAudioSettingsIfNeeded();
     }
 
     /// <summary>
@@ -295,6 +333,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     public void ApplySfxVolume(float volume)
     {
         SetMixerVolume(sfxVolumeParameter, volume);
+        SaveAudioSettingsIfNeeded();
     }
 
     /// <summary>
@@ -303,6 +342,143 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     public void ApplyUiVolume(float volume)
     {
         SetMixerVolume(uiVolumeParameter, volume);
+        SaveAudioSettingsIfNeeded();
+    }
+
+    /// <summary>
+    /// Loads saved settings, applies them, and synchronizes the visible UI fields.
+    /// </summary>
+    private void LoadAndApplySavedSettings()
+    {
+        PlayerSettingsSaveData settings = GameSaveSystem.LoadSettings();
+        isApplyingSavedSettings = true;
+        ApplySavedVideoSettings(settings.Video);
+        ApplySavedAudioSettings(settings.Audio);
+        isApplyingSavedSettings = false;
+    }
+
+    /// <summary>
+    /// Applies saved video settings to Unity and to the dropdown or toggle controls.
+    /// </summary>
+    private void ApplySavedVideoSettings(VideoSettingsSaveData videoSettings)
+    {
+        if (videoSettings == null || !videoSettings.HasSavedSettings)
+        {
+            return;
+        }
+
+        int renderModeIndex = Mathf.Clamp(videoSettings.RenderModeIndex, 0, 2);
+        SetDropdownValue(renderModeDropdown, renderModeIndex);
+        ApplyRenderMode(renderModeIndex);
+
+        int resolutionIndex = GetSavedResolutionIndex(videoSettings);
+        SetDropdownValue(resolutionDropdown, resolutionIndex);
+        ApplyResolution(resolutionIndex);
+
+        int monitorIndex = Mathf.Clamp(videoSettings.MonitorIndex, 0, Mathf.Max(0, Display.displays.Length - 1));
+        SetDropdownValue(monitorDropdown, monitorIndex);
+        ApplyMonitor(monitorIndex);
+
+        int frameRateIndex = Mathf.Clamp(videoSettings.FrameRateOptionIndex, 0, frameRateOptions.Length - 1);
+        SetDropdownValue(frameRateDropdown, frameRateIndex);
+        ApplyFrameRate(frameRateIndex);
+
+        if (vsyncToggle != null)
+        {
+            vsyncToggle.SetIsOnWithoutNotify(videoSettings.VsyncEnabled);
+        }
+
+        ApplyVsync(videoSettings.VsyncEnabled);
+    }
+
+    /// <summary>
+    /// Applies saved audio values to the sliders and AudioMixer.
+    /// </summary>
+    private void ApplySavedAudioSettings(AudioSettingsSaveData audioSettings)
+    {
+        if (audioSettings == null)
+        {
+            return;
+        }
+
+        SetSliderValue(masterVolumeSlider, audioSettings.MasterVolume);
+        SetSliderValue(musicVolumeSlider, audioSettings.MusicVolume);
+        SetSliderValue(sfxVolumeSlider, audioSettings.SfxVolume);
+        SetSliderValue(uiVolumeSlider, audioSettings.UiVolume);
+        GameSaveSystem.ApplyAudioSettings(
+            audioMixer,
+            audioSettings,
+            masterVolumeParameter,
+            musicVolumeParameter,
+            sfxVolumeParameter,
+            uiVolumeParameter);
+    }
+
+    /// <summary>
+    /// Saves current video control values when they came from player input.
+    /// </summary>
+    private void SaveVideoSettingsIfNeeded()
+    {
+        if (isApplyingSavedSettings)
+        {
+            return;
+        }
+
+        GameSaveSystem.SaveVideoSettings(CaptureVideoSettings());
+    }
+
+    /// <summary>
+    /// Saves current audio control values when they came from player input.
+    /// </summary>
+    private void SaveAudioSettingsIfNeeded()
+    {
+        if (isApplyingSavedSettings)
+        {
+            return;
+        }
+
+        GameSaveSystem.SaveAudioSettings(CaptureAudioSettings());
+    }
+
+    /// <summary>
+    /// Captures current video UI values into save data.
+    /// </summary>
+    private VideoSettingsSaveData CaptureVideoSettings()
+    {
+        VideoSettingsSaveData videoSettings = new VideoSettingsSaveData
+        {
+            HasSavedSettings = true,
+            MonitorIndex = GetDropdownValue(monitorDropdown),
+            RenderModeIndex = GetDropdownValue(renderModeDropdown),
+            VsyncEnabled = vsyncToggle != null && vsyncToggle.isOn,
+            FrameRateOptionIndex = GetDropdownValue(frameRateDropdown)
+        };
+
+        int resolutionIndex = GetDropdownValue(resolutionDropdown);
+
+        if (resolutionIndex >= 0 && resolutionIndex < availableResolutions.Length)
+        {
+            Resolution resolution = availableResolutions[resolutionIndex];
+            videoSettings.HasSavedResolution = true;
+            videoSettings.ResolutionWidth = resolution.width;
+            videoSettings.ResolutionHeight = resolution.height;
+        }
+
+        return videoSettings;
+    }
+
+    /// <summary>
+    /// Captures current audio slider values into save data.
+    /// </summary>
+    private AudioSettingsSaveData CaptureAudioSettings()
+    {
+        return new AudioSettingsSaveData
+        {
+            MasterVolume = GetSliderValue(masterVolumeSlider),
+            MusicVolume = GetSliderValue(musicVolumeSlider),
+            SfxVolume = GetSliderValue(sfxVolumeSlider),
+            UiVolume = GetSliderValue(uiVolumeSlider)
+        };
     }
 
     /// <summary>
@@ -311,6 +487,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     private void HideImmediate()
     {
         EnsureCanvasGroup();
+        isOpen = false;
         canvasGroup.alpha = 0f;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
@@ -321,6 +498,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     /// </summary>
     private void Show()
     {
+        isOpen = true;
         FadePanel(1f, true);
     }
 
@@ -329,6 +507,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     /// </summary>
     private void Hide()
     {
+        isOpen = false;
         FadePanel(0f, false);
     }
 
@@ -483,7 +662,6 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         }
 
         slider.SetValueWithoutNotify(1f);
-        callback.Invoke(1f);
         slider.onValueChanged.AddListener(callback);
     }
 
@@ -516,6 +694,96 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         }
 
         return 0;
+    }
+
+    /// <summary>
+    /// Finds the saved resolution in the current hardware list, falling back to the current screen size.
+    /// </summary>
+    private int GetSavedResolutionIndex(VideoSettingsSaveData videoSettings)
+    {
+        if (availableResolutions.Length == 0)
+        {
+            return 0;
+        }
+
+        if (videoSettings != null && videoSettings.HasSavedResolution)
+        {
+            int savedIndex = FindResolutionIndex(videoSettings.ResolutionWidth, videoSettings.ResolutionHeight);
+
+            if (savedIndex >= 0)
+            {
+                return savedIndex;
+            }
+        }
+
+        int currentIndex = FindResolutionIndex(Screen.width, Screen.height);
+        return currentIndex >= 0 ? currentIndex : 0;
+    }
+
+    /// <summary>
+    /// Finds a resolution option by width and height.
+    /// </summary>
+    private int FindResolutionIndex(int width, int height)
+    {
+        for (int i = 0; i < availableResolutions.Length; i++)
+        {
+            Resolution resolution = availableResolutions[i];
+
+            if (resolution.width == width && resolution.height == height)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /// <summary>
+    /// Sets a dropdown value without firing change callbacks.
+    /// </summary>
+    private static void SetDropdownValue(TMP_Dropdown dropdown, int value)
+    {
+        if (dropdown == null)
+        {
+            return;
+        }
+
+        int optionCount = dropdown.options.Count;
+
+        if (optionCount <= 0)
+        {
+            return;
+        }
+
+        dropdown.SetValueWithoutNotify(Mathf.Clamp(value, 0, optionCount - 1));
+        dropdown.RefreshShownValue();
+    }
+
+    /// <summary>
+    /// Gets a dropdown value, returning zero when the dropdown is missing.
+    /// </summary>
+    private static int GetDropdownValue(TMP_Dropdown dropdown)
+    {
+        return dropdown != null ? dropdown.value : 0;
+    }
+
+    /// <summary>
+    /// Sets a slider value without firing change callbacks.
+    /// </summary>
+    private static void SetSliderValue(Slider slider, float value)
+    {
+        if (slider != null)
+        {
+            slider.SetValueWithoutNotify(Mathf.Clamp01(value));
+        }
+    }
+
+    /// <summary>
+    /// Gets a slider value, returning full volume when the slider is missing.
+    /// </summary>
+    private static float GetSliderValue(Slider slider)
+    {
+        return slider != null ? Mathf.Clamp01(slider.value) : 1f;
     }
 
     /// <summary>

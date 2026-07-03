@@ -29,19 +29,6 @@ public sealed class GameSfxPlayer : MonoBehaviour
     [SerializeField]
     private AudioClip uiButtonClickClip;
 
-    [Title("Volume")]
-    [SerializeField, Range(0f, 1f)]
-    private float playerDeathVolume = 1f;
-
-    [SerializeField, Range(0f, 1f)]
-    private float playerJumpVolume = 1f;
-
-    [SerializeField, Range(0f, 1f)]
-    private float winZoneVolume = 1f;
-
-    [SerializeField, Range(0f, 1f)]
-    private float uiButtonClickVolume = 1f;
-
     /// <summary>
     /// Registers the active SFX player and applies channel settings.
     /// </summary>
@@ -83,7 +70,7 @@ public sealed class GameSfxPlayer : MonoBehaviour
             return;
         }
 
-        Current.PlaySfx(Current.GetRandomDeathClip(), Current.playerDeathVolume);
+        Current.PlaySfx(Current.GetRandomDeathClip());
     }
 
     /// <summary>
@@ -91,7 +78,7 @@ public sealed class GameSfxPlayer : MonoBehaviour
     /// </summary>
     public static void PlayPlayerJump()
     {
-        Current?.PlaySfx(Current.playerJumpClip, Current.playerJumpVolume);
+        Current?.PlaySfx(Current.playerJumpClip);
     }
 
     /// <summary>
@@ -99,7 +86,7 @@ public sealed class GameSfxPlayer : MonoBehaviour
     /// </summary>
     public static void PlayWinZone()
     {
-        Current?.PlaySfx(Current.winZoneClip, Current.winZoneVolume);
+        Current?.PlaySfx(Current.winZoneClip);
     }
 
     /// <summary>
@@ -107,11 +94,11 @@ public sealed class GameSfxPlayer : MonoBehaviour
     /// </summary>
     public static void PlayUiButtonClick()
     {
-        Current?.PlayUi(Current.uiButtonClickClip, Current.uiButtonClickVolume);
+        Current?.PlayUi(Current.uiButtonClickClip);
     }
 
     /// <summary>
-    /// Applies all channel mixer and volume settings.
+    /// Applies all channel mixer routing settings.
     /// </summary>
     private void ApplyChannelSettings()
     {
@@ -122,30 +109,30 @@ public sealed class GameSfxPlayer : MonoBehaviour
     /// <summary>
     /// Plays a clip through the configured SFX channel.
     /// </summary>
-    private void PlaySfx(AudioClip clip, float volume)
+    private void PlaySfx(AudioClip clip)
     {
-        PlayOneShot(sfxChannel, clip, volume);
+        PlayOneShot(sfxChannel, clip);
     }
 
     /// <summary>
     /// Plays a clip through the configured UI channel.
     /// </summary>
-    private void PlayUi(AudioClip clip, float volume)
+    private void PlayUi(AudioClip clip)
     {
-        PlayOneShot(uiChannel, clip, volume);
+        PlayOneShot(uiChannel, clip);
     }
 
     /// <summary>
     /// Plays a one-shot clip through the requested channel.
     /// </summary>
-    private static void PlayOneShot(GameAudioChannel channel, AudioClip clip, float volume)
+    private static void PlayOneShot(GameAudioChannel channel, AudioClip clip)
     {
         if (channel == null || clip == null)
         {
             return;
         }
 
-        channel.PlayOneShot(clip, volume);
+        channel.PlayOneShot(clip);
     }
 
     /// <summary>

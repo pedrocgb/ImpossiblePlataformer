@@ -1,32 +1,42 @@
-using UnityEngine;
-
 public static class DeathSaveSystem
 {
-    private const string TotalDeathsKey = "Breezeblocks.TotalDeaths";
-
     /// <summary>
-    /// Loads the saved all-time death count from local player preferences.
+    /// Loads the saved all-time death count from the project save file.
     /// </summary>
     public static int LoadTotalDeaths()
     {
-        return PlayerPrefs.GetInt(TotalDeathsKey, 0);
+        return GameSaveSystem.LoadTotalDeaths();
     }
 
     /// <summary>
-    /// Saves the all-time death count to local player preferences.
+    /// Saves the all-time death count to the project save file.
     /// </summary>
     public static void SaveTotalDeaths(int totalDeaths)
     {
-        PlayerPrefs.SetInt(TotalDeathsKey, Mathf.Max(0, totalDeaths));
-        PlayerPrefs.Save();
+        GameSaveSystem.SaveTotalDeaths(totalDeaths);
     }
 
     /// <summary>
-    /// Clears the saved all-time death count.
+    /// Loads the all-time death count saved for one level.
+    /// </summary>
+    public static int LoadLevelDeaths(int buildIndex)
+    {
+        return GameSaveSystem.LoadLevelDeaths(buildIndex);
+    }
+
+    /// <summary>
+    /// Adds one death to one level's all-time death count.
+    /// </summary>
+    public static int RegisterLevelDeath(int buildIndex)
+    {
+        return GameSaveSystem.AddLevelDeath(buildIndex);
+    }
+
+    /// <summary>
+    /// Clears the saved all-time death count while keeping settings intact.
     /// </summary>
     public static void ClearTotalDeaths()
     {
-        PlayerPrefs.DeleteKey(TotalDeathsKey);
-        PlayerPrefs.Save();
+        GameSaveSystem.ClearTotalDeaths();
     }
 }

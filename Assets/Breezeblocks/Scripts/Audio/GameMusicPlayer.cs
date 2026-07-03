@@ -35,9 +35,6 @@ public sealed class GameMusicPlayer : MonoBehaviour
     [SerializeField, MinValue(0f)]
     private float fadeOutDuration = 1f;
 
-    [SerializeField, Range(0f, 1f)]
-    private float playbackVolume = 1f;
-
     [FoldoutGroup("Runtime Data")]
     [ShowInInspector, ReadOnly]
     private int currentMusicIndex = -1;
@@ -119,15 +116,11 @@ public sealed class GameMusicPlayer : MonoBehaviour
                 yield break;
             }
 
-            musicChannel.SetSourceVolume(0f);
             musicChannel.Play(nextClip);
-            yield return FadeSourceVolume(0f, playbackVolume, fadeInDuration);
             yield return WaitForTrackBody(nextClip);
-            yield return FadeSourceVolume(playbackVolume, 0f, fadeOutDuration);
             musicChannel.Stop();
         }
 
-        yield return FadeSourceVolume(playbackVolume, 0f, fadeOutDuration);
         musicChannel.Stop();
         playlistRoutine = null;
     }
@@ -145,35 +138,6 @@ public sealed class GameMusicPlayer : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
-    }
-
-    /// <summary>
-    /// Fades the music channel source volume over unscaled time.
-    /// </summary>
-    private IEnumerator FadeSourceVolume(float fromVolume, float toVolume, float duration)
-    {
-        if (musicChannel == null)
-        {
-            yield break;
-        }
-
-        if (duration <= 0f)
-        {
-            musicChannel.SetSourceVolume(toVolume);
-            yield break;
-        }
-
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.unscaledDeltaTime;
-            float percent = Mathf.Clamp01(elapsed / duration);
-            musicChannel.SetSourceVolume(Mathf.Lerp(fromVolume, toVolume, percent));
-            yield return null;
-        }
-
-        musicChannel.SetSourceVolume(toVolume);
     }
 
     /// <summary>

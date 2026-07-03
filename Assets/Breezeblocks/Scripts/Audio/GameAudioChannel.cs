@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
 
+[DefaultExecutionOrder(-10000)]
 [RequireComponent(typeof(AudioSource))]
 public sealed class GameAudioChannel : MonoBehaviour
 {
@@ -10,23 +11,12 @@ public sealed class GameAudioChannel : MonoBehaviour
     private AudioMixerGroup outputMixerGroup;
 
     [SerializeField]
-    private bool useAudioMixerVolumeParameter;
-
-    [SerializeField, ShowIf(nameof(useAudioMixerVolumeParameter))]
-    private AudioMixer audioMixer;
-
-    [SerializeField, ShowIf(nameof(useAudioMixerVolumeParameter))]
     private string volumeParameter;
 
-    [Title("Volume")]
-    [SerializeField, Range(0f, 1f)]
-    private float volume = 1f;
-
     private AudioSource audioSource;
-    private float sourceVolumeMultiplier = 1f;
 
     /// <summary>
-    /// Caches the same-object AudioSource and applies mixer routing.
+    /// Caches the same-object AudioSource and applies saved mixer volume before audio playback starts.
     /// </summary>
     private void Awake()
     {
@@ -36,7 +26,23 @@ public sealed class GameAudioChannel : MonoBehaviour
     }
 
     /// <summary>
-    /// Keeps mixer volume current when inspector values change during play mode.
+    /// Reapplies saved mixer volume when this channel is enabled after scene load.
+    /// </summary>
+    private void OnEnable()
+    {
+        ApplySettings();
+    }
+
+    /// <summary>
+    /// Reapplies saved mixer volumes after Unity finishes initializing audio objects.
+    /// </summary>
+    private void Start()
+    {
+        ApplySavedMixerVolumes();
+    }
+
+    /// <summary>
+    /// Keeps mixer routing and saved mixer volume current when inspector values change during play mode.
     /// </summary>
     private void OnValidate()
     {
@@ -49,7 +55,7 @@ public sealed class GameAudioChannel : MonoBehaviour
     /// <summary>
     /// Plays a one-shot clip through this channel.
     /// </summary>
-    public void PlayOneShot(AudioClip clip, float clipVolume = 1f)
+    public void PlayOneShot(AudioClip clip)
     {
         EnsureAudioSource();
 
@@ -58,7 +64,7 @@ public sealed class GameAudioChannel : MonoBehaviour
             return;
         }
 
-        audioSource.PlayOneShot(clip, clipVolume);
+        audioSource.PlayOneShot(clip);
     }
 
     /// <summary>
@@ -124,31 +130,13 @@ public sealed class GameAudioChannel : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the AudioSource volume used for fades without changing mixer volume.
-    /// </summary>
-    public void SetSourceVolume(float sourceVolume)
-    {
-        EnsureAudioSource();
-        sourceVolumeMultiplier = Mathf.Clamp01(sourceVolume);
-        ApplySourceVolume();
-    }
-
-    /// <summary>
-    /// Applies the channel volume to either the AudioMixer parameter or AudioSource volume.
+    /// Applies mixer routing without changing any runtime volume.
     /// </summary>
     public void ApplySettings()
     {
         EnsureAudioSource();
         audioSource.outputAudioMixerGroup = outputMixerGroup;
-
-        if (useAudioMixerVolumeParameter && audioMixer != null && !string.IsNullOrWhiteSpace(volumeParameter))
-        {
-            audioMixer.SetFloat(volumeParameter, AudioMixerVolumeUtility.LinearToDecibels(volume));
-            ApplySourceVolume();
-            return;
-        }
-
-        ApplySourceVolume();
+        ApplySavedMixerVolumes();
     }
 
     /// <summary>
@@ -163,17 +151,25 @@ public sealed class GameAudioChannel : MonoBehaviour
     }
 
     /// <summary>
-    /// Applies the AudioSource volume while respecting mixer-driven channel volume.
+    /// Applies saved volumes to every known exposed AudioMixer parameter on this channel's mixer.
     /// </summary>
-    private void ApplySourceVolume()
+    private void ApplySavedMixerVolumes()
     {
-        if (useAudioMixerVolumeParameter && audioMixer != null && !string.IsNullOrWhiteSpace(volumeParameter))
+        if (outputMixerGroup == null || outputMixerGroup.audioMixer == null)
         {
-            audioSource.volume = sourceVolumeMultiplier;
             return;
         }
 
-        audioSource.volume = volume * sourceVolumeMultiplier;
-    }
+        GameSaveSystem.ApplyAudioSettings(
+            outputMixerGroup.audioMixer,
+            "MasterVolume",
+            "MusicVolume",
+            "SFXVolume",
+            "UIVolume");
 
+        if (!string.IsNullOrWhiteSpace(volumeParameter))
+        {
+            GameSaveSystem.ApplySavedAudioMixerParameter(outputMixerGroup.audioMixer, volumeParameter);
+        }
+    }
 }

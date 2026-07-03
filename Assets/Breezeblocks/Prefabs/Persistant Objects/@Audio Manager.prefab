@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameAudioChannel
   outputMixerGroup: {fileID: -6299454787715452669, guid: d1c1ea9ef3399d344b9f755c64c880ce, type: 2}
-  volumeParameter: 
+  volumeParameter: UIVolume
 --- !u!1 &5284816677093339478
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,8 +270,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5284816677093339478}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -944.5335, y: -455.2764, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameAudioChannel
   outputMixerGroup: {fileID: 4998652891433058961, guid: d1c1ea9ef3399d344b9f755c64c880ce, type: 2}
-  volumeParameter: 
+  volumeParameter: MusicVolume
 --- !u!1 &5742728206366688910
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,4 +596,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameAudioChannel
   outputMixerGroup: {fileID: 3406148044711345025, guid: d1c1ea9ef3399d344b9f755c64c880ce, type: 2}
-  volumeParameter: 
+  volumeParameter: SFXVolume

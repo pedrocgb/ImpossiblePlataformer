@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "ImpossiblePlataformer.slnx"
+    "dotnet.defaultSolution": "Impossible Plataformer.slnx"
 }

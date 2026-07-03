@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using Rewired;
 using Sirenix.OdinInspector;
@@ -180,13 +181,21 @@ public sealed class PauseMenuController : MonoBehaviour
     /// </summary>
     private void CacheRewiredPlayer()
     {
-        if (!ReInput.isReady)
+        if (!IsRewiredReady())
         {
             rewiredPlayer = null;
             return;
         }
 
-        rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
+        try
+        {
+            rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
+        }
+        catch (Exception)
+        {
+            rewiredPlayer = null;
+        }
+
         CachePauseMenuAction();
     }
 
@@ -197,12 +206,21 @@ public sealed class PauseMenuController : MonoBehaviour
     {
         pauseMenuActionId = -1;
 
-        if (!ReInput.isReady || string.IsNullOrWhiteSpace(pauseMenuAction))
+        if (!IsRewiredReady() || string.IsNullOrWhiteSpace(pauseMenuAction))
         {
             return;
         }
 
-        InputAction inputAction = ReInput.mapping.GetAction(pauseMenuAction);
+        InputAction inputAction;
+
+        try
+        {
+            inputAction = ReInput.mapping.GetAction(pauseMenuAction);
+        }
+        catch (Exception)
+        {
+            return;
+        }
 
         if (inputAction != null)
         {
@@ -215,6 +233,12 @@ public sealed class PauseMenuController : MonoBehaviour
     /// </summary>
     private void ReadPauseInput()
     {
+        if (!IsRewiredReady())
+        {
+            rewiredPlayer = null;
+            return;
+        }
+
         if (rewiredPlayer == null)
         {
             CacheRewiredPlayer();
@@ -225,9 +249,31 @@ public sealed class PauseMenuController : MonoBehaviour
             return;
         }
 
-        if (rewiredPlayer.GetButtonDown(pauseMenuActionId))
+        try
         {
-            HandlePauseMenuPressed();
+            if (rewiredPlayer.GetButtonDown(pauseMenuActionId))
+            {
+                HandlePauseMenuPressed();
+            }
+        }
+        catch (Exception)
+        {
+            rewiredPlayer = null;
+        }
+    }
+
+    /// <summary>
+    /// Checks whether Rewired can currently be used without throwing during startup or teardown.
+    /// </summary>
+    private static bool IsRewiredReady()
+    {
+        try
+        {
+            return ReInput.isReady;
+        }
+        catch (Exception)
+        {
+            return false;
         }
     }
 

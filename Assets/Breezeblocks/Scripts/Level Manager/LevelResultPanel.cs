@@ -7,6 +7,10 @@ using Sirenix.OdinInspector;
 [RequireComponent(typeof(CanvasGroup))]
 public sealed class LevelResultPanel : MonoBehaviour
 {
+    private const string TimeFormatKey = "level.result.timeFormat";
+    private const string DeathsFormatKey = "level.result.deathsFormat";
+    private const string TotalDeathsFormatKey = "level.result.totalDeathsFormat";
+
     [Title("Text")]
     [SerializeField]
     private TMP_Text titleText;
@@ -44,16 +48,6 @@ public sealed class LevelResultPanel : MonoBehaviour
 
     [SerializeField]
     private Button quitButton;
-
-    [Title("Labels")]
-    [SerializeField]
-    private string timePrefix = "Time: ";
-
-    [SerializeField]
-    private string deathsPrefix = "Deaths: ";
-
-    [SerializeField]
-    private string totalDeathsPrefix = "Total Deaths: ";
 
     [Title("Animation")]
     [SerializeField]
@@ -111,9 +105,9 @@ public sealed class LevelResultPanel : MonoBehaviour
     public void ShowWin(string levelTitle, string timeValue, int deathCount, int totalDeathCount)
     {
         SetText(titleText, levelTitle);
-        SetText(timerText, $"{timePrefix}{timeValue}");
-        SetText(deathsText, $"{deathsPrefix}{deathCount}");
-        SetText(totalDeathsText, $"{totalDeathsPrefix}{totalDeathCount}");
+        SetText(timerText, GameLocalization.Format(TimeFormatKey, "Time: {0}", timeValue));
+        SetText(deathsText, GameLocalization.Format(DeathsFormatKey, "Deaths: {0}", deathCount));
+        SetText(totalDeathsText, GameLocalization.Format(TotalDeathsFormatKey, "Total Deaths: {0}", totalDeathCount));
         PrepareAnimatedItems();
         FadeIn();
     }

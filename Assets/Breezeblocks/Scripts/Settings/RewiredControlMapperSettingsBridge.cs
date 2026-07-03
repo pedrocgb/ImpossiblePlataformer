@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Rewired;
@@ -11,6 +12,13 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     private const int KeyboardControllerId = 0;
     private const int PrimaryBindingIndex = 0;
     private const int SecondaryBindingIndex = 1;
+    private const string UnboundKey = "controls.unbound";
+    private const string ListeningFormatKey = "controls.listeningFormat";
+    private const string MissingBindingsPrefixKey = "controls.missingBindingsPrefix";
+    private const string RewiredActionKeyPrefix = "rewired.action.";
+    private const string InputKeyPrefix = "input.key.";
+    private const string PositiveAxisFormatKey = "rewired.axis.positive";
+    private const string NegativeAxisFormatKey = "rewired.axis.negative";
 
     private enum BindingSlot
     {
@@ -45,21 +53,12 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     [SerializeField]
     private Transform rowsParent;
 
-    [SerializeField]
-    private string unboundLabel = "Unbound";
-
-    [SerializeField]
-    private string optionalUnboundLabel = string.Empty;
-
     [Title("Listening")]
     [SerializeField, MinValue(0f)]
     private float assignmentTimeout = 5f;
 
     [SerializeField, MinValue(0f)]
     private float listenStartDelay = 0.1f;
-
-    [SerializeField]
-    private string listeningMessage = "Press a key...";
 
     [SerializeField]
     private string cancelActionName = "PauseMenu";
@@ -74,12 +73,6 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     [Title("Validation")]
     [SerializeField]
     private TMP_Text validationText;
-
-    [SerializeField]
-    private string validMessage = string.Empty;
-
-    [SerializeField]
-    private string invalidMessagePrefix = "Missing bindings: ";
 
     [SerializeField]
     private Color validColor = Color.white;
@@ -120,7 +113,7 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     /// </summary>
     private IEnumerator Start()
     {
-        while (!ReInput.isReady)
+        while (!IsRewiredReady())
         {
             yield return null;
         }
@@ -135,6 +128,7 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     private void OnEnable()
     {
         SubscribeEvents();
+        GameLocalization.LanguageChanged += RefreshLocalizedRows;
     }
 
     /// <summary>
@@ -142,6 +136,7 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
+        GameLocalization.LanguageChanged -= RefreshLocalizedRows;
         StopListening();
         UnsubscribeEvents();
     }
@@ -212,12 +207,21 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     {
         RefreshPlayer();
 
-        if (currentPlayer == null)
+        if (currentPlayer == null || !IsRewiredReady())
         {
             return;
         }
 
-        currentPlayer.controllers.maps.LoadDefaultMaps(ControllerType.Keyboard);
+        try
+        {
+            currentPlayer.controllers.maps.LoadDefaultMaps(ControllerType.Keyboard);
+        }
+        catch (Exception)
+        {
+            currentPlayer = null;
+            return;
+        }
+
         SaveBindings();
         RefreshRows();
         RefreshValidation();
@@ -235,7 +239,7 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
 
         string missingActions = GetMissingBindingsText();
         bool isValid = string.IsNullOrEmpty(missingActions);
-        validationText.text = isValid ? validMessage : invalidMessagePrefix + missingActions;
+        validationText.text = isValid ? string.Empty : GameLocalization.Get(MissingBindingsPrefixKey, "Missing bindings: ") + missingActions;
         validationText.color = isValid ? validColor : invalidColor;
     }
 
@@ -273,23 +277,30 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     {
         currentPlayer = null;
 
-        if (!ReInput.isReady)
+        if (!IsRewiredReady())
         {
             return;
         }
 
-        currentPlayer = ReInput.players.GetPlayer(playerId);
-
-        if (currentPlayer != null || !fallbackToFirstPlayer)
+        try
         {
-            return;
+            currentPlayer = ReInput.players.GetPlayer(playerId);
+
+            if (currentPlayer != null || !fallbackToFirstPlayer)
+            {
+                return;
+            }
+
+            IList<Player> players = ReInput.players.Players;
+
+            if (players.Count > 0)
+            {
+                currentPlayer = players[0];
+            }
         }
-
-        IList<Player> players = ReInput.players.Players;
-
-        if (players.Count > 0)
+        catch (Exception)
         {
-            currentPlayer = players[0];
+            currentPlayer = null;
         }
     }
 
@@ -300,24 +311,31 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     {
         ClearRows();
 
-        if (!ReInput.isReady || rowPrefab == null || rowsParent == null)
+        if (!IsRewiredReady() || rowPrefab == null || rowsParent == null)
         {
             return;
         }
 
-        foreach (InputAction action in ReInput.mapping.ActionsInCategory(actionCategory))
+        try
         {
-            if (action.type == InputActionType.Button)
+            foreach (InputAction action in ReInput.mapping.ActionsInCategory(actionCategory))
             {
-                CreateRow(action, AxisRange.Positive, GetActionDisplayName(action));
-                continue;
-            }
+                if (action.type == InputActionType.Button)
+                {
+                    CreateRow(action, AxisRange.Positive, GetActionDisplayName(action));
+                    continue;
+                }
 
-            if (action.type == InputActionType.Axis)
-            {
-                CreateRow(action, AxisRange.Positive, GetAxisDisplayName(action, true));
-                CreateRow(action, AxisRange.Negative, GetAxisDisplayName(action, false));
+                if (action.type == InputActionType.Axis)
+                {
+                    CreateRow(action, AxisRange.Positive, GetAxisDisplayName(action, true));
+                    CreateRow(action, AxisRange.Negative, GetAxisDisplayName(action, false));
+                }
             }
+        }
+        catch (Exception)
+        {
+            ClearRows();
         }
     }
 
@@ -392,7 +410,7 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
         pendingOriginalMap = CopyActionElementMap(FindActionElementMap(row, slot));
         CacheCancelActionMaps();
         isListeningForBinding = true;
-        SetListeningPanel(true, listeningMessage);
+        SetListeningPanel(true, GameLocalization.Format(ListeningFormatKey, "{0}: press a key...", row.DisplayName));
         listenCoroutine = StartCoroutine(StartListeningDelayed(row, slot));
     }
 
@@ -417,17 +435,42 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
         }
 
         ActionElementMap replaceMap = FindActionElementMap(row, slot);
-        inputMapper.Start(
-            new InputMapper.Context
-            {
-                actionId = row.ActionId,
-                controllerMap = controllerMap,
-                actionRange = row.ActionRange,
-                actionElementMapToReplace = replaceMap
-            });
+        InputMapper.Context context = new InputMapper.Context
+        {
+            actionId = row.ActionId,
+            controllerMap = controllerMap,
+            actionRange = row.ActionRange,
+            actionElementMapToReplace = replaceMap
+        };
+
+        try
+        {
+            inputMapper.Start(context);
+        }
+        catch (Exception)
+        {
+            StopListening();
+            RefreshValidation();
+            yield break;
+        }
 
         SetUiMapsEnabled(false);
         listenCoroutine = null;
+    }
+
+    /// <summary>
+    /// Stops the Rewired input mapper while tolerating editor teardown order.
+    /// </summary>
+    private void StopInputMapperSafely()
+    {
+        try
+        {
+            inputMapper.Stop();
+        }
+        catch (Exception)
+        {
+            isListeningForBinding = false;
+        }
     }
 
     /// <summary>
@@ -441,7 +484,7 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
             listenCoroutine = null;
         }
 
-        inputMapper.Stop();
+        StopInputMapperSafely();
         SetUiMapsEnabled(true);
         SetListeningPanel(false, string.Empty);
         isListeningForBinding = false;
@@ -495,7 +538,7 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     /// </summary>
     private void SaveBindings()
     {
-        if (!ReInput.isReady)
+        if (!IsRewiredReady())
         {
             return;
         }
@@ -507,12 +550,24 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
             return;
         }
 
+        string keyboardMapXml;
+
+        try
+        {
+            keyboardMapXml = keyboardMap.ToXmlString();
+        }
+        catch (Exception)
+        {
+            currentPlayer = null;
+            return;
+        }
+
         GameSaveSystem.SaveControlSettings(new ControlSettingsSaveData
         {
             PlayerId = currentPlayer != null ? currentPlayer.id : playerId,
             MapCategory = mapCategory,
             MapLayout = mapLayout,
-            KeyboardMapXml = keyboardMap.ToXmlString()
+            KeyboardMapXml = keyboardMapXml
         });
     }
 
@@ -521,7 +576,7 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     /// </summary>
     private void LoadSavedBindings()
     {
-        if (!ReInput.isReady || currentPlayer == null)
+        if (!IsRewiredReady() || currentPlayer == null)
         {
             return;
         }
@@ -538,9 +593,18 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
 
         ControllerMap keyboardMap = ControllerMap.CreateFromXml(ControllerType.Keyboard, controlSettings.KeyboardMapXml);
 
-        if (keyboardMap != null)
+        if (keyboardMap == null)
+        {
+            return;
+        }
+
+        try
         {
             currentPlayer.controllers.maps.AddMap(ReInput.controllers.Keyboard, keyboardMap);
+        }
+        catch (Exception)
+        {
+            currentPlayer = null;
         }
     }
 
@@ -549,12 +613,19 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     /// </summary>
     private void SetUiMapsEnabled(bool isEnabled)
     {
-        if (currentPlayer == null || string.IsNullOrWhiteSpace(uiMapCategory))
+        if (currentPlayer == null || string.IsNullOrWhiteSpace(uiMapCategory) || !IsRewiredReady())
         {
             return;
         }
 
-        currentPlayer.controllers.maps.SetMapsEnabled(isEnabled, uiMapCategory);
+        try
+        {
+            currentPlayer.controllers.maps.SetMapsEnabled(isEnabled, uiMapCategory);
+        }
+        catch (Exception)
+        {
+            currentPlayer = null;
+        }
     }
 
     /// <summary>
@@ -562,12 +633,20 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     /// </summary>
     private ControllerMap GetKeyboardMap()
     {
-        if (currentPlayer == null)
+        if (currentPlayer == null || !IsRewiredReady())
         {
             return null;
         }
 
-        return currentPlayer.controllers.maps.GetMap(ControllerType.Keyboard, KeyboardControllerId, mapCategory, mapLayout);
+        try
+        {
+            return currentPlayer.controllers.maps.GetMap(ControllerType.Keyboard, KeyboardControllerId, mapCategory, mapLayout);
+        }
+        catch (Exception)
+        {
+            currentPlayer = null;
+            return null;
+        }
     }
 
     /// <summary>
@@ -579,10 +658,10 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
 
         if (elementMap != null)
         {
-            return elementMap.elementIdentifierName;
+            return GetElementMapDisplayName(elementMap);
         }
 
-        return slot == BindingSlot.Primary ? unboundLabel : optionalUnboundLabel;
+        return slot == BindingSlot.Primary ? GameLocalization.Get(UnboundKey, "Unbound") : string.Empty;
     }
 
     /// <summary>
@@ -685,12 +764,22 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     {
         cancelActionMaps.Clear();
 
-        if (!ReInput.isReady || string.IsNullOrWhiteSpace(cancelActionName))
+        if (!IsRewiredReady() || string.IsNullOrWhiteSpace(cancelActionName))
         {
             return;
         }
 
-        InputAction cancelAction = ReInput.mapping.GetAction(cancelActionName);
+        InputAction cancelAction;
+
+        try
+        {
+            cancelAction = ReInput.mapping.GetAction(cancelActionName);
+        }
+        catch (Exception)
+        {
+            return;
+        }
+
         ControllerMap keyboardMap = GetKeyboardMap();
 
         if (cancelAction == null || keyboardMap == null)
@@ -925,7 +1014,7 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     /// </summary>
     private void FinishListeningWithoutSave()
     {
-        inputMapper.Stop();
+        StopInputMapperSafely();
         RefreshRows();
         RefreshValidation();
         FinishListeningWithoutClearingRows();
@@ -982,12 +1071,8 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     /// </summary>
     private static string GetActionDisplayName(InputAction action)
     {
-        if (!string.IsNullOrWhiteSpace(action.descriptiveName))
-        {
-            return action.descriptiveName;
-        }
-
-        return action.name;
+        string fallback = !string.IsNullOrWhiteSpace(action.descriptiveName) ? action.descriptiveName : action.name;
+        return GameLocalization.Get(RewiredActionKeyPrefix + action.name, fallback);
     }
 
     /// <summary>
@@ -995,14 +1080,102 @@ public sealed class RewiredControlMapperSettingsBridge : MonoBehaviour
     /// </summary>
     private static string GetAxisDisplayName(InputAction action, bool isPositive)
     {
-        string axisName = isPositive ? action.positiveDescriptiveName : action.negativeDescriptiveName;
+        string actionName = GetActionDisplayName(action);
+        string fallback = actionName + (isPositive ? " +" : " -");
+        return GameLocalization.Format(isPositive ? PositiveAxisFormatKey : NegativeAxisFormatKey, fallback, actionName);
+    }
 
-        if (!string.IsNullOrWhiteSpace(axisName))
+    /// <summary>
+    /// Rebuilds visible control rows when language changes.
+    /// </summary>
+    private void RefreshLocalizedRows()
+    {
+        if (isListeningForBinding)
         {
-            return axisName;
+            return;
         }
 
-        return GetActionDisplayName(action) + (isPositive ? " +" : " -");
+        BuildRows();
+        RefreshRows();
+        RefreshValidation();
+    }
+
+    /// <summary>
+    /// Gets a safe localized display name for one keyboard binding.
+    /// </summary>
+    private static string GetElementMapDisplayName(ActionElementMap elementMap)
+    {
+        string sanitizedName = SanitizeTmpLabel(elementMap.elementIdentifierName);
+        string keyCodeName = elementMap.keyCode.ToString();
+        string fallback = string.IsNullOrWhiteSpace(sanitizedName) ? keyCodeName : sanitizedName;
+
+        if (!string.IsNullOrWhiteSpace(keyCodeName) && keyCodeName != "None")
+        {
+            return GameLocalization.Get(InputKeyPrefix + keyCodeName, fallback);
+        }
+
+        return fallback;
+    }
+
+    /// <summary>
+    /// Removes control characters that TextMeshPro cannot render, such as the Escape key code.
+    /// </summary>
+    private static string SanitizeTmpLabel(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return string.Empty;
+        }
+
+        char[] buffer = null;
+        int writeIndex = 0;
+
+        for (int i = 0; i < value.Length; i++)
+        {
+            char character = value[i];
+
+            if (IsUnsupportedTmpCharacter(character))
+            {
+                if (buffer == null)
+                {
+                    buffer = value.ToCharArray();
+                    writeIndex = i;
+                }
+
+                continue;
+            }
+
+            if (buffer != null)
+            {
+                buffer[writeIndex] = character;
+                writeIndex++;
+            }
+        }
+
+        return buffer == null ? value : new string(buffer, 0, writeIndex);
+    }
+
+    /// <summary>
+    /// Checks whether a character should be removed from TMP labels.
+    /// </summary>
+    private static bool IsUnsupportedTmpCharacter(char character)
+    {
+        return char.IsControl(character) && character != '\n' && character != '\r' && character != '\t';
+    }
+
+    /// <summary>
+    /// Checks whether Rewired can currently be used without throwing during startup or teardown.
+    /// </summary>
+    private static bool IsRewiredReady()
+    {
+        try
+        {
+            return ReInput.isReady;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 
     private sealed class BindingRow

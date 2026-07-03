@@ -365,6 +365,17 @@ public static class GameSaveSystem
     }
 
     /// <summary>
+    /// Deletes the project save file and clears cached save data.
+    /// </summary>
+    public static bool DeleteAllSaveFiles()
+    {
+        bool deletedAnyFile = DeleteSaveFile(GetSavePath());
+        deletedAnyFile |= DeleteSaveFile(GetSavePath() + ".tmp");
+        cachedSaveData = null;
+        return deletedAnyFile;
+    }
+
+    /// <summary>
     /// Reads and parses the save file from disk.
     /// </summary>
     private static GameSaveData ReadSaveFile()
@@ -387,6 +398,20 @@ public static class GameSaveSystem
             Debug.LogWarning($"Could not load save file at {savePath}: {exception.Message}");
             return new GameSaveData();
         }
+    }
+
+    /// <summary>
+    /// Deletes one save-related file when it exists.
+    /// </summary>
+    private static bool DeleteSaveFile(string savePath)
+    {
+        if (string.IsNullOrWhiteSpace(savePath) || !File.Exists(savePath))
+        {
+            return false;
+        }
+
+        File.Delete(savePath);
+        return true;
     }
 
     /// <summary>

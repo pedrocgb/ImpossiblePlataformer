@@ -29,7 +29,7 @@ public sealed class LevelGameManager : MonoBehaviour
 
     [Title("Level")]
     [SerializeField]
-    private string levelTitle = "Level 1";
+    private string levelTitleLocalizationKey = "level.title.default";
 
     [SerializeField]
     [MinValue(0f)]
@@ -162,7 +162,7 @@ public sealed class LevelGameManager : MonoBehaviour
 
         if (winPanel != null)
         {
-            winPanel.ShowWin(levelTitle, FormatTime(elapsedSeconds), deathCount, GetTotalDeaths());
+            winPanel.ShowWin(GetLocalizedLevelTitle(), FormatTime(elapsedSeconds), deathCount, GetTotalDeaths());
         }
     }
 
@@ -245,6 +245,17 @@ public sealed class LevelGameManager : MonoBehaviour
         int minutes = totalSeconds / 60;
         int remainingSeconds = totalSeconds % 60;
         return $"{minutes:00}:{remainingSeconds:00}";
+    }
+
+    /// <summary>
+    /// Resolves the localized level title, falling back to the active scene name.
+    /// </summary>
+    private string GetLocalizedLevelTitle()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        int displayLevelNumber = Mathf.Max(1, activeScene.buildIndex - 1);
+        string fallback = string.IsNullOrWhiteSpace(activeScene.name) ? "Level {0}" : activeScene.name;
+        return GameLocalization.Format(levelTitleLocalizationKey, fallback, displayLevelNumber);
     }
 
     /// <summary>

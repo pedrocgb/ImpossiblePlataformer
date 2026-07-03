@@ -1,3 +1,4 @@
+using System;
 using Rewired;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -444,13 +445,20 @@ public sealed class PlayerMovement : MonoBehaviour, ILevelResettable
     /// </summary>
     private void CacheRewiredPlayer()
     {
-        if (!useRewiredInput || !ReInput.isReady)
+        if (!useRewiredInput || !IsRewiredReady())
         {
             rewiredPlayer = null;
             return;
         }
 
-        rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
+        try
+        {
+            rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
+        }
+        catch (Exception)
+        {
+            rewiredPlayer = null;
+        }
     }
 
     /// <summary>
@@ -460,6 +468,12 @@ public sealed class PlayerMovement : MonoBehaviour, ILevelResettable
     {
         if (!useRewiredInput)
         {
+            return;
+        }
+
+        if (!IsRewiredReady())
+        {
+            rewiredPlayer = null;
             return;
         }
 
@@ -473,12 +487,34 @@ public sealed class PlayerMovement : MonoBehaviour, ILevelResettable
             return;
         }
 
-        SetInput(
-            new Vector2(rewiredPlayer.GetAxis(horizontalAction), rewiredPlayer.GetAxis(verticalAction)),
-            rewiredPlayer.GetButton(jumpAction),
-            rewiredPlayer.GetButtonDown(jumpAction),
-            rewiredPlayer.GetButtonUp(jumpAction),
-            CanDash && rewiredPlayer.GetButtonDown(dashAction));
+        try
+        {
+            SetInput(
+                new Vector2(rewiredPlayer.GetAxis(horizontalAction), rewiredPlayer.GetAxis(verticalAction)),
+                rewiredPlayer.GetButton(jumpAction),
+                rewiredPlayer.GetButtonDown(jumpAction),
+                rewiredPlayer.GetButtonUp(jumpAction),
+                CanDash && rewiredPlayer.GetButtonDown(dashAction));
+        }
+        catch (Exception)
+        {
+            rewiredPlayer = null;
+        }
+    }
+
+    /// <summary>
+    /// Checks whether Rewired can currently be used without throwing during startup or teardown.
+    /// </summary>
+    private static bool IsRewiredReady()
+    {
+        try
+        {
+            return ReInput.isReady;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 
     /// <summary>

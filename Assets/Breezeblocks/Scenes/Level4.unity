@@ -1596,10 +1596,10 @@ PrefabInstance:
     - target: {fileID: 806914351209677384, guid: 12af99dd45f8f734eac81110884bf61f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 572430169}
+      objectReference: {fileID: 4220280513870556622}
     - target: {fileID: 806914351209677384, guid: 12af99dd45f8f734eac81110884bf61f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
+      value: QuitToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 1252658292288761763, guid: 12af99dd45f8f734eac81110884bf61f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1726,6 +1726,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12af99dd45f8f734eac81110884bf61f, type: 3}
+--- !u!114 &4220280513870556622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 30829706165293843, guid: 12af99dd45f8f734eac81110884bf61f, type: 3}
+  m_PrefabInstance: {fileID: 4220280513870556621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d8f34b9d0e06120a93d12cd0783b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenuController
 --- !u!1001 &5236852008195187494
 PrefabInstance:
   m_ObjectHideFlags: 0

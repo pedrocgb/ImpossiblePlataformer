@@ -8,6 +8,18 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasGroup))]
 public sealed class GameSettingsPanelController : MonoBehaviour
 {
+    private const string VideoTitleKey = "settings.title.video";
+    private const string AudioTitleKey = "settings.title.audio";
+    private const string ControlsTitleKey = "settings.title.controls";
+    private const string GameplayTitleKey = "settings.title.gameplay";
+    private const string MonitorFormatKey = "settings.monitorFormat";
+    private const string FullscreenRenderModeKey = "settings.renderMode.fullscreen";
+    private const string BorderlessRenderModeKey = "settings.renderMode.borderless";
+    private const string WindowedRenderModeKey = "settings.renderMode.windowed";
+    private const string UnlimitedFrameRateKey = "settings.frameRate.unlimited";
+    private const string PortugueseLanguageKey = "settings.language.ptBr";
+    private const string EnglishLanguageKey = "settings.language.enUs";
+
     private enum RenderModeOption
     {
         Fullscreen,
@@ -31,17 +43,10 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     private GameObject controlsOptionsRoot;
 
     [SerializeField]
+    private GameObject gameplayOptionsRoot;
+
+    [SerializeField]
     private RewiredControlMapperSettingsBridge controlsBridge;
-
-    [Title("Titles")]
-    [SerializeField]
-    private string videoSettingsTitle = "Video";
-
-    [SerializeField]
-    private string audioSettingsTitle = "Audio";
-
-    [SerializeField]
-    private string controlsSettingsTitle = "Controls";
 
     [Title("Video")]
     [SerializeField]
@@ -58,6 +63,10 @@ public sealed class GameSettingsPanelController : MonoBehaviour
 
     [SerializeField]
     private TMP_Dropdown frameRateDropdown;
+
+    [Title("Gameplay")]
+    [SerializeField]
+    private TMP_Dropdown languageDropdown;
 
     [SerializeField]
     private Camera[] displayCameras = new Camera[0];
@@ -101,6 +110,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     private Ease fadeEase = Ease.OutQuad;
 
     private CanvasGroup canvasGroup;
+    private LocalizedText settingsTitleLocalizedText;
     private Tween fadeTween;
     private Resolution[] availableResolutions = new Resolution[0];
     private bool isOpen;
@@ -117,7 +127,10 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        settingsTitleLocalizedText = settingsTitleText != null ? settingsTitleText.GetComponent<LocalizedText>() : null;
+        GameLocalization.LanguageChanged += RefreshLocalizedText;
         SetupVideoControls();
+        SetupGameplayControls();
         SetupAudioControls();
         LoadAndApplySavedSettings();
         HideImmediate();
@@ -137,6 +150,8 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     private void OnDestroy()
     {
         KillFadeTween();
+        GameLocalization.LanguageChanged -= RefreshLocalizedText;
+        RemoveControlListeners();
     }
 
     /// <summary>
@@ -191,7 +206,8 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         SetActiveGroup(videoOptionsRoot, true);
         SetActiveGroup(audioOptionsRoot, false);
         SetActiveGroup(controlsOptionsRoot, false);
-        SetTitle(videoSettingsTitle);
+        SetActiveGroup(gameplayOptionsRoot, false);
+        SetTitle(VideoTitleKey, "Video");
     }
 
     /// <summary>
@@ -202,7 +218,8 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         SetActiveGroup(videoOptionsRoot, false);
         SetActiveGroup(audioOptionsRoot, true);
         SetActiveGroup(controlsOptionsRoot, false);
-        SetTitle(audioSettingsTitle);
+        SetActiveGroup(gameplayOptionsRoot, false);
+        SetTitle(AudioTitleKey, "Audio");
     }
 
     /// <summary>
@@ -213,8 +230,21 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         SetActiveGroup(videoOptionsRoot, false);
         SetActiveGroup(audioOptionsRoot, false);
         SetActiveGroup(controlsOptionsRoot, true);
-        SetTitle(controlsSettingsTitle);
+        SetActiveGroup(gameplayOptionsRoot, false);
+        SetTitle(ControlsTitleKey, "Controls");
         controlsBridge?.OpenMapper();
+    }
+
+    /// <summary>
+    /// Shows the gameplay options group.
+    /// </summary>
+    public void ShowGameplaySettings()
+    {
+        SetActiveGroup(videoOptionsRoot, false);
+        SetActiveGroup(audioOptionsRoot, false);
+        SetActiveGroup(controlsOptionsRoot, false);
+        SetActiveGroup(gameplayOptionsRoot, true);
+        SetTitle(GameplayTitleKey, "Gameplay");
     }
 
     /// <summary>
@@ -307,6 +337,14 @@ public sealed class GameSettingsPanelController : MonoBehaviour
 
         Application.targetFrameRate = frameRateOptions[optionIndex];
         SaveVideoSettingsIfNeeded();
+    }
+
+    /// <summary>
+    /// Applies the selected gameplay language and saves it immediately.
+    /// </summary>
+    public void ApplyLanguage(int optionIndex)
+    {
+        GameLocalization.SetLanguage(optionIndex == 1 ? GameLanguage.EnUs : GameLanguage.PtBr);
     }
 
     /// <summary>
@@ -536,6 +574,14 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     }
 
     /// <summary>
+    /// Builds gameplay dropdown options and synchronizes language selection.
+    /// </summary>
+    private void SetupGameplayControls()
+    {
+        SetupLanguageDropdown();
+    }
+
+    /// <summary>
     /// Builds the resolution dropdown from available monitor resolutions.
     /// </summary>
     private void SetupResolutionDropdown()
@@ -578,11 +624,13 @@ public sealed class GameSettingsPanelController : MonoBehaviour
 
         for (int i = 0; i < Display.displays.Length; i++)
         {
-            monitorDropdown.options.Add(new TMP_Dropdown.OptionData($"Monitor {i + 1}"));
+            monitorDropdown.options.Add(new TMP_Dropdown.OptionData(GameLocalization.Format(MonitorFormatKey, "Monitor {0}", i + 1)));
         }
 
         monitorDropdown.interactable = Display.displays.Length > 1;
         monitorDropdown.SetValueWithoutNotify(0);
+        monitorDropdown.RefreshShownValue();
+        SetDropdownCaptionFallback(monitorDropdown);
         monitorDropdown.onValueChanged.AddListener(ApplyMonitor);
     }
 
@@ -597,10 +645,12 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         }
 
         renderModeDropdown.ClearOptions();
-        renderModeDropdown.options.Add(new TMP_Dropdown.OptionData("Fullscreen"));
-        renderModeDropdown.options.Add(new TMP_Dropdown.OptionData("Borderless Window"));
-        renderModeDropdown.options.Add(new TMP_Dropdown.OptionData("Windowed"));
+        renderModeDropdown.options.Add(new TMP_Dropdown.OptionData(GameLocalization.Get(FullscreenRenderModeKey, "Fullscreen")));
+        renderModeDropdown.options.Add(new TMP_Dropdown.OptionData(GameLocalization.Get(BorderlessRenderModeKey, "Borderless Window")));
+        renderModeDropdown.options.Add(new TMP_Dropdown.OptionData(GameLocalization.Get(WindowedRenderModeKey, "Windowed")));
         renderModeDropdown.SetValueWithoutNotify(GetCurrentRenderModeIndex());
+        renderModeDropdown.RefreshShownValue();
+        SetDropdownCaptionFallback(renderModeDropdown);
         renderModeDropdown.onValueChanged.AddListener(ApplyRenderMode);
     }
 
@@ -634,10 +684,31 @@ public sealed class GameSettingsPanelController : MonoBehaviour
         frameRateDropdown.options.Add(new TMP_Dropdown.OptionData("60"));
         frameRateDropdown.options.Add(new TMP_Dropdown.OptionData("120"));
         frameRateDropdown.options.Add(new TMP_Dropdown.OptionData("144"));
-        frameRateDropdown.options.Add(new TMP_Dropdown.OptionData("Unlimited"));
+        frameRateDropdown.options.Add(new TMP_Dropdown.OptionData(GameLocalization.Get(UnlimitedFrameRateKey, "Unlimited")));
         frameRateDropdown.SetValueWithoutNotify(1);
+        frameRateDropdown.RefreshShownValue();
+        SetDropdownCaptionFallback(frameRateDropdown);
         Application.targetFrameRate = 60;
         frameRateDropdown.onValueChanged.AddListener(ApplyFrameRate);
+    }
+
+    /// <summary>
+    /// Builds the language dropdown and selects the saved language.
+    /// </summary>
+    private void SetupLanguageDropdown()
+    {
+        if (languageDropdown == null)
+        {
+            return;
+        }
+
+        languageDropdown.ClearOptions();
+        languageDropdown.options.Add(new TMP_Dropdown.OptionData(GameLocalization.Get(PortugueseLanguageKey, "PT-BR")));
+        languageDropdown.options.Add(new TMP_Dropdown.OptionData(GameLocalization.Get(EnglishLanguageKey, "EN-US")));
+        languageDropdown.SetValueWithoutNotify(GetCurrentLanguageIndex());
+        languageDropdown.onValueChanged.AddListener(ApplyLanguage);
+        languageDropdown.RefreshShownValue();
+        SetDropdownCaptionFallback(languageDropdown);
     }
 
     /// <summary>
@@ -757,6 +828,7 @@ public sealed class GameSettingsPanelController : MonoBehaviour
 
         dropdown.SetValueWithoutNotify(Mathf.Clamp(value, 0, optionCount - 1));
         dropdown.RefreshShownValue();
+        SetDropdownCaptionFallback(dropdown);
     }
 
     /// <summary>
@@ -800,11 +872,163 @@ public sealed class GameSettingsPanelController : MonoBehaviour
     /// <summary>
     /// Updates the current settings section title.
     /// </summary>
-    private void SetTitle(string title)
+    private void SetTitle(string titleKey, string fallback)
     {
+        if (settingsTitleLocalizedText != null)
+        {
+            settingsTitleLocalizedText.SetKey(titleKey, fallback);
+            return;
+        }
+
         if (settingsTitleText != null)
         {
-            settingsTitleText.text = title;
+            settingsTitleText.text = GameLocalization.Get(titleKey, fallback);
+        }
+    }
+
+    /// <summary>
+    /// Refreshes settings labels that depend on the active language.
+    /// </summary>
+    private void RefreshLocalizedText()
+    {
+        RefreshMonitorDropdownLabels();
+        RefreshRenderModeDropdownLabels();
+        RefreshFrameRateDropdownLabels();
+        RefreshLanguageDropdownLabels();
+        RefreshCurrentTitle();
+    }
+
+    /// <summary>
+    /// Updates monitor dropdown option labels without changing the selected display.
+    /// </summary>
+    private void RefreshMonitorDropdownLabels()
+    {
+        if (monitorDropdown == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < monitorDropdown.options.Count; i++)
+        {
+            monitorDropdown.options[i].text = GameLocalization.Format(MonitorFormatKey, "Monitor {0}", i + 1);
+        }
+
+        monitorDropdown.RefreshShownValue();
+        SetDropdownCaptionFallback(monitorDropdown);
+    }
+
+    /// <summary>
+    /// Updates render mode dropdown option labels without changing the selected mode.
+    /// </summary>
+    private void RefreshRenderModeDropdownLabels()
+    {
+        if (renderModeDropdown == null || renderModeDropdown.options.Count < 3)
+        {
+            return;
+        }
+
+        renderModeDropdown.options[0].text = GameLocalization.Get(FullscreenRenderModeKey, "Fullscreen");
+        renderModeDropdown.options[1].text = GameLocalization.Get(BorderlessRenderModeKey, "Borderless Window");
+        renderModeDropdown.options[2].text = GameLocalization.Get(WindowedRenderModeKey, "Windowed");
+        renderModeDropdown.RefreshShownValue();
+        SetDropdownCaptionFallback(renderModeDropdown);
+    }
+
+    /// <summary>
+    /// Updates frame rate dropdown labels that are language dependent.
+    /// </summary>
+    private void RefreshFrameRateDropdownLabels()
+    {
+        if (frameRateDropdown == null || frameRateDropdown.options.Count < 5)
+        {
+            return;
+        }
+
+        frameRateDropdown.options[4].text = GameLocalization.Get(UnlimitedFrameRateKey, "Unlimited");
+        frameRateDropdown.RefreshShownValue();
+        SetDropdownCaptionFallback(frameRateDropdown);
+    }
+
+    /// <summary>
+    /// Updates language dropdown labels and selected value after a language change.
+    /// </summary>
+    private void RefreshLanguageDropdownLabels()
+    {
+        if (languageDropdown == null || languageDropdown.options.Count < 2)
+        {
+            return;
+        }
+
+        languageDropdown.options[0].text = GameLocalization.Get(PortugueseLanguageKey, "PT-BR");
+        languageDropdown.options[1].text = GameLocalization.Get(EnglishLanguageKey, "EN-US");
+        languageDropdown.SetValueWithoutNotify(GetCurrentLanguageIndex());
+        languageDropdown.RefreshShownValue();
+        SetDropdownCaptionFallback(languageDropdown);
+    }
+
+    /// <summary>
+    /// Updates the settings section title to match the currently visible options group.
+    /// </summary>
+    private void RefreshCurrentTitle()
+    {
+        if (videoOptionsRoot != null && videoOptionsRoot.activeSelf)
+        {
+            SetTitle(VideoTitleKey, "Video");
+            return;
+        }
+
+        if (audioOptionsRoot != null && audioOptionsRoot.activeSelf)
+        {
+            SetTitle(AudioTitleKey, "Audio");
+            return;
+        }
+
+        if (controlsOptionsRoot != null && controlsOptionsRoot.activeSelf)
+        {
+            SetTitle(ControlsTitleKey, "Controls");
+            return;
+        }
+
+        if (gameplayOptionsRoot != null && gameplayOptionsRoot.activeSelf)
+        {
+            SetTitle(GameplayTitleKey, "Gameplay");
+        }
+    }
+
+    /// <summary>
+    /// Gets the dropdown index that matches the current localization language.
+    /// </summary>
+    private static int GetCurrentLanguageIndex()
+    {
+        return GameLocalization.CurrentLanguage == GameLanguage.EnUs ? 1 : 0;
+    }
+
+    /// <summary>
+    /// Keeps dynamic dropdown caption text from being overwritten by a static prefab localization key.
+    /// </summary>
+    private static void SetDropdownCaptionFallback(TMP_Dropdown dropdown)
+    {
+        if (dropdown == null || dropdown.captionText == null)
+        {
+            return;
+        }
+
+        LocalizedText localizedText = dropdown.captionText.GetComponent<LocalizedText>();
+
+        if (localizedText != null)
+        {
+            localizedText.SetKey(string.Empty, dropdown.captionText.text);
+        }
+    }
+
+    /// <summary>
+    /// Removes runtime listeners created for settings UI controls.
+    /// </summary>
+    private void RemoveControlListeners()
+    {
+        if (languageDropdown != null)
+        {
+            languageDropdown.onValueChanged.RemoveListener(ApplyLanguage);
         }
     }
 

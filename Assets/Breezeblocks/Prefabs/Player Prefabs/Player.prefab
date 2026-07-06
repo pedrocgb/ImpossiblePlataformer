@@ -92,6 +92,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheckDistance: 0.04
+  invincible: 0
   maxRunSpeed: 7
   runAcceleration: 125
   runDeceleration: 75
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHeadAnimator
   headTransform: {fileID: 7261947705467629873}
-  headSpriteRenderer: {fileID: 0}
+  headSpriteRenderer: {fileID: 8613073764913669506}
   bodyRestAnchor: {fileID: 1930167544196729565}
   moveSpeedThreshold: 0.05
   jumpVelocityThreshold: 0.05

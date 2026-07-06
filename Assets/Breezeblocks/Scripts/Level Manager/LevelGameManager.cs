@@ -131,6 +131,11 @@ public sealed class LevelGameManager : MonoBehaviour
             return;
         }
 
+        if (IsPlayerInvincible(player))
+        {
+            return;
+        }
+
         deathCount++;
         RegisterTotalDeath();
         RegisterCurrentLevelDeath();
@@ -391,6 +396,20 @@ public sealed class LevelGameManager : MonoBehaviour
         {
             deathAnimation.PlayDeath();
         }
+    }
+
+    /// <summary>
+    /// Checks whether the player movement component is configured to ignore hazard deaths.
+    /// </summary>
+    private static bool IsPlayerInvincible(GameObject player)
+    {
+        if (player == null)
+        {
+            return false;
+        }
+
+        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+        return playerMovement != null && playerMovement.IsInvincible;
     }
 
     /// <summary>

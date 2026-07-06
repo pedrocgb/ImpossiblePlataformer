@@ -61,6 +61,10 @@ public sealed class PlayerMovement : MonoBehaviour, ILevelResettable
     [SerializeField, MinValue(0.001f)]
     private float groundCheckDistance = 0.04f;
 
+    [TitleGroup("Survivability")]
+    [SerializeField, LabelText("Invincible")]
+    private bool invincible;
+
     [TitleGroup("Horizontal Movement")]
     [SerializeField, MinValue(0f)]
     private float maxRunSpeed = 5.625f;
@@ -248,6 +252,11 @@ public sealed class PlayerMovement : MonoBehaviour, ILevelResettable
     public int FacingDirection => facingDirection;
 
     /// <summary>
+    /// Gets whether hazards should ignore death registration for this player.
+    /// </summary>
+    public bool IsInvincible => invincible;
+
+    /// <summary>
     /// Caches required components and prepares Rigidbody2D for script-driven platformer motion.
     /// </summary>
     private void Awake()
@@ -425,6 +434,15 @@ public sealed class PlayerMovement : MonoBehaviour, ILevelResettable
             body.angularVelocity = 0f;
             ResetMovementState();
         }
+    }
+
+    /// <summary>
+    /// Adds an external velocity impulse without disabling player control.
+    /// </summary>
+    public void AddExternalImpulse(Vector2 impulse)
+    {
+        velocity = body.linearVelocity + impulse;
+        body.linearVelocity = velocity;
     }
 
     /// <summary>

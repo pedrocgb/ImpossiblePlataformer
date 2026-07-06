@@ -205,6 +205,7 @@ public abstract class RevealableObstacle : MonoBehaviour, ILevelResettable
         revealed = false;
         followTarget = null;
         ApplyVisibility(false);
+        OnHidden();
     }
 
     /// <summary>
@@ -259,6 +260,34 @@ public abstract class RevealableObstacle : MonoBehaviour, ILevelResettable
     }
 
     /// <summary>
+    /// Runs obstacle-specific shoot behavior when a trigger zone requests it.
+    /// </summary>
+    public virtual void TriggerShoot(GameObject targetPlayer)
+    {
+    }
+
+    /// <summary>
+    /// Runs obstacle-specific direction change behavior when a trigger zone requests it.
+    /// </summary>
+    public virtual void TriggerDirectionChange()
+    {
+    }
+
+    /// <summary>
+    /// Runs obstacle-specific move-away behavior when a trigger zone requests it.
+    /// </summary>
+    public virtual void TriggerMoveAway()
+    {
+    }
+
+    /// <summary>
+    /// Runs obstacle-specific return behavior when a trigger zone requests it.
+    /// </summary>
+    public virtual void TriggerReturn()
+    {
+    }
+
+    /// <summary>
     /// Restores visibility, movement target, tweens, and follow state to their level-start values.
     /// </summary>
     public virtual void ResetLevelState()
@@ -297,24 +326,47 @@ public abstract class RevealableObstacle : MonoBehaviour, ILevelResettable
     }
 
     /// <summary>
+    /// Runs behavior that should stop when the obstacle becomes hidden.
+    /// </summary>
+    protected virtual void OnHidden()
+    {
+    }
+
+    /// <summary>
     /// Enables or disables controlled renderers and colliders.
     /// </summary>
     protected void ApplyVisibility(bool visible)
     {
         if (controlRenderers)
         {
-            for (int i = 0; i < controlledRenderers.Length; i++)
-            {
-                controlledRenderers[i].enabled = visible && initialRendererEnabledStates[i];
-            }
+            ApplyControlledRendererVisibility(visible);
         }
 
         if (controlColliders)
         {
-            for (int i = 0; i < controlledColliders.Length; i++)
-            {
-                controlledColliders[i].enabled = visible && initialColliderEnabledStates[i];
-            }
+            ApplyControlledColliderVisibility(visible);
+        }
+    }
+
+    /// <summary>
+    /// Enables or disables controlled renderers while respecting their level-start enabled state.
+    /// </summary>
+    protected void ApplyControlledRendererVisibility(bool visible)
+    {
+        for (int i = 0; i < controlledRenderers.Length; i++)
+        {
+            controlledRenderers[i].enabled = visible && initialRendererEnabledStates[i];
+        }
+    }
+
+    /// <summary>
+    /// Enables or disables controlled colliders while respecting their level-start enabled state.
+    /// </summary>
+    protected void ApplyControlledColliderVisibility(bool visible)
+    {
+        for (int i = 0; i < controlledColliders.Length; i++)
+        {
+            controlledColliders[i].enabled = visible && initialColliderEnabledStates[i];
         }
     }
 

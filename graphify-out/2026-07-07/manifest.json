@@ -1,0 +1,1712 @@
+{
+  ".codex/hooks.json": {
+    "mtime": 1783426452.9016182,
+    "ast_hash": "f4b96ee4db3c2ee1d75fff92812c3b79",
+    "semantic_hash": "f4b96ee4db3c2ee1d75fff92812c3b79"
+  },
+  ".vscode/extensions.json": {
+    "mtime": 1782488931.804883,
+    "ast_hash": "a9819ba4d76ccd81cf1f7b18e06c77d0",
+    "semantic_hash": "a9819ba4d76ccd81cf1f7b18e06c77d0"
+  },
+  ".vscode/launch.json": {
+    "mtime": 1782488931.8062422,
+    "ast_hash": "b939dea735cf9d32842d6a2c44474427",
+    "semantic_hash": "b939dea735cf9d32842d6a2c44474427"
+  },
+  ".vscode/settings.json": {
+    "mtime": 1783078490.3553708,
+    "ast_hash": "7a42707acfc43f04670b84020db6ed03",
+    "semantic_hash": "7a42707acfc43f04670b84020db6ed03"
+  },
+  "Assets/Breezeblocks/Resources/Localization/en-US.json": {
+    "mtime": 1783110453.4062777,
+    "ast_hash": "904050af9c3a5195bbb425c39d1ab727",
+    "semantic_hash": "904050af9c3a5195bbb425c39d1ab727"
+  },
+  "Assets/Breezeblocks/Resources/Localization/pt-BR.json": {
+    "mtime": 1783110456.9283395,
+    "ast_hash": "81bb388b7a3abdf9984e965b821ab162",
+    "semantic_hash": "81bb388b7a3abdf9984e965b821ab162"
+  },
+  "Assets/Breezeblocks/Scripts/Audio/AudioMixerVolumeUtility.cs": {
+    "mtime": 1783019302.6139426,
+    "ast_hash": "bf3372b2091df5ea48b94235f0eff279",
+    "semantic_hash": "bf3372b2091df5ea48b94235f0eff279"
+  },
+  "Assets/Breezeblocks/Scripts/Audio/GameAudioChannel.cs": {
+    "mtime": 1783078358.3911757,
+    "ast_hash": "2f2b21ec6def8aac9c9d630ad0ec2dcf",
+    "semantic_hash": "2f2b21ec6def8aac9c9d630ad0ec2dcf"
+  },
+  "Assets/Breezeblocks/Scripts/Audio/GameMusicPlayer.cs": {
+    "mtime": 1783078358.3911757,
+    "ast_hash": "0496f85b8f24748701e3b7badf6adbec",
+    "semantic_hash": "0496f85b8f24748701e3b7badf6adbec"
+  },
+  "Assets/Breezeblocks/Scripts/Audio/GameSfxPlayer.cs": {
+    "mtime": 1783078358.3911757,
+    "ast_hash": "1c13c36d83d15848c02c0c8206f7d003",
+    "semantic_hash": "1c13c36d83d15848c02c0c8206f7d003"
+  },
+  "Assets/Breezeblocks/Scripts/Audio/UIButtonClickSfx.cs": {
+    "mtime": 1783015887.1127093,
+    "ast_hash": "071b05c4986c056fb333b065cef65373",
+    "semantic_hash": "071b05c4986c056fb333b065cef65373"
+  },
+  "Assets/Breezeblocks/Scripts/Editor/BreezeblocksSaveFileEditorMenu.cs": {
+    "mtime": 1783104482.2794254,
+    "ast_hash": "96477b08a39e8a34d2e1cd2fbf0f2ad4",
+    "semantic_hash": "96477b08a39e8a34d2e1cd2fbf0f2ad4"
+  },
+  "Assets/Breezeblocks/Scripts/Editor/Text Animation/BreezeblocksTextEffectCodesWindow.cs": {
+    "mtime": 1783104557.9082146,
+    "ast_hash": "1cc14041eb26310536db7b9a8cd2ab71",
+    "semantic_hash": "1cc14041eb26310536db7b9a8cd2ab71"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/DeathSaveSystem.cs": {
+    "mtime": 1783078358.3911757,
+    "ast_hash": "d9924daeaa1ebdbdff31c7e279521bb7",
+    "semantic_hash": "d9924daeaa1ebdbdff31c7e279521bb7"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/ILevelResettable.cs": {
+    "mtime": 1782932436.6274188,
+    "ast_hash": "edba16f06060628fd2d77afcb1d0afda",
+    "semantic_hash": "edba16f06060628fd2d77afcb1d0afda"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/LevelDefinition.cs": {
+    "mtime": 1783108007.3611279,
+    "ast_hash": "e1a92d36dc07cc82ebc052fa532bb959",
+    "semantic_hash": "e1a92d36dc07cc82ebc052fa532bb959"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/LevelGameManager.cs": {
+    "mtime": 1783347212.0451093,
+    "ast_hash": "b96e7d81ad74542e1b21dcfb574ce2eb",
+    "semantic_hash": "b96e7d81ad74542e1b21dcfb574ce2eb"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/LevelResettableTransform.cs": {
+    "mtime": 1782932436.7474172,
+    "ast_hash": "38782706f11f48c54b91cf94879e515b",
+    "semantic_hash": "38782706f11f48c54b91cf94879e515b"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/LevelResultPanel.cs": {
+    "mtime": 1783108001.12912,
+    "ast_hash": "5f5ffd3398e8ae45f965c0d0659cbcc2",
+    "semantic_hash": "5f5ffd3398e8ae45f965c0d0659cbcc2"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/LevelSelectPanelController.cs": {
+    "mtime": 1783110448.2843688,
+    "ast_hash": "07710116f10a2f4a0c2d82f0021d1b2e",
+    "semantic_hash": "07710116f10a2f4a0c2d82f0021d1b2e"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/PersistentDeathCounter.cs": {
+    "mtime": 1782939635.9517667,
+    "ast_hash": "60515117ed5052c44fc8cf28732048de",
+    "semantic_hash": "60515117ed5052c44fc8cf28732048de"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/WinZone.cs": {
+    "mtime": 1782932588.2801352,
+    "ast_hash": "dad06997e94b649586b66ef553a2a296",
+    "semantic_hash": "dad06997e94b649586b66ef553a2a296"
+  },
+  "Assets/Breezeblocks/Scripts/Localization/GameLanguage.cs": {
+    "mtime": 1783107955.6970634,
+    "ast_hash": "1bbdf5937389969929a48b47c71f4eab",
+    "semantic_hash": "1bbdf5937389969929a48b47c71f4eab"
+  },
+  "Assets/Breezeblocks/Scripts/Localization/GameLocalization.cs": {
+    "mtime": 1783107955.8270636,
+    "ast_hash": "eae38dac64ec41c6fef452f34584c6bd",
+    "semantic_hash": "eae38dac64ec41c6fef452f34584c6bd"
+  },
+  "Assets/Breezeblocks/Scripts/Localization/LocalizationLanguageSelector.cs": {
+    "mtime": 1783108139.0662925,
+    "ast_hash": "097d0d6f9e06536660ff003b2a920482",
+    "semantic_hash": "097d0d6f9e06536660ff003b2a920482"
+  },
+  "Assets/Breezeblocks/Scripts/Localization/LocalizedText.cs": {
+    "mtime": 1783108205.274375,
+    "ast_hash": "6ea3a5d5c11bf82515cf8e3432d2728d",
+    "semantic_hash": "6ea3a5d5c11bf82515cf8e3432d2728d"
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/DeathBallObstacle.cs": {
+    "mtime": 1783354354.8544168,
+    "ast_hash": "7e3459e3df4d252980e75572c344134b",
+    "semantic_hash": "7e3459e3df4d252980e75572c344134b"
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/HoleObstacle.cs": {
+    "mtime": 1782931786.491711,
+    "ast_hash": "13cd79bcfb34c666cd3e6df0059d280e",
+    "semantic_hash": "13cd79bcfb34c666cd3e6df0059d280e"
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/LaserObstacle.cs": {
+    "mtime": 1783430592.9669673,
+    "ast_hash": "2c8c83788a3b1be0b14c2f287ed5e682",
+    "semantic_hash": ""
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/MachineGunBulletEffect.cs": {
+    "mtime": 1783345130.5532846,
+    "ast_hash": "e9e372756c16fc901f3f87e5e54a541b",
+    "semantic_hash": "e9e372756c16fc901f3f87e5e54a541b"
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/MachineGunObstacle.cs": {
+    "mtime": 1783448451.0310411,
+    "ast_hash": "2a11e45b8a9e938fc07a46a713ac1685",
+    "semantic_hash": ""
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/MachineGunProjectile.cs": {
+    "mtime": 1783345147.9532738,
+    "ast_hash": "b6274a418a70394c9e87b82e446219b5",
+    "semantic_hash": "b6274a418a70394c9e87b82e446219b5"
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/ObstacleAutoRotation.cs": {
+    "mtime": 1783354354.603422,
+    "ast_hash": "49c391a20a0f73c3aa17273621d6e8f8",
+    "semantic_hash": "49c391a20a0f73c3aa17273621d6e8f8"
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/ObstacleTriggerZone.cs": {
+    "mtime": 1783448520.515008,
+    "ast_hash": "386e56471b72e32e1c1b9e14704056da",
+    "semantic_hash": ""
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/PlatformObstacle.cs": {
+    "mtime": 1783354354.7224195,
+    "ast_hash": "cedefd9832fc3eb3ea537db042a47415",
+    "semantic_hash": "cedefd9832fc3eb3ea537db042a47415"
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/RevealableObstacle.cs": {
+    "mtime": 1783342202.6729453,
+    "ast_hash": "f810c35f328e3a3cccca3a48080ab4e1",
+    "semantic_hash": "f810c35f328e3a3cccca3a48080ab4e1"
+  },
+  "Assets/Breezeblocks/Scripts/Obstacles/TrapObstacle.cs": {
+    "mtime": 1782931786.370711,
+    "ast_hash": "3fc9bbdb40f65ff2a0ec6b32afd78872",
+    "semantic_hash": "3fc9bbdb40f65ff2a0ec6b32afd78872"
+  },
+  "Assets/Breezeblocks/Scripts/Player/PlayerDeathAnimation.cs": {
+    "mtime": 1782935102.116288,
+    "ast_hash": "a2910921bdaa3a46c75ad6217952df3e",
+    "semantic_hash": "a2910921bdaa3a46c75ad6217952df3e"
+  },
+  "Assets/Breezeblocks/Scripts/Player/PlayerHeadAnimator.cs": {
+    "mtime": 1782937723.7357974,
+    "ast_hash": "ec821c13bfb6f40a6cf5e989319c04ad",
+    "semantic_hash": "ec821c13bfb6f40a6cf5e989319c04ad"
+  },
+  "Assets/Breezeblocks/Scripts/Player/PlayerMovement.cs": {
+    "mtime": 1783347204.3111074,
+    "ast_hash": "58b8975332e07f1cf558c0a4d99b956d",
+    "semantic_hash": "58b8975332e07f1cf558c0a4d99b956d"
+  },
+  "Assets/Breezeblocks/Scripts/Save System/GameSaveData.cs": {
+    "mtime": 1783078358.3921757,
+    "ast_hash": "a91536221a053161bffd1df7172f9477",
+    "semantic_hash": "a91536221a053161bffd1df7172f9477"
+  },
+  "Assets/Breezeblocks/Scripts/Save System/GameSaveSystem.cs": {
+    "mtime": 1783104482.1454244,
+    "ast_hash": "b5d587c1252b051e13ca4f6613b52e4d",
+    "semantic_hash": "b5d587c1252b051e13ca4f6613b52e4d"
+  },
+  "Assets/Breezeblocks/Scripts/Save System/SavedAudioMixerSettingsApplier.cs": {
+    "mtime": 1783078358.3934383,
+    "ast_hash": "f69fc59fbe9d5a9f510d69837135548b",
+    "semantic_hash": "f69fc59fbe9d5a9f510d69837135548b"
+  },
+  "Assets/Breezeblocks/Scripts/Save System/SavedRewiredControlLoader.cs": {
+    "mtime": 1783106677.721455,
+    "ast_hash": "ef361176d837ed74018f6345314ca18a",
+    "semantic_hash": "ef361176d837ed74018f6345314ca18a"
+  },
+  "Assets/Breezeblocks/Scripts/Settings/CustomControlBindingRow.cs": {
+    "mtime": 1783078358.3934383,
+    "ast_hash": "20591d1b4cb0413849ee1129f7a345cd",
+    "semantic_hash": "20591d1b4cb0413849ee1129f7a345cd"
+  },
+  "Assets/Breezeblocks/Scripts/Settings/GameSettingsPanelController.cs": {
+    "mtime": 1783109425.3817952,
+    "ast_hash": "11ba305212f1e104b9d726601cd5bbe3",
+    "semantic_hash": "11ba305212f1e104b9d726601cd5bbe3"
+  },
+  "Assets/Breezeblocks/Scripts/Settings/RewiredControlMapperSettingsBridge.cs": {
+    "mtime": 1783108095.0492375,
+    "ast_hash": "48be3171cd16669d881ec2184916d4e3",
+    "semantic_hash": "48be3171cd16669d881ec2184916d4e3"
+  },
+  "Assets/Breezeblocks/Scripts/Text Animation/TMPTextAnimator.cs": {
+    "mtime": 1783104507.3776188,
+    "ast_hash": "66cf7b062ef2e86b1328374a5da14764",
+    "semantic_hash": "66cf7b062ef2e86b1328374a5da14764"
+  },
+  "Assets/Breezeblocks/Scripts/Text Animation/TextAnimatorEffectDatabase.cs": {
+    "mtime": 1783104586.5382295,
+    "ast_hash": "2b9d904ecf8354c42935ef4205d7d4ed",
+    "semantic_hash": "2b9d904ecf8354c42935ef4205d7d4ed"
+  },
+  "Assets/Breezeblocks/Scripts/UI/DotweenButtonHoverEffect.cs": {
+    "mtime": 1783096699.6035209,
+    "ast_hash": "1d672512a37c7b3041604fa3894ef0e0",
+    "semantic_hash": "1d672512a37c7b3041604fa3894ef0e0"
+  },
+  "Assets/Breezeblocks/Scripts/UI/MainMenuPanelAnimator.cs": {
+    "mtime": 1783105042.7803333,
+    "ast_hash": "80de9590b36d3680d8f0e1a55b711df0",
+    "semantic_hash": "80de9590b36d3680d8f0e1a55b711df0"
+  },
+  "Assets/Breezeblocks/Scripts/UI/PauseMenuController.cs": {
+    "mtime": 1783106631.4023957,
+    "ast_hash": "124958a02b83f565ee6bc7f06e1294a1",
+    "semantic_hash": "124958a02b83f565ee6bc7f06e1294a1"
+  },
+  "Assets/Breezeblocks/Scripts/UI/SceneFadeUiManager.cs": {
+    "mtime": 1783078358.3934383,
+    "ast_hash": "0db5e417318c74af7437c53dbea3b47f",
+    "semantic_hash": "0db5e417318c74af7437c53dbea3b47f"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleAudio.cs": {
+    "mtime": 1782930492.242832,
+    "ast_hash": "99fa007d66f3bef5b303eea2fb2164b9",
+    "semantic_hash": "99fa007d66f3bef5b303eea2fb2164b9"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs": {
+    "mtime": 1782930492.2434528,
+    "ast_hash": "1cebbaeb6fd3e170fe930fe8c696b9f3",
+    "semantic_hash": "1cebbaeb6fd3e170fe930fe8c696b9f3"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics.cs": {
+    "mtime": 1782930492.2437453,
+    "ast_hash": "027541711a671bfe1b392314bf6a9c1c",
+    "semantic_hash": "027541711a671bfe1b392314bf6a9c1c"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics2D.cs": {
+    "mtime": 1782930492.2442977,
+    "ast_hash": "638792fbe5ad5dec344df1f35447cca0",
+    "semantic_hash": "638792fbe5ad5dec344df1f35447cca0"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs": {
+    "mtime": 1782930492.2448013,
+    "ast_hash": "9c47c55c39a2c2eb4000080c9e0f7080",
+    "semantic_hash": "9c47c55c39a2c2eb4000080c9e0f7080"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUI.cs": {
+    "mtime": 1782930492.2454736,
+    "ast_hash": "d65a0ae6d084c71cd66a1728badca3aa",
+    "semantic_hash": "d65a0ae6d084c71cd66a1728badca3aa"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUIToolkit.cs": {
+    "mtime": 1782930492.245963,
+    "ast_hash": "def81333a370179015f4362adc5f4300",
+    "semantic_hash": "def81333a370179015f4362adc5f4300"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUnityVersion.cs": {
+    "mtime": 1782930492.2463639,
+    "ast_hash": "45232a2fcc32328c0597880ce6a559dd",
+    "semantic_hash": "45232a2fcc32328c0597880ce6a559dd"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUtils.cs": {
+    "mtime": 1782930492.2469478,
+    "ast_hash": "44f3cc265538b67ba35b1ecde07f430c",
+    "semantic_hash": "44f3cc265538b67ba35b1ecde07f430c"
+  },
+  "Assets/Plugins/Sirenix/Odin Inspector/Modules/Unity.Mathematics/MathematicsDrawers.cs": {
+    "mtime": 1782489679.3048434,
+    "ast_hash": "b7cde6d08cbbcfcce20366a0577873f7",
+    "semantic_hash": "b7cde6d08cbbcfcce20366a0577873f7"
+  },
+  "Assets/Rewired/Examples/ControlRemapping1/Scripts/ControlRemappingDemo1.cs": {
+    "mtime": 1782489774.3987644,
+    "ast_hash": "21845adf05bdc001d03c09a82534a4f6",
+    "semantic_hash": "21845adf05bdc001d03c09a82534a4f6"
+  },
+  "Assets/Rewired/Examples/CustomControllersTilt/Scripts/CustomControllersTiltDemo.cs": {
+    "mtime": 1782489774.399649,
+    "ast_hash": "4b022b7e8568470847b538bccf1d33e2",
+    "semantic_hash": "4b022b7e8568470847b538bccf1d33e2"
+  },
+  "Assets/Rewired/Examples/CustomControllersTouch/Scripts/CustomControllerDemo.cs": {
+    "mtime": 1782489774.4009683,
+    "ast_hash": "21c5ff13831d6c0c6a5306b21b919766",
+    "semantic_hash": "21c5ff13831d6c0c6a5306b21b919766"
+  },
+  "Assets/Rewired/Examples/CustomControllersTouch/Scripts/CustomControllerDemo_Player.cs": {
+    "mtime": 1782489774.4012938,
+    "ast_hash": "f88b93a33ffd8e1a1688492d68a25617",
+    "semantic_hash": "f88b93a33ffd8e1a1688492d68a25617"
+  },
+  "Assets/Rewired/Examples/CustomControllersTouch/Scripts/TouchButtonExample.cs": {
+    "mtime": 1782489774.4015825,
+    "ast_hash": "2c6643e47ba184787b7c8c0b025622a5",
+    "semantic_hash": "2c6643e47ba184787b7c8c0b025622a5"
+  },
+  "Assets/Rewired/Examples/CustomControllersTouch/Scripts/TouchJoystickExample.cs": {
+    "mtime": 1782489774.401875,
+    "ast_hash": "aa2c3bff15e5d6b5ab3949800af31f99",
+    "semantic_hash": "aa2c3bff15e5d6b5ab3949800af31f99"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/CustomPlatformHardwareJoystickMapPlatformDataSet.cs": {
+    "mtime": 1782489774.4040241,
+    "ast_hash": "b439e7383276fc02d6981fc2dc0f54ad",
+    "semantic_hash": "b439e7383276fc02d6981fc2dc0f54ad"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/CustomPlatformHardwareJoystickMapProvider.cs": {
+    "mtime": 1782489774.404457,
+    "ast_hash": "c9299afa7a0c2fd4afaab1e457364b11",
+    "semantic_hash": "c9299afa7a0c2fd4afaab1e457364b11"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/CustomPlatformManager.cs": {
+    "mtime": 1782489774.4050565,
+    "ast_hash": "58bd74618da4aeb122a77b6c5f9c143b",
+    "semantic_hash": "58bd74618da4aeb122a77b6c5f9c143b"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/CustomPlatformType.cs": {
+    "mtime": 1782489774.4055884,
+    "ast_hash": "97753a3264660d2f65b99b765fe3c37c",
+    "semantic_hash": "97753a3264660d2f65b99b765fe3c37c"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/Editor/CreateScriptableObjects.cs": {
+    "mtime": 1782489774.4062605,
+    "ast_hash": "12a96370608f7eb4007b249d492892d3",
+    "semantic_hash": "12a96370608f7eb4007b249d492892d3"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/MyPlatformControllerExtension.cs": {
+    "mtime": 1782489774.406769,
+    "ast_hash": "01819020c7eff24ad5534f471fb0cee8",
+    "semantic_hash": "01819020c7eff24ad5534f471fb0cee8"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/MyPlatformControllerIdentifier.cs": {
+    "mtime": 1782489774.4072876,
+    "ast_hash": "032bae7e266d3aed036e941d9cb95c18",
+    "semantic_hash": "032bae7e266d3aed036e941d9cb95c18"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/MyPlatformHardwareJoystickMapPlatformMap.cs": {
+    "mtime": 1782489774.4078028,
+    "ast_hash": "88d7db1988d3402ba86c8b08135f0e1e",
+    "semantic_hash": "88d7db1988d3402ba86c8b08135f0e1e"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/MyPlatformInputSource.cs": {
+    "mtime": 1782489774.4083662,
+    "ast_hash": "fd49ef435edbfa20bb04b12ac4b301f9",
+    "semantic_hash": "fd49ef435edbfa20bb04b12ac4b301f9"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/MyPlatformUnifiedKeyboardSource.cs": {
+    "mtime": 1782489774.4088972,
+    "ast_hash": "1df87613c27865e7d46322c9175e8af6",
+    "semantic_hash": "1df87613c27865e7d46322c9175e8af6"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/MyPlatformUnifiedMouseSource.cs": {
+    "mtime": 1782489774.4094489,
+    "ast_hash": "4e5e5f5452af8e3e4c8da6d7ea23717f",
+    "semantic_hash": "4e5e5f5452af8e3e4c8da6d7ea23717f"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/UnityJoystickInputSource.cs": {
+    "mtime": 1782489774.4100478,
+    "ast_hash": "ecb26f818ab7e9ce6723fc59eba65c79",
+    "semantic_hash": "ecb26f818ab7e9ce6723fc59eba65c79"
+  },
+  "Assets/Rewired/Examples/CustomPlatform/Scripts/VibrationTest.cs": {
+    "mtime": 1782489774.410607,
+    "ast_hash": "b38916d07cdef3b82943c57566c22a22",
+    "semantic_hash": "b38916d07cdef3b82943c57566c22a22"
+  },
+  "Assets/Rewired/Examples/DualShock4SpecialFeatures/Scripts/DualShock4SpecialFeaturesExample.cs": {
+    "mtime": 1782489774.4122057,
+    "ast_hash": "7dc315a1acd5aadcb235252ca2c8029a",
+    "semantic_hash": "7dc315a1acd5aadcb235252ca2c8029a"
+  },
+  "Assets/Rewired/Examples/EightPlayers/Scripts/EightPlayersExample_Player.cs": {
+    "mtime": 1782489774.418223,
+    "ast_hash": "7406ca35c8408df94cee834210dff2f0",
+    "semantic_hash": "7406ca35c8408df94cee834210dff2f0"
+  },
+  "Assets/Rewired/Examples/FallbackJoystickIdentification/Scripts/FallbackJoystickIdentificationDemo.cs": {
+    "mtime": 1782489774.4201021,
+    "ast_hash": "06f08bc4f2bb4fc562839f1e3afb9128",
+    "semantic_hash": "06f08bc4f2bb4fc562839f1e3afb9128"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Scripts/ControllerUIEffect.cs": {
+    "mtime": 1782489774.427542,
+    "ast_hash": "7c6d320d57229dc1d43d41cbbab30cc0",
+    "semantic_hash": "7c6d320d57229dc1d43d41cbbab30cc0"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Scripts/ControllerUIElement.cs": {
+    "mtime": 1782489774.4281409,
+    "ast_hash": "79c767b2e84a051eede0a0508bbd09e7",
+    "semantic_hash": "79c767b2e84a051eede0a0508bbd09e7"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Scripts/GamepadTemplateUI.cs": {
+    "mtime": 1782489774.4286497,
+    "ast_hash": "01a6a1be169b65ae8f99222737178c36",
+    "semantic_hash": "01a6a1be169b65ae8f99222737178c36"
+  },
+  "Assets/Rewired/Examples/PlayerMouseSprite/Scripts/PlayerMouseSpriteExample.cs": {
+    "mtime": 1782489774.431229,
+    "ast_hash": "8f82461c7c83d55d01f6448ac859caea",
+    "semantic_hash": "8f82461c7c83d55d01f6448ac859caea"
+  },
+  "Assets/Rewired/Examples/PlayerMouseUnityUI/Scripts/PlayerPointerEventHandlerExample.cs": {
+    "mtime": 1782489774.4338024,
+    "ast_hash": "28d13eeaf5e5d70ad096ca211806f0f6",
+    "semantic_hash": "28d13eeaf5e5d70ad096ca211806f0f6"
+  },
+  "Assets/Rewired/Examples/PlayerMouseUnityUI/Scripts/UIPointer.cs": {
+    "mtime": 1782489774.434302,
+    "ast_hash": "30f38ae1b1cfbb07d2c09c29702520a5",
+    "semantic_hash": "30f38ae1b1cfbb07d2c09c29702520a5"
+  },
+  "Assets/Rewired/Examples/PressAnyButtonToJoin/Scripts/PressAnyButtonToJoinExample_Assigner.cs": {
+    "mtime": 1782489774.43552,
+    "ast_hash": "9195bd974a04f533dcc83f64629d66c2",
+    "semantic_hash": "9195bd974a04f533dcc83f64629d66c2"
+  },
+  "Assets/Rewired/Examples/PressAnyButtonToJoin/Scripts/PressAnyButtonToJoinExample_GamePlayer.cs": {
+    "mtime": 1782489774.436061,
+    "ast_hash": "74143d24dfabaa8225a0dd971a842857",
+    "semantic_hash": "74143d24dfabaa8225a0dd971a842857"
+  },
+  "Assets/Rewired/Examples/PressStartToJoin/Scripts/PressStartToJoinExample_Assigner.cs": {
+    "mtime": 1782489774.4372988,
+    "ast_hash": "a2babdd649d1abe5cfd8462f679b7198",
+    "semantic_hash": "a2babdd649d1abe5cfd8462f679b7198"
+  },
+  "Assets/Rewired/Examples/PressStartToJoin/Scripts/PressStartToJoinExample_GamePlayer.cs": {
+    "mtime": 1782489774.437745,
+    "ast_hash": "d8318d13c680341d8224ec35c843a31b",
+    "semantic_hash": "d8318d13c680341d8224ec35c843a31b"
+  },
+  "Assets/Rewired/Examples/Shared/Scripts/Bullet.cs": {
+    "mtime": 1782489774.4390671,
+    "ast_hash": "f8ce81b18044a34aa4346234ce4f6738",
+    "semantic_hash": "f8ce81b18044a34aa4346234ce4f6738"
+  },
+  "Assets/Rewired/Examples/SimpleCombinedKeyboardMouseRemapping/Scripts/SimpleCombinedKeyboardMouseRemapping.cs": {
+    "mtime": 1782489774.4403741,
+    "ast_hash": "6481a271c9a3cd918f3765ccab2a425d",
+    "semantic_hash": "6481a271c9a3cd918f3765ccab2a425d"
+  },
+  "Assets/Rewired/Examples/SimpleControlRemapping/Scripts/SimpleControlRemapping.cs": {
+    "mtime": 1782489774.4427872,
+    "ast_hash": "c29616db0532dfa534fb97f4f2c061b0",
+    "semantic_hash": "c29616db0532dfa534fb97f4f2c061b0"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Examples/ControlMapperDemo/Scripts/ControlMapperDemoMessage.cs": {
+    "mtime": 1504487682.0,
+    "ast_hash": "c95e44e16b4bb22a36b425bda305160c",
+    "semantic_hash": "c95e44e16b4bb22a36b425bda305160c"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ButtonInfo.cs": {
+    "mtime": 1504487682.0,
+    "ast_hash": "c46cd0f4b33267c5ef988bc7021f0ad4",
+    "semantic_hash": "c46cd0f4b33267c5ef988bc7021f0ad4"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/CalibrationWindow.cs": {
+    "mtime": 1763683541.185322,
+    "ast_hash": "8489b39459322816167bad309b02cee3",
+    "semantic_hash": "8489b39459322816167bad309b02cee3"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/CanvasScalerExt.cs": {
+    "mtime": 1457063618.0,
+    "ast_hash": "5db629a8603e707118ff429d40f95f0d",
+    "semantic_hash": "5db629a8603e707118ff429d40f95f0d"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/CanvasScalerFitter.cs": {
+    "mtime": 1504487682.0,
+    "ast_hash": "36aae52b2d09ab1f860cafbccdf0d6f5",
+    "semantic_hash": "36aae52b2d09ab1f860cafbccdf0d6f5"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ControlMapper.cs": {
+    "mtime": 1777930002.965427,
+    "ast_hash": "01268ed6d5018c9aaca0f0369d2b8d5c",
+    "semantic_hash": "01268ed6d5018c9aaca0f0369d2b8d5c"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ControlMapper_Classes.cs": {
+    "mtime": 1774118321.638656,
+    "ast_hash": "c277e63e69f0144abf755db414ff02ff",
+    "semantic_hash": "c277e63e69f0144abf755db414ff02ff"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ControlMapper_Enums.cs": {
+    "mtime": 1504487682.0,
+    "ast_hash": "259a30e721100badd10c7f64d14f08ba",
+    "semantic_hash": "259a30e721100badd10c7f64d14f08ba"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ControlMapper_InputGrid.cs": {
+    "mtime": 1504487682.0,
+    "ast_hash": "9522356c719ceb1a680e25a0d83db2ba",
+    "semantic_hash": "9522356c719ceb1a680e25a0d83db2ba"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ControlMapper_WindowManager.cs": {
+    "mtime": 1719808943.349924,
+    "ast_hash": "b039e1c40abf2b232918581b74740377",
+    "semantic_hash": "b039e1c40abf2b232918581b74740377"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/CustomButton.cs": {
+    "mtime": 1552341967.651611,
+    "ast_hash": "a68e86c08ac60dca2a3884e605665342",
+    "semantic_hash": "a68e86c08ac60dca2a3884e605665342"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/CustomSlider.cs": {
+    "mtime": 1552342249.841919,
+    "ast_hash": "c8f6b830663817aa13ddd7fd3a533a89",
+    "semantic_hash": "c8f6b830663817aa13ddd7fd3a533a89"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/CustomToggle.cs": {
+    "mtime": 1552342268.458462,
+    "ast_hash": "2cf6ba6bdf5a01b5f291afe76ceb419e",
+    "semantic_hash": "2cf6ba6bdf5a01b5f291afe76ceb419e"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/Editor/ControlMapperInspector.cs": {
+    "mtime": 1719803803.848443,
+    "ast_hash": "106f162de9464c7e4f2f44af38f21627",
+    "semantic_hash": "106f162de9464c7e4f2f44af38f21627"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/Editor/CustomButtonInspector.cs": {
+    "mtime": 1504487682.0,
+    "ast_hash": "e894458ca841303082c320bceceead85",
+    "semantic_hash": "e894458ca841303082c320bceceead85"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/Editor/CustomSliderInspector.cs": {
+    "mtime": 1504487682.0,
+    "ast_hash": "32dc023a6008434915422b2e77de61be",
+    "semantic_hash": "32dc023a6008434915422b2e77de61be"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/Editor/CustomToggleInspector.cs": {
+    "mtime": 1504487682.0,
+    "ast_hash": "34861569da50ff7ed855aa409969724a",
+    "semantic_hash": "34861569da50ff7ed855aa409969724a"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ICustomSelectable.cs": {
+    "mtime": 1504487682.0,
+    "ast_hash": "5fa566949c49c84236f5f73a7549962a",
+    "semantic_hash": "5fa566949c49c84236f5f73a7549962a"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/InputBehaviorWindow.cs": {
+    "mtime": 1573668360.71186,
+    "ast_hash": "f93c284ddd2d721e75932440d4b388b7",
+    "semantic_hash": "f93c284ddd2d721e75932440d4b388b7"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/InputFieldInfo.cs": {
+    "mtime": 1719808331.602739,
+    "ast_hash": "42f3736d388cabefbccfb3035b2b22b0",
+    "semantic_hash": "42f3736d388cabefbccfb3035b2b22b0"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/InputRow.cs": {
+    "mtime": 1573668371.855408,
+    "ast_hash": "19da4e6437f0d14f03dcc3f886ceb9c2",
+    "semantic_hash": "19da4e6437f0d14f03dcc3f886ceb9c2"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/LanguageData.cs": {
+    "mtime": 1777335204.557064,
+    "ast_hash": "b239635dbcd7bc660d6d308589da3606",
+    "semantic_hash": "b239635dbcd7bc660d6d308589da3606"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/LanguageDataBase.cs": {
+    "mtime": 1777335213.835223,
+    "ast_hash": "12fd971406ad613151a2bc159e60b617",
+    "semantic_hash": "12fd971406ad613151a2bc159e60b617"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ScrollRectSelectableChild.cs": {
+    "mtime": 1457063618.0,
+    "ast_hash": "293ddcb6bbb745b97cf5e0f52d234982",
+    "semantic_hash": "293ddcb6bbb745b97cf5e0f52d234982"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ScrollbarVisibilityHelper.cs": {
+    "mtime": 1711489119.022782,
+    "ast_hash": "a55101f8d32b177b8a2998051e6e644e",
+    "semantic_hash": "a55101f8d32b177b8a2998051e6e644e"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ThemeSettings.cs": {
+    "mtime": 1763682645.105557,
+    "ast_hash": "49b8fbae1852742f65ac6fffd7942da4",
+    "semantic_hash": "49b8fbae1852742f65ac6fffd7942da4"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ThemedElement.cs": {
+    "mtime": 1719803808.831919,
+    "ast_hash": "21de15ae8d93036be7859b2a20d9f9f8",
+    "semantic_hash": "21de15ae8d93036be7859b2a20d9f9f8"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/ToggleInfo.cs": {
+    "mtime": 1457063618.0,
+    "ast_hash": "6d3bff9832a91d66aa83f98e94ffa7c4",
+    "semantic_hash": "6d3bff9832a91d66aa83f98e94ffa7c4"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/UIControl.cs": {
+    "mtime": 1573668420.407002,
+    "ast_hash": "51db18906c8110ddff2124fe350ecc8b",
+    "semantic_hash": "51db18906c8110ddff2124fe350ecc8b"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/UIControlSet.cs": {
+    "mtime": 1573668436.806892,
+    "ast_hash": "e1129d75f35a53693daf9fadb4e2c9d6",
+    "semantic_hash": "e1129d75f35a53693daf9fadb4e2c9d6"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/UIElementInfo.cs": {
+    "mtime": 1573668445.952313,
+    "ast_hash": "dc481ae380a983bf398c2a1d3eb38b98",
+    "semantic_hash": "dc481ae380a983bf398c2a1d3eb38b98"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/UIGroup.cs": {
+    "mtime": 1573668453.897549,
+    "ast_hash": "ba36383b495fe743a070de75fd0574a6",
+    "semantic_hash": "ba36383b495fe743a070de75fd0574a6"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/UIImageHelper.cs": {
+    "mtime": 1457063618.0,
+    "ast_hash": "736bffee47e1196c78d24f0fb7ea976f",
+    "semantic_hash": "736bffee47e1196c78d24f0fb7ea976f"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/UISelectionUtility.cs": {
+    "mtime": 1711489127.303212,
+    "ast_hash": "5da35eea2a6e30e0d1e49339094be3fc",
+    "semantic_hash": "5da35eea2a6e30e0d1e49339094be3fc"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/UISliderControl.cs": {
+    "mtime": 1457063618.0,
+    "ast_hash": "855b196b9b9c72f9d14abdd3a85cdf8a",
+    "semantic_hash": "855b196b9b9c72f9d14abdd3a85cdf8a"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/UITools.cs": {
+    "mtime": 1573845513.689493,
+    "ast_hash": "95b207bbd91f4a4a777780ff2ed1d1a9",
+    "semantic_hash": "95b207bbd91f4a4a777780ff2ed1d1a9"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Scripts/Window.cs": {
+    "mtime": 1719808983.453704,
+    "ast_hash": "667fea09368d84ea879a01cdc0820577",
+    "semantic_hash": "667fea09368d84ea879a01cdc0820577"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/ActionElementMapPair.cs": {
+    "mtime": 1765511094.561652,
+    "ast_hash": "fc57b5dcfd507bb5a480227e69236ea8",
+    "semantic_hash": "fc57b5dcfd507bb5a480227e69236ea8"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/ControllerElementGlyph.cs": {
+    "mtime": 1720233598.93014,
+    "ast_hash": "2966d72de3081b23562db30903472477",
+    "semantic_hash": "2966d72de3081b23562db30903472477"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/ControllerElementGlyphBase.cs": {
+    "mtime": 1765412962.616806,
+    "ast_hash": "630a3a2dc225ff8cfa912f3e795cea58",
+    "semantic_hash": "630a3a2dc225ff8cfa912f3e795cea58"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/ControllerElementGlyphSelectorOptions.cs": {
+    "mtime": 1766009868.888071,
+    "ast_hash": "e89faedc1d8b0d20085d23d95189d9fa",
+    "semantic_hash": "e89faedc1d8b0d20085d23d95189d9fa"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/ControllerElementGlyphSelectorOptionsSO.cs": {
+    "mtime": 1719875829.956558,
+    "ast_hash": "b4cef0a7c6bac168516989e853d16aa3",
+    "semantic_hash": "b4cef0a7c6bac168516989e853d16aa3"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/ControllerElementGlyphSelectorOptionsSOBase.cs": {
+    "mtime": 1719875794.906321,
+    "ast_hash": "275eb6741d8182adad0aafac5a43cde5",
+    "semantic_hash": "275eb6741d8182adad0aafac5a43cde5"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/DefaultControllerElementGlyphSettings.cs": {
+    "mtime": 1720072163.000585,
+    "ast_hash": "374b69252700e03f53bbfbf66b1c258b",
+    "semantic_hash": "374b69252700e03f53bbfbf66b1c258b"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/Editor/EditorMenu.cs": {
+    "mtime": 1720637181.172837,
+    "ast_hash": "92ed98b19a01854c4e56ddec2ad57688",
+    "semantic_hash": "92ed98b19a01854c4e56ddec2ad57688"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/Editor/GlyphSetCollectionInspector.cs": {
+    "mtime": 1720637186.617843,
+    "ast_hash": "f959656d42975722349c4ffddcefb148",
+    "semantic_hash": "f959656d42975722349c4ffddcefb148"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/Editor/SpriteGlyphSetInspector.cs": {
+    "mtime": 1721156674.345977,
+    "ast_hash": "77c9175172aea0bf51b94ce9c19eb848",
+    "semantic_hash": "77c9175172aea0bf51b94ce9c19eb848"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/GlyphOrTextBase.cs": {
+    "mtime": 1720042102.303848,
+    "ast_hash": "add429a01f18d815ff58f9f652cb2f72",
+    "semantic_hash": "add429a01f18d815ff58f9f652cb2f72"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/GlyphProvider.cs": {
+    "mtime": 1721850489.735603,
+    "ast_hash": "625d200b481e7707c5763b38f85768c8",
+    "semantic_hash": "625d200b481e7707c5763b38f85768c8"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/GlyphSet.cs": {
+    "mtime": 1720045078.32858,
+    "ast_hash": "c2adfed91bd3e56f05178dede5e79269",
+    "semantic_hash": "c2adfed91bd3e56f05178dede5e79269"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/GlyphSetCollection.cs": {
+    "mtime": 1720045085.878659,
+    "ast_hash": "e147445b74b7a54c97c4b3cbf579cc46",
+    "semantic_hash": "e147445b74b7a54c97c4b3cbf579cc46"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/GlyphTools.cs": {
+    "mtime": 1777401026.7197,
+    "ast_hash": "10b4b421fa53f25e434ba6b8c6c02314",
+    "semantic_hash": "10b4b421fa53f25e434ba6b8c6c02314"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/Pair.cs": {
+    "mtime": 1765511220.225467,
+    "ast_hash": "9a4c8ce802a14bb167235b125cf96ea7",
+    "semantic_hash": "9a4c8ce802a14bb167235b125cf96ea7"
+  },
+  "Assets/Rewired/Extras/Glyphs/Scripts/SpriteGlyphSet.cs": {
+    "mtime": 1720045092.63864,
+    "ast_hash": "1ef2cf2e13ee6d6a753d7fd523964a2b",
+    "semantic_hash": "1ef2cf2e13ee6d6a753d7fd523964a2b"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/Editor/EditorMenu.cs": {
+    "mtime": 1766008818.049525,
+    "ast_hash": "82ed440314b2a339f644c0df33a9317b",
+    "semantic_hash": "82ed440314b2a339f644c0df33a9317b"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/Editor/UnityUITextMeshProGlyphHelperInspector.cs": {
+    "mtime": 1721366577.043083,
+    "ast_hash": "2f009abb46c4e5b82bfba584b0de1098",
+    "semantic_hash": "2f009abb46c4e5b82bfba584b0de1098"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/UnityUIControllerElementGlyph.cs": {
+    "mtime": 1720592340.558462,
+    "ast_hash": "b69eb5c044ebaf5bbc8d81667441485c",
+    "semantic_hash": "b69eb5c044ebaf5bbc8d81667441485c"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/UnityUIControllerElementGlyphBase.cs": {
+    "mtime": 1765867556.416,
+    "ast_hash": "be98917e827af7b27629ddf3175cf91e",
+    "semantic_hash": "be98917e827af7b27629ddf3175cf91e"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/UnityUIDefaultControllerElementGlyphSettings.cs": {
+    "mtime": 1720592318.371717,
+    "ast_hash": "19f7860483ae5a7d5165be1c632010e0",
+    "semantic_hash": "19f7860483ae5a7d5165be1c632010e0"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/UnityUIDefaultGlyphOrTextTMProPrefabProvider.cs": {
+    "mtime": 1721425148.392973,
+    "ast_hash": "5d1baec707242965fcc9a738f323373f",
+    "semantic_hash": "5d1baec707242965fcc9a738f323373f"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/UnityUIGlyphOrText.cs": {
+    "mtime": 1720042101.53213,
+    "ast_hash": "e5053c02303cbe6e71bf7ecf6f367dc4",
+    "semantic_hash": "e5053c02303cbe6e71bf7ecf6f367dc4"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/UnityUIGlyphOrTextTMPro.cs": {
+    "mtime": 1721366587.848173,
+    "ast_hash": "5068bf8079e3ac5e97e1bb88751648b4",
+    "semantic_hash": "5068bf8079e3ac5e97e1bb88751648b4"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/UnityUIPlayerControllerElementGlyph.cs": {
+    "mtime": 1765838491.972943,
+    "ast_hash": "fc38f2014668b2bfe4c3a289d8eaadab",
+    "semantic_hash": "fc38f2014668b2bfe4c3a289d8eaadab"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/UnityUIPlayerControllerElementGlyphBase.cs": {
+    "mtime": 1766013101.312258,
+    "ast_hash": "c35b383c73881de76179f91d27af6284",
+    "semantic_hash": "c35b383c73881de76179f91d27af6284"
+  },
+  "Assets/Rewired/Extras/Glyphs/UnityUI/Scripts/UnityUITextMeshProGlyphHelper.cs": {
+    "mtime": 1778093773.615796,
+    "ast_hash": "365c0c4db9d4e8feef81b943b3b5f38f",
+    "semantic_hash": "365c0c4db9d4e8feef81b943b3b5f38f"
+  },
+  "Assets/Rewired/Extras/Localization/Scripts/LocalizedStringProvider.cs": {
+    "mtime": 1782489774.4443574,
+    "ast_hash": "ec250bd0a0c1c9e41fc7d87db7c347ae",
+    "semantic_hash": "ec250bd0a0c1c9e41fc7d87db7c347ae"
+  },
+  "Assets/Rewired/Extras/Localization/Scripts/LocalizedStringProviderBase.cs": {
+    "mtime": 1782489774.4448292,
+    "ast_hash": "4bf4f4514c83c2e5624587430b685030",
+    "semantic_hash": "4bf4f4514c83c2e5624587430b685030"
+  },
+  "Assets/Rewired/Extras/TouchControls/Examples/TouchControls1/Scripts/TouchControls1_ManipulateCube.cs": {
+    "mtime": 1489388638.330342,
+    "ast_hash": "02585bb8e44619badce62b47093938a4",
+    "semantic_hash": "02585bb8e44619badce62b47093938a4"
+  },
+  "Assets/Rewired/Extras/TouchControls/Scripts/Editor/MenuCommands.cs": {
+    "mtime": 1574061444.323529,
+    "ast_hash": "a38b238b84d61835dfef5a066fd111e3",
+    "semantic_hash": "a38b238b84d61835dfef5a066fd111e3"
+  },
+  "Assets/Rewired/Integration/UnityUI/Editor/RewiredStandaloneInputModuleInspector.cs": {
+    "mtime": 1782489774.4456937,
+    "ast_hash": "e7e07a2bab7dedcace0a257b668531e2",
+    "semantic_hash": "e7e07a2bab7dedcace0a257b668531e2"
+  },
+  "Assets/Rewired/Integration/UnityUI/Editor/UnityUISetup.cs": {
+    "mtime": 1782489774.446169,
+    "ast_hash": "322d5221113bf2397882ab42b5ae9abe",
+    "semantic_hash": "322d5221113bf2397882ab42b5ae9abe"
+  },
+  "Assets/Rewired/Integration/UnityUI/PlayerPointerEventData.cs": {
+    "mtime": 1782489774.4466217,
+    "ast_hash": "53a721cb190efd43b1ef56935a029355",
+    "semantic_hash": "53a721cb190efd43b1ef56935a029355"
+  },
+  "Assets/Rewired/Integration/UnityUI/RewiredEventSystem.cs": {
+    "mtime": 1782489774.4470878,
+    "ast_hash": "02eb5d79e37473849b75337d6812557e",
+    "semantic_hash": "02eb5d79e37473849b75337d6812557e"
+  },
+  "Assets/Rewired/Integration/UnityUI/RewiredPointerInputModule.cs": {
+    "mtime": 1782489774.4479823,
+    "ast_hash": "c57b3b1497f70a2642530d014479a8e0",
+    "semantic_hash": "c57b3b1497f70a2642530d014479a8e0"
+  },
+  "Assets/Rewired/Integration/UnityUI/RewiredStandaloneInputModule.cs": {
+    "mtime": 1782489774.448464,
+    "ast_hash": "ccc383bc75a32c03de9cc20296325e9a",
+    "semantic_hash": "ccc383bc75a32c03de9cc20296325e9a"
+  },
+  "Assets/Rewired/Internal/Assets/InputManagerSettings.json": {
+    "mtime": 1782489774.463002,
+    "ast_hash": "190be9036a6a652b8f112f17371166b2",
+    "semantic_hash": "190be9036a6a652b8f112f17371166b2"
+  },
+  "Assets/Rewired/Internal/Scripts/ControllerTemplates/ControllerTemplates.cs": {
+    "mtime": 1782489774.725921,
+    "ast_hash": "64985cc124a5e73d467a9671e01f3c5d",
+    "semantic_hash": "64985cc124a5e73d467a9671e01f3c5d"
+  },
+  "Assets/Rewired/Internal/Scripts/DataStorage/UserDataStore_File.cs": {
+    "mtime": 1782489774.7267618,
+    "ast_hash": "868c8851e309a1ee810af691e2217a5f",
+    "semantic_hash": "868c8851e309a1ee810af691e2217a5f"
+  },
+  "Assets/Rewired/Internal/Scripts/DataStorage/UserDataStore_KeyValue.cs": {
+    "mtime": 1782489774.727547,
+    "ast_hash": "2a0e9c67e6a78007d3cede6b12e79ed3",
+    "semantic_hash": "2a0e9c67e6a78007d3cede6b12e79ed3"
+  },
+  "Assets/Rewired/Internal/Scripts/DataStorage/UserDataStore_PlayerPrefs.cs": {
+    "mtime": 1782489774.7286246,
+    "ast_hash": "da85ea3fa7caf2eb8b963e4fed50d52e",
+    "semantic_hash": "da85ea3fa7caf2eb8b963e4fed50d52e"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/ControllerDataFilesInspector.cs": {
+    "mtime": 1782489774.7297003,
+    "ast_hash": "09cfd206d6e166ece1d0e4edb30459cf",
+    "semantic_hash": "09cfd206d6e166ece1d0e4edb30459cf"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/CustomInspector_External.cs": {
+    "mtime": 1782489774.7303567,
+    "ast_hash": "2af65adfe3405f4c1129ec1b7b97afd9",
+    "semantic_hash": "2af65adfe3405f4c1129ec1b7b97afd9"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/HardwareJoystickMapCustomPlatformMapInspector.cs": {
+    "mtime": 1782489774.7309744,
+    "ast_hash": "806c56ce667c8898e1b307769c101d2c",
+    "semantic_hash": "806c56ce667c8898e1b307769c101d2c"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/HardwareJoystickMapInspector.cs": {
+    "mtime": 1782489774.7315474,
+    "ast_hash": "0790551b0522f77c50b300f1b047226b",
+    "semantic_hash": "0790551b0522f77c50b300f1b047226b"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/HardwareJoystickTemplateMapInspector.cs": {
+    "mtime": 1782489774.7321832,
+    "ast_hash": "60c4976fe67d56b41a497964215aeb12",
+    "semantic_hash": "60c4976fe67d56b41a497964215aeb12"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/InitializerInspector.cs": {
+    "mtime": 1782489774.7327006,
+    "ast_hash": "6907f048c8d22177b8ce1198a581f4db",
+    "semantic_hash": "6907f048c8d22177b8ce1198a581f4db"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/InputManagerInspector.cs": {
+    "mtime": 1782489774.7332947,
+    "ast_hash": "2414fb4f2593d2790ec9b2cab1a6cefe",
+    "semantic_hash": "2414fb4f2593d2790ec9b2cab1a6cefe"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/PlayerControllerInspector.cs": {
+    "mtime": 1782489774.7337992,
+    "ast_hash": "e7f181e922c1c2d1183646092ef23a02",
+    "semantic_hash": "e7f181e922c1c2d1183646092ef23a02"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/PlayerMouseInspector.cs": {
+    "mtime": 1782489774.7343297,
+    "ast_hash": "4f4b7acabfb498ed89549217e7e28378",
+    "semantic_hash": "4f4b7acabfb498ed89549217e7e28378"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/UserDataStore_FileInspector.cs": {
+    "mtime": 1782489774.734839,
+    "ast_hash": "bebb498abf501ba4849fca2a55eb2fa5",
+    "semantic_hash": "bebb498abf501ba4849fca2a55eb2fa5"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/UserDataStore_PlayerPrefsInspector.cs": {
+    "mtime": 1782489774.7353964,
+    "ast_hash": "b962ae266f13c5a13eb3e255337a37e0",
+    "semantic_hash": "b962ae266f13c5a13eb3e255337a37e0"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/DependencyHelpers.cs": {
+    "mtime": 1782489774.7358994,
+    "ast_hash": "e9fb9c8f41c835c72dd1021a6548f7a4",
+    "semantic_hash": "e9fb9c8f41c835c72dd1021a6548f7a4"
+  },
+  "Assets/Rewired/Internal/Scripts/Editor/UnityEditorBridge.cs": {
+    "mtime": 1782489774.7363968,
+    "ast_hash": "0267c6e99586a990a8224a8515fb8f93",
+    "semantic_hash": "0267c6e99586a990a8224a8515fb8f93"
+  },
+  "Assets/Rewired/Internal/Scripts/InputManager.cs": {
+    "mtime": 1782489774.736959,
+    "ast_hash": "4769141cafac33f9eea648e1d5a922c5",
+    "semantic_hash": "4769141cafac33f9eea648e1d5a922c5"
+  },
+  "Assets/Rewired/Internal/Scripts/Misc/ExternalTools.cs": {
+    "mtime": 1782489774.737622,
+    "ast_hash": "475fbd027a7378418ac57d796a475cb8",
+    "semantic_hash": "475fbd027a7378418ac57d796a475cb8"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputManager/UnityInputManagerProxy.cs": {
+    "mtime": 1782489774.738761,
+    "ast_hash": "c9f3d05a071a4a45df6a004486e8655e",
+    "semantic_hash": "c9f3d05a071a4a45df6a004486e8655e"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/AssemblyInfo.cs": {
+    "mtime": 1782489774.7396884,
+    "ast_hash": "1f11ac3add6feab1c9a903b8bba75c18",
+    "semantic_hash": "1f11ac3add6feab1c9a903b8bba75c18"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/ControllerExtensions/UnityInputSystemControllerExtension.cs": {
+    "mtime": 1782489774.7406676,
+    "ast_hash": "e4e9a97318e54e386932ada0371c25cc",
+    "semantic_hash": "e4e9a97318e54e386932ada0371c25cc"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/ControllerExtensions/UnityInputSystemGamepadExtension.cs": {
+    "mtime": 1782489774.7413552,
+    "ast_hash": "746f166cbf591dbebb20ffd109b8007b",
+    "semantic_hash": "746f166cbf591dbebb20ffd109b8007b"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/ControllerExtensions/UnityInputSystemKeyboardExtension.cs": {
+    "mtime": 1782489774.7420812,
+    "ast_hash": "b5423bb596da67a380aa4dc46d8a8018",
+    "semantic_hash": "b5423bb596da67a380aa4dc46d8a8018"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/ControllerExtensions/UnityInputSystemMouseExtension.cs": {
+    "mtime": 1782489774.7427254,
+    "ast_hash": "b29d6caf23e75e9471abdf4372ce8aa5",
+    "semantic_hash": "b29d6caf23e75e9471abdf4372ce8aa5"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/ControllerExtensions/UnityInputSystemUnifiedKeyboardExtension.cs": {
+    "mtime": 1782489774.7434003,
+    "ast_hash": "0f4176d6ce20b3d25868f102c4b4d6fc",
+    "semantic_hash": "0f4176d6ce20b3d25868f102c4b4d6fc"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/ControllerExtensions/UnityInputSystemUnifiedMouseExtension.cs": {
+    "mtime": 1782489774.7441685,
+    "ast_hash": "8ea8c6a5c4f41799b48af0fc3e9c494e",
+    "semantic_hash": "8ea8c6a5c4f41799b48af0fc3e9c494e"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/BaseTypes/Gamepad.cs": {
+    "mtime": 1782489774.745793,
+    "ast_hash": "e3c84f244f00a0e8fc4da6209186ba80",
+    "semantic_hash": "e3c84f244f00a0e8fc4da6209186ba80"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/BaseTypes/GenericJoystick.cs": {
+    "mtime": 1782489774.7464292,
+    "ast_hash": "d0c16b7a284178e53347b42c87af236b",
+    "semantic_hash": "d0c16b7a284178e53347b42c87af236b"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/BaseTypes/Joystick.cs": {
+    "mtime": 1782489774.7471,
+    "ast_hash": "27a5b049a87d64034a9159d63f200d84",
+    "semantic_hash": "27a5b049a87d64034a9159d63f200d84"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/BaseTypes/TrackedDevice.cs": {
+    "mtime": 1782489774.7477114,
+    "ast_hash": "1d30001ebc6e084da0ab6f5f794028c4",
+    "semantic_hash": "1d30001ebc6e084da0ab6f5f794028c4"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/BaseTypes/UnifiedKeyboard.cs": {
+    "mtime": 1782489774.7490203,
+    "ast_hash": "560ef89bcd5223f2b3c820da386ee20d",
+    "semantic_hash": "560ef89bcd5223f2b3c820da386ee20d"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/BaseTypes/UnifiedMouse.cs": {
+    "mtime": 1782489774.749774,
+    "ast_hash": "48ccc19dc2e0e14af8eba62941ef60c6",
+    "semantic_hash": "48ccc19dc2e0e14af8eba62941ef60c6"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/BaseTypes/UnknownJoystick.cs": {
+    "mtime": 1782489774.7503633,
+    "ast_hash": "e94a58a365b492c9c150c2b5e7459de4",
+    "semantic_hash": "e94a58a365b492c9c150c2b5e7459de4"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/Components/DualMotorVibrationComponent.cs": {
+    "mtime": 1782489774.7510939,
+    "ast_hash": "54fe5e82c1c4549eae3b2952e174435a",
+    "semantic_hash": "54fe5e82c1c4549eae3b2952e174435a"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/Components/InputDeviceInfoComponent.cs": {
+    "mtime": 1782489774.7516713,
+    "ast_hash": "e292c26ed18c0d20472446478645738f",
+    "semantic_hash": "e292c26ed18c0d20472446478645738f"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/ExtendedTypes/DualShockGamepad.cs": {
+    "mtime": 1782489774.7524223,
+    "ast_hash": "4f24a1284f01924782e8236787a2dc72",
+    "semantic_hash": "4f24a1284f01924782e8236787a2dc72"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/ExtendedTypes/XInputGamepad.cs": {
+    "mtime": 1782489774.753491,
+    "ast_hash": "07453b46f240b248b591556535733f94",
+    "semantic_hash": "07453b46f240b248b591556535733f94"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/ExtendedTypes/XR/OpenVR/OpenVRViveTracker.cs": {
+    "mtime": 1782489774.7543187,
+    "ast_hash": "645f7a819a556f5a46a80dbc3b8b15d4",
+    "semantic_hash": "645f7a819a556f5a46a80dbc3b8b15d4"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/ExtendedTypes/XR/OpenVR/OpenVRViveTrackerHanded.cs": {
+    "mtime": 1782489774.7548819,
+    "ast_hash": "7ed1ab369b9b1134a74fefaea791fbd3",
+    "semantic_hash": "7ed1ab369b9b1134a74fefaea791fbd3"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/ExtendedTypes/XR/OpenVR/OpenVRViveWand.cs": {
+    "mtime": 1782489774.7554748,
+    "ast_hash": "d3f09abfdbcabe336ce3ff11c08d509e",
+    "semantic_hash": "d3f09abfdbcabe336ce3ff11c08d509e"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/ExtendedTypes/XR/WMR/WMRHololensHand.cs": {
+    "mtime": 1782489774.7561905,
+    "ast_hash": "5705ba509590b3272f6f8e48bdce28c2",
+    "semantic_hash": "5705ba509590b3272f6f8e48bdce28c2"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/ExtendedTypes/XR/WMR/WMRSpatialController.cs": {
+    "mtime": 1782489774.7567377,
+    "ast_hash": "d2fa2dd1b60127c2ea2af7316b4c84bc",
+    "semantic_hash": "d2fa2dd1b60127c2ea2af7316b4c84bc"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/ExtendedTypes/XR/XRController.cs": {
+    "mtime": 1782489774.757304,
+    "ast_hash": "fff61b420a21cbf344a1be0f7b267c5c",
+    "semantic_hash": "fff61b420a21cbf344a1be0f7b267c5c"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/Controllers/ExtendedTypes/iOSGameController.cs": {
+    "mtime": 1782489774.7529655,
+    "ast_hash": "1243caeb2188d0535b4026e2f362fa0c",
+    "semantic_hash": "1243caeb2188d0535b4026e2f362fa0c"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/InputSource/UnityInputSystemInputSource.cs": {
+    "mtime": 1782489774.7577906,
+    "ast_hash": "57ceffd7342ebd7388e7af9385555436",
+    "semantic_hash": "57ceffd7342ebd7388e7af9385555436"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/Tools/UnityInputManagerProxy.cs": {
+    "mtime": 1782489774.7590754,
+    "ast_hash": "8c80956ecba969cb7d8d2f217faa6235",
+    "semantic_hash": "8c80956ecba969cb7d8d2f217faa6235"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/Tools/UnityInputSystemElementIdentifierTool.cs": {
+    "mtime": 1782489774.760007,
+    "ast_hash": "65da4204e934927c6c2a99c8afd1a6ab",
+    "semantic_hash": "65da4204e934927c6c2a99c8afd1a6ab"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/Tools/UnityInputSystemHelper.cs": {
+    "mtime": 1782489774.76087,
+    "ast_hash": "3f7bc1302a99c699e0370e8fb5b4cc6b",
+    "semantic_hash": "3f7bc1302a99c699e0370e8fb5b4cc6b"
+  },
+  "Assets/Rewired/Internal/Scripts/Platforms/UnityInputSystem/UnityInputSystemSettings.cs": {
+    "mtime": 1782489774.7619228,
+    "ast_hash": "00bc63b0cf21c269d0692c36ef989b74",
+    "semantic_hash": "00bc63b0cf21c269d0692c36ef989b74"
+  },
+  "Assets/TextMesh Pro/Sprites/EmojiOne.json": {
+    "mtime": 1782932186.1441162,
+    "ast_hash": "3cc172b271fdc3fdfad5e6c2c8c65a33",
+    "semantic_hash": "3cc172b271fdc3fdfad5e6c2c8c65a33"
+  },
+  "Packages/manifest.json": {
+    "mtime": 1783370949.4778728,
+    "ast_hash": "969d83e592e9c77f3a1e6ef853921d03",
+    "semantic_hash": "969d83e592e9c77f3a1e6ef853921d03"
+  },
+  "Packages/packages-lock.json": {
+    "mtime": 1783370949.4797065,
+    "ast_hash": "409eca3c4af43e3b95d2ea044cc49862",
+    "semantic_hash": "409eca3c4af43e3b95d2ea044cc49862"
+  },
+  "ProjectSettings/SceneTemplateSettings.json": {
+    "mtime": 1782504609.0623488,
+    "ast_hash": "eeb26e313b89cd9334b828428a4847ef",
+    "semantic_hash": "eeb26e313b89cd9334b828428a4847ef"
+  },
+  "tools/ai-harness/unity-tests.sh": {
+    "mtime": 1780959138.0,
+    "ast_hash": "f76b656dd84538fb252947473156c823",
+    "semantic_hash": "f76b656dd84538fb252947473156c823"
+  },
+  "tools/ai-harness/validate.sh": {
+    "mtime": 1780959138.0,
+    "ast_hash": "3ce1e9f3eb138e967d58717c1baaff28",
+    "semantic_hash": "3ce1e9f3eb138e967d58717c1baaff28"
+  },
+  "AGENTS.md": {
+    "mtime": 1783426452.9011805,
+    "ast_hash": "af955b927e64d1cfa181bd1a361d5476",
+    "semantic_hash": "af955b927e64d1cfa181bd1a361d5476"
+  },
+  "Assets/Plugins/Demigiant/DOTween/readme.txt": {
+    "mtime": 1782930492.2474766,
+    "ast_hash": "bbf3a6f793489296ee53197a1995d0ee",
+    "semantic_hash": "bbf3a6f793489296ee53197a1995d0ee"
+  },
+  "Assets/Plugins/Sirenix/Odin Inspector/Assets/Editor/Bootstrap License.txt": {
+    "mtime": 1782489599.3791888,
+    "ast_hash": "8911707e8bb2b2a856889a553dcdfc8b",
+    "semantic_hash": "8911707e8bb2b2a856889a553dcdfc8b"
+  },
+  "Assets/Plugins/Sirenix/Odin Inspector/Modules/Unity.Mathematics/manifest.txt": {
+    "mtime": 1782489679.3070233,
+    "ast_hash": "c959be681daecee637156ec9ce892898",
+    "semantic_hash": "c959be681daecee637156ec9ce892898"
+  },
+  "Assets/Plugins/Sirenix/Readme.txt": {
+    "mtime": 1782489599.3875916,
+    "ast_hash": "f36b4a0b6d2c29985f7f68795deed58d",
+    "semantic_hash": "f36b4a0b6d2c29985f7f68795deed58d"
+  },
+  "Assets/Rewired/Documentation/ReadMe.txt": {
+    "mtime": 1782489774.3970613,
+    "ast_hash": "7291815edee70c3351884519fb1fbb6a",
+    "semantic_hash": "7291815edee70c3351884519fb1fbb6a"
+  },
+  "Assets/Rewired/Documentation/ReleaseNotes.txt": {
+    "mtime": 1782489774.3976758,
+    "ast_hash": "f6d780e40595d9b041e5d452e3d5e6df",
+    "semantic_hash": "f6d780e40595d9b041e5d452e3d5e6df"
+  },
+  "Assets/Rewired/Documentation/licences.txt": {
+    "mtime": 1782489774.3965168,
+    "ast_hash": "14f2b698859cfbeb239d0ce269a2fc07",
+    "semantic_hash": "14f2b698859cfbeb239d0ce269a2fc07"
+  },
+  "Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt": {
+    "mtime": 1782932186.134053,
+    "ast_hash": "a4b00b7892bfb2fc9398e7f292af5b3d",
+    "semantic_hash": "a4b00b7892bfb2fc9398e7f292af5b3d"
+  },
+  "Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt": {
+    "mtime": 1782932186.1379514,
+    "ast_hash": "345c77ed32179f5f982dcf8e2b1d92af",
+    "semantic_hash": "345c77ed32179f5f982dcf8e2b1d92af"
+  },
+  "Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt": {
+    "mtime": 1782932186.1382284,
+    "ast_hash": "d52dd40acd32a62df3bc764b1e783ddf",
+    "semantic_hash": "d52dd40acd32a62df3bc764b1e783ddf"
+  },
+  "Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt": {
+    "mtime": 1782932186.143946,
+    "ast_hash": "7590fa7ca767331d4e77ab3230efb933",
+    "semantic_hash": "7590fa7ca767331d4e77ab3230efb933"
+  },
+  "ProjectSettings/ProjectVersion.txt": {
+    "mtime": 1782488929.750501,
+    "ast_hash": "263599f839e7cc1b03c67fa8eeeebefc",
+    "semantic_hash": "263599f839e7cc1b03c67fa8eeeebefc"
+  },
+  "README.md": {
+    "mtime": 1782933853.5552666,
+    "ast_hash": "c1f4edc212ab5e6b4558742ac114b41b",
+    "semantic_hash": "c1f4edc212ab5e6b4558742ac114b41b"
+  },
+  "tools/ai-harness/notes/README.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "37e8bc9fd43968a3c0932b51913945ca",
+    "semantic_hash": "37e8bc9fd43968a3c0932b51913945ca"
+  },
+  "tools/ai-harness/notes/baseline-audit.md": {
+    "mtime": 1780947914.678608,
+    "ast_hash": "d3d13dd5d8b21e6771a820272f356b5d",
+    "semantic_hash": "d3d13dd5d8b21e6771a820272f356b5d"
+  },
+  "tools/ai-harness/prompts/bugfix.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "555981583e136e0a89a4f2588c43dd4e",
+    "semantic_hash": "555981583e136e0a89a4f2588c43dd4e"
+  },
+  "tools/ai-harness/prompts/code-review.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "380cbecb28af2be8db577e2e0626f9c9",
+    "semantic_hash": "380cbecb28af2be8db577e2e0626f9c9"
+  },
+  "tools/ai-harness/prompts/feature.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "9ffdbc686921662eb254a6d4c612db97",
+    "semantic_hash": "9ffdbc686921662eb254a6d4c612db97"
+  },
+  "tools/ai-harness/prompts/refactor.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "878752b409d16b386e3b747fcb749206",
+    "semantic_hash": "878752b409d16b386e3b747fcb749206"
+  },
+  "tools/ai-harness/rules/RTK.md": {
+    "mtime": 1780948003.5145926,
+    "ast_hash": "4e3580e95de596e991ff9b0f199f412f",
+    "semantic_hash": "4e3580e95de596e991ff9b0f199f412f"
+  },
+  "tools/ai-harness/rules/architecture-solid.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "86c0822bb8b8bdbe3c69d67789fac032",
+    "semantic_hash": "86c0822bb8b8bdbe3c69d67789fac032"
+  },
+  "tools/ai-harness/rules/astar-pathfinding.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "0a13deeb4860a1f2b3c738f4a0189d05",
+    "semantic_hash": "0a13deeb4860a1f2b3c738f4a0189d05"
+  },
+  "tools/ai-harness/rules/comments.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "c56b5a0cd6e354ae7a4dc64df6192882",
+    "semantic_hash": "c56b5a0cd6e354ae7a4dc64df6192882"
+  },
+  "tools/ai-harness/rules/component-references.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "e58177bc06915bbe176c48fed2463396",
+    "semantic_hash": "e58177bc06915bbe176c48fed2463396"
+  },
+  "tools/ai-harness/rules/dotween.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "2c509207b4a8ae6c7f60aa8684ff8bc8",
+    "semantic_hash": "2c509207b4a8ae6c7f60aa8684ff8bc8"
+  },
+  "tools/ai-harness/rules/naming-file-organization.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "eec06509e115f588827af76951f7d41c",
+    "semantic_hash": "eec06509e115f588827af76951f7d41c"
+  },
+  "tools/ai-harness/rules/odin.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "53c2c86314b89057a121263a172bf96d",
+    "semantic_hash": "53c2c86314b89057a121263a172bf96d"
+  },
+  "tools/ai-harness/rules/performance.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "f4ca2e9815a4f705914030d07819a62e",
+    "semantic_hash": "f4ca2e9815a4f705914030d07819a62e"
+  },
+  "tools/ai-harness/rules/rewired.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "1cde830447d8f54a994569dcc9a5d091",
+    "semantic_hash": "1cde830447d8f54a994569dcc9a5d091"
+  },
+  "tools/ai-harness/rules/unity.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "53beb804da3400003b4b3505d935fa8d",
+    "semantic_hash": "53beb804da3400003b4b3505d935fa8d"
+  },
+  "tools/ai-harness/rules/validation.md": {
+    "mtime": 1780959138.0,
+    "ast_hash": "cfab72c83e36254f94e197ab9a0cfea2",
+    "semantic_hash": "cfab72c83e36254f94e197ab9a0cfea2"
+  },
+  "Assets/Breezeblocks/Game Art/Player Head.png": {
+    "mtime": 1782937615.351764,
+    "ast_hash": "15a3a5ead647baf3d6d312635f4810b4",
+    "semantic_hash": "15a3a5ead647baf3d6d312635f4810b4"
+  },
+  "Assets/Breezeblocks/Game Art/Square.png": {
+    "mtime": 1783424111.3285494,
+    "ast_hash": "f401b3634515b4b0ad7db05f997d9aee",
+    "semantic_hash": "f401b3634515b4b0ad7db05f997d9aee"
+  },
+  "Assets/Breezeblocks/Game Art/UI/Boss.png": {
+    "mtime": 1765199772.0,
+    "ast_hash": "922ec0a02e0cab69c0be702d85611025",
+    "semantic_hash": "922ec0a02e0cab69c0be702d85611025"
+  },
+  "Assets/Breezeblocks/Game Art/UI/Crown.png": {
+    "mtime": 1765199772.0,
+    "ast_hash": "a25c35e86641e11581e69a06af2051ea",
+    "semantic_hash": "a25c35e86641e11581e69a06af2051ea"
+  },
+  "Assets/Breezeblocks/Game Art/UI/Death.png": {
+    "mtime": 1765199772.0,
+    "ast_hash": "2df6424bb2f9e531e4959fed2deea090",
+    "semantic_hash": "2df6424bb2f9e531e4959fed2deea090"
+  },
+  "Assets/Breezeblocks/Game Art/UI/Mute.png": {
+    "mtime": 1765199772.0,
+    "ast_hash": "18589c230d67885d43109fc38e255e8e",
+    "semantic_hash": "18589c230d67885d43109fc38e255e8e"
+  },
+  "Assets/Breezeblocks/Game Art/UI/Time.png": {
+    "mtime": 1765199772.0,
+    "ast_hash": "c94eaee6f656fcd75ead1752c35bda95",
+    "semantic_hash": "c94eaee6f656fcd75ead1752c35bda95"
+  },
+  "Assets/Breezeblocks/Game Art/UI/Volume.png": {
+    "mtime": 1765199772.0,
+    "ast_hash": "6c8f8eab8823020f4c6ecd8bb49ae059",
+    "semantic_hash": "6c8f8eab8823020f4c6ecd8bb49ae059"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Editor/Imgs/DOTweenIcon.png": {
+    "mtime": 1782930492.240063,
+    "ast_hash": "a07cca1c48dfd603febb7b63ffa0ac20",
+    "semantic_hash": "a07cca1c48dfd603febb7b63ffa0ac20"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Editor/Imgs/DOTweenMiniIcon.png": {
+    "mtime": 1782930492.2404974,
+    "ast_hash": "7b27510e889934777746e8004bdea8de",
+    "semantic_hash": "7b27510e889934777746e8004bdea8de"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Footer.png": {
+    "mtime": 1782930492.2412422,
+    "ast_hash": "c9a40446b33a88a807a52a7d197b5aa1",
+    "semantic_hash": "c9a40446b33a88a807a52a7d197b5aa1"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Footer_dark.png": {
+    "mtime": 1782930492.2417078,
+    "ast_hash": "512ace3ecd57428ee8706f47d51da07e",
+    "semantic_hash": "512ace3ecd57428ee8706f47d51da07e"
+  },
+  "Assets/Plugins/Demigiant/DOTween/Editor/Imgs/Header.jpg": {
+    "mtime": 1782930492.2421024,
+    "ast_hash": "13cd224ac98f3419e6e55377e89e07df",
+    "semantic_hash": "13cd224ac98f3419e6e55377e89e07df"
+  },
+  "Assets/Plugins/Sirenix/Odin Inspector/Assets/Editor/SdfIconAtlas.png": {
+    "mtime": 1782489599.3840811,
+    "ast_hash": "5829b527a7639a1fea230963a6de5389",
+    "semantic_hash": "5829b527a7639a1fea230963a6de5389"
+  },
+  "Assets/Rewired/Examples/CustomControllersTouch/Images/Joystickcircle.png": {
+    "mtime": 1782489774.4005551,
+    "ast_hash": "dafa442a7600296b3bcc3d094cbda3a7",
+    "semantic_hash": "dafa442a7600296b3bcc3d094cbda3a7"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/action-button.png": {
+    "mtime": 1782489774.4214234,
+    "ast_hash": "9da2a99a716c207ea45f346fdc909879",
+    "semantic_hash": "9da2a99a716c207ea45f346fdc909879"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/center-button.png": {
+    "mtime": 1782489774.4219732,
+    "ast_hash": "31bbdab1f669af8b3f38a29ef4597334",
+    "semantic_hash": "31bbdab1f669af8b3f38a29ef4597334"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/controller-body-front.png": {
+    "mtime": 1782489774.42252,
+    "ast_hash": "263d928733ce0b6f1b85a5471119d79c",
+    "semantic_hash": "263d928733ce0b6f1b85a5471119d79c"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/controller-body-top.png": {
+    "mtime": 1782489774.423082,
+    "ast_hash": "fc6f8924eec3c5f1d1d64630185050bb",
+    "semantic_hash": "fc6f8924eec3c5f1d1d64630185050bb"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/d-pad-active.png": {
+    "mtime": 1782489774.4236026,
+    "ast_hash": "e2b9f9b68c1a8cda1fd4711b39092fb6",
+    "semantic_hash": "e2b9f9b68c1a8cda1fd4711b39092fb6"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/d-pad.png": {
+    "mtime": 1782489774.4241197,
+    "ast_hash": "524d246ceef7eb2dbcc30029da92f165",
+    "semantic_hash": "524d246ceef7eb2dbcc30029da92f165"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/shoulder-button-front.png": {
+    "mtime": 1782489774.424639,
+    "ast_hash": "bb784857a2ebd6f0e59263303bec6759",
+    "semantic_hash": "bb784857a2ebd6f0e59263303bec6759"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/shoulder-button-top.png": {
+    "mtime": 1782489774.425189,
+    "ast_hash": "cb6a8c54f51f99ac6ed8d3624fac93ab",
+    "semantic_hash": "cb6a8c54f51f99ac6ed8d3624fac93ab"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/stick-arrow.png": {
+    "mtime": 1782489774.4257562,
+    "ast_hash": "56c8ca45b1139ab4f0bab15e4e9f8653",
+    "semantic_hash": "56c8ca45b1139ab4f0bab15e4e9f8653"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/stick-base.png": {
+    "mtime": 1782489774.4262931,
+    "ast_hash": "3b52dc32394ee9b3d45b30a8380bea11",
+    "semantic_hash": "3b52dc32394ee9b3d45b30a8380bea11"
+  },
+  "Assets/Rewired/Examples/GamepadTemplateUI/Images/trigger.png": {
+    "mtime": 1782489774.4268217,
+    "ast_hash": "44bb6fdb6c14a11f2c67c0f06feb10a9",
+    "semantic_hash": "44bb6fdb6c14a11f2c67c0f06feb10a9"
+  },
+  "Assets/Rewired/Examples/PlayerMouseSprite/Sprites/target.png": {
+    "mtime": 1782489774.4319098,
+    "ast_hash": "eb1598a3c48eab603d900994dcfb642e",
+    "semantic_hash": "eb1598a3c48eab603d900994dcfb642e"
+  },
+  "Assets/Rewired/Examples/Shared/Sprites/pointer.png": {
+    "mtime": 1782489774.4396193,
+    "ast_hash": "be57fa1fcf7a4183370f36ad31007fbf",
+    "semantic_hash": "be57fa1fcf7a4183370f36ad31007fbf"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Images/calibration-value-marker.png": {
+    "mtime": 1429234206.0,
+    "ast_hash": "426c7682337dcef96d26cf41f5b20ba5",
+    "semantic_hash": "426c7682337dcef96d26cf41f5b20ba5"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Images/graphic-center-stick.png": {
+    "mtime": 1429340986.0,
+    "ast_hash": "407e0b5826266b5a0959d0169a5faa02",
+    "semantic_hash": "407e0b5826266b5a0959d0169a5faa02"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Images/graphic-move-stick.png": {
+    "mtime": 1429341090.0,
+    "ast_hash": "839f59ae65e0486d9fe481b56a049d7c",
+    "semantic_hash": "839f59ae65e0486d9fe481b56a049d7c"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Images/icon-invert.png": {
+    "mtime": 1428130976.0,
+    "ast_hash": "e79e3d172d5799211533854f324881be",
+    "semantic_hash": "e79e3d172d5799211533854f324881be"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Images/icon-joystick.png": {
+    "mtime": 1436419942.0,
+    "ast_hash": "4a080f4ba1d8e99228820ecccfd6f568",
+    "semantic_hash": "4a080f4ba1d8e99228820ecccfd6f568"
+  },
+  "Assets/Rewired/Extras/ControlMapper/Images/icon-mouse.png": {
+    "mtime": 1436419890.0,
+    "ast_hash": "d806ec8907a1cc124f4750f77d4e2493",
+    "semantic_hash": "d806ec8907a1cc124f4750f77d4e2493"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/AppleMFiGamepad.png": {
+    "mtime": 1781228378.953198,
+    "ast_hash": "24f906dcbdb137db0f451073999b8d90",
+    "semantic_hash": "24f906dcbdb137db0f451073999b8d90"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/AppleTVRemotes.png": {
+    "mtime": 1781294595.493978,
+    "ast_hash": "71cf430cb223e338f823ea4fd4df8649",
+    "semantic_hash": "71cf430cb223e338f823ea4fd4df8649"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/GamepadTemplate.png": {
+    "mtime": 1719701379.725018,
+    "ast_hash": "aeffd21c7c3999823c039b7716d3eb1b",
+    "semantic_hash": "aeffd21c7c3999823c039b7716d3eb1b"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/KeyboardMouse.png": {
+    "mtime": 1719260695.120006,
+    "ast_hash": "5b92cc0c02aeb94e047f510b7a76dc89",
+    "semantic_hash": "5b92cc0c02aeb94e047f510b7a76dc89"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/NintendoSwitch2Controllers.png": {
+    "mtime": 1749343336.005284,
+    "ast_hash": "849d5695e7462e8ad0cdf6eb5dcafc09",
+    "semantic_hash": "849d5695e7462e8ad0cdf6eb5dcafc09"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/NintendoSwitchControllers.png": {
+    "mtime": 1741804739.967802,
+    "ast_hash": "bc0069fc6a1c7d485687a274ad5073a8",
+    "semantic_hash": "bc0069fc6a1c7d485687a274ad5073a8"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/PlayStationControllers.png": {
+    "mtime": 1719540405.172643,
+    "ast_hash": "42de0d3bab761ca4eabc2fc39d1ce9cd",
+    "semantic_hash": "42de0d3bab761ca4eabc2fc39d1ce9cd"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/UnknownController_1.png": {
+    "mtime": 1719194319.843801,
+    "ast_hash": "7e0ea9c333e1d6eca0921850fc183302",
+    "semantic_hash": "7e0ea9c333e1d6eca0921850fc183302"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/UnknownController_2.png": {
+    "mtime": 1719194332.476247,
+    "ast_hash": "3901e910ec700d47bee20abd24e2d27a",
+    "semantic_hash": "3901e910ec700d47bee20abd24e2d27a"
+  },
+  "Assets/Rewired/Extras/Glyphs/Sprites/SimpleLightOnDarkSemiTransparent/XboxControllers.png": {
+    "mtime": 1719540365.835393,
+    "ast_hash": "4d272592a9e3ca6878a89910b35619fe",
+    "semantic_hash": "4d272592a9e3ca6878a89910b35619fe"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Backgrounds/Rounded01.png": {
+    "mtime": 1488939102.954036,
+    "ast_hash": "e299f17187db5b254f44b67b89eece71",
+    "semantic_hash": "e299f17187db5b254f44b67b89eece71"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Buttons/Button01_Red_Down.png": {
+    "mtime": 1488673870.950701,
+    "ast_hash": "626598465d0d8714912c2374d80f0064",
+    "semantic_hash": "626598465d0d8714912c2374d80f0064"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Buttons/Button01_Red_Up.png": {
+    "mtime": 1488673482.609098,
+    "ast_hash": "9a309e7959a9fde04ae9aead26148998",
+    "semantic_hash": "9a309e7959a9fde04ae9aead26148998"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Buttons/Button03_Red_Down.png": {
+    "mtime": 1488693893.312363,
+    "ast_hash": "96ebf82ca622ce8f9dc600395141a4e5",
+    "semantic_hash": "96ebf82ca622ce8f9dc600395141a4e5"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Buttons/Button03_Red_Up.png": {
+    "mtime": 1488693857.357513,
+    "ast_hash": "204fe052182c3950b8e1ab6799d89c14",
+    "semantic_hash": "204fe052182c3950b8e1ab6799d89c14"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Buttons/Button06_Red_Down.png": {
+    "mtime": 1488669782.809141,
+    "ast_hash": "e1ae936c6a6f05935070d380828ae110",
+    "semantic_hash": "e1ae936c6a6f05935070d380828ae110"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Buttons/Button06_Red_Up.png": {
+    "mtime": 1488669769.337931,
+    "ast_hash": "b42cbc22dd6bc20d47696b5abd608351",
+    "semantic_hash": "b42cbc22dd6bc20d47696b5abd608351"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Buttons/ButtonBase01_Dark.png": {
+    "mtime": 1488671606.035512,
+    "ast_hash": "1bbd09af5c642dbbe5efeb9b01ad18f0",
+    "semantic_hash": "1bbd09af5c642dbbe5efeb9b01ad18f0"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Circles/CircleSolid01.png": {
+    "mtime": 1488483968.470045,
+    "ast_hash": "1381ac4a213fe2d472674cfe3f51347c",
+    "semantic_hash": "1381ac4a213fe2d472674cfe3f51347c"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Circles/OutlineCircleSolid01.png": {
+    "mtime": 1488342645.031799,
+    "ast_hash": "75c401824392f1f1f355d6dd0d911df1",
+    "semantic_hash": "75c401824392f1f1f355d6dd0d911df1"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Joysticks/Bases/ArcadeBase01.png": {
+    "mtime": 1489279858.374002,
+    "ast_hash": "a92dec132b95c13251b54c51faaf68d6",
+    "semantic_hash": "a92dec132b95c13251b54c51faaf68d6"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Joysticks/Bases/SciFiBase01.png": {
+    "mtime": 1488692951.605576,
+    "ast_hash": "399be0e50ec48b1a1fbf470b291a8d96",
+    "semantic_hash": "399be0e50ec48b1a1fbf470b291a8d96"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Joysticks/DirectionIndicators/Arrow01.png": {
+    "mtime": 1488432883.237672,
+    "ast_hash": "5f35cc87134a4042f4edfe7ef4b06a73",
+    "semantic_hash": "5f35cc87134a4042f4edfe7ef4b06a73"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Joysticks/DirectionIndicators/Arrow08.png": {
+    "mtime": 1488434478.67173,
+    "ast_hash": "3cb9c7cd2a498fc275b1837faffadbd1",
+    "semantic_hash": "3cb9c7cd2a498fc275b1837faffadbd1"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Joysticks/DirectionIndicators/CircleSegment_4way_01.png": {
+    "mtime": 1488434297.237963,
+    "ast_hash": "8eaade3a619e4dbf24f9938cf0e5dc8f",
+    "semantic_hash": "8eaade3a619e4dbf24f9938cf0e5dc8f"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Joysticks/DirectionIndicators/CircleSegment_8way_03.png": {
+    "mtime": 1488436949.260478,
+    "ast_hash": "fac0c600ebb003d71c6f71113bdf11f6",
+    "semantic_hash": "fac0c600ebb003d71c6f71113bdf11f6"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Joysticks/Sticks/ArcadeStick01_Red.png": {
+    "mtime": 1489273963.375934,
+    "ast_hash": "c9cc35bc62cee3bea710907a46bf4f72",
+    "semantic_hash": "c9cc35bc62cee3bea710907a46bf4f72"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Joysticks/Sticks/SciFiStick01.png": {
+    "mtime": 1488693561.067316,
+    "ast_hash": "2b5cc876720a5d9887339f7053a5c8c2",
+    "semantic_hash": "2b5cc876720a5d9887339f7053a5c8c2"
+  },
+  "Assets/Rewired/Extras/TouchControls/Sprites/Joysticks/Sticks/ThumbStick01.png": {
+    "mtime": 1488695527.092927,
+    "ast_hash": "a31fd3ded96258dd9191675104074ad7",
+    "semantic_hash": "a31fd3ded96258dd9191675104074ad7"
+  },
+  "Assets/TextMesh Pro/Sprites/EmojiOne.png": {
+    "mtime": 1782932186.1443741,
+    "ast_hash": "abd61fb690e3df99b4cbd4f114afbd06",
+    "semantic_hash": "abd61fb690e3df99b4cbd4f114afbd06"
+  },
+  "Assets/Breezeblocks/Audio/Musics/Learning LOOP.wav": {
+    "mtime": 1779387819.2108572,
+    "ast_hash": "5d822afa6ceca909694e732bac7ea4ae",
+    "semantic_hash": "5d822afa6ceca909694e732bac7ea4ae"
+  },
+  "Assets/Breezeblocks/Audio/Musics/Playful LOOP NO MELODY.wav": {
+    "mtime": 1779387819.2927887,
+    "ast_hash": "17acceefa396c755ae5476edd40032c2",
+    "semantic_hash": "17acceefa396c755ae5476edd40032c2"
+  },
+  "Assets/Breezeblocks/Audio/Musics/Playful LOOP.wav": {
+    "mtime": 1779387819.3043444,
+    "ast_hash": "5cd5f22364082429de98c0aff60bd4bf",
+    "semantic_hash": "5cd5f22364082429de98c0aff60bd4bf"
+  },
+  "Assets/Breezeblocks/Audio/Musics/Soaring LOOP NO SOLO.wav": {
+    "mtime": 1779387819.3281717,
+    "ast_hash": "7ac2b4277df3b5137682210d2b7c2413",
+    "semantic_hash": "7ac2b4277df3b5137682210d2b7c2413"
+  },
+  "Assets/Breezeblocks/Audio/Musics/Soaring WITH SOLO.wav": {
+    "mtime": 1779387819.3556316,
+    "ast_hash": "54625669d67f6cc1f26925d8eb106255",
+    "semantic_hash": "54625669d67f6cc1f26925d8eb106255"
+  },
+  "Assets/Breezeblocks/Audio/SFX/8BIT_RETRO_Hit_Bump_Bright_Reverse_mono.wav": {
+    "mtime": 1779388489.0585506,
+    "ast_hash": "4972727e76cbd602d670f17a946adf2e",
+    "semantic_hash": "4972727e76cbd602d670f17a946adf2e"
+  },
+  "Assets/Breezeblocks/Audio/SFX/8BIT_RETRO_Jump_Glide_Up_Bright_Higher_mono.wav": {
+    "mtime": 1779388489.067615,
+    "ast_hash": "e01e5c958039e08e93a68b90935f905f",
+    "semantic_hash": "e01e5c958039e08e93a68b90935f905f"
+  },
+  "Assets/Breezeblocks/Audio/SFX/GORE_Splat_Hit_Deep_mono.wav": {
+    "mtime": 1779388492.019776,
+    "ast_hash": "bebda466148ae8ee0ff28e393ec04c4b",
+    "semantic_hash": "bebda466148ae8ee0ff28e393ec04c4b"
+  },
+  "Assets/Breezeblocks/Audio/SFX/GORE_Splat_Hit_Short_mono.wav": {
+    "mtime": 1779388492.021014,
+    "ast_hash": "e8cb7a0010c72e8c80cfad9ccf91755b",
+    "semantic_hash": "e8cb7a0010c72e8c80cfad9ccf91755b"
+  },
+  "Assets/Breezeblocks/Audio/SFX/GORE_Splat_L_Ground_01_mono.wav": {
+    "mtime": 1779388492.0227277,
+    "ast_hash": "bc2609c84379844c9835bc41ea8e4cd9",
+    "semantic_hash": "bc2609c84379844c9835bc41ea8e4cd9"
+  },
+  "Assets/Breezeblocks/Audio/SFX/GORE_Splat_L_Ground_02_mono.wav": {
+    "mtime": 1779388492.0239508,
+    "ast_hash": "478a2b45988cd435f38715ddf6e2b6b5",
+    "semantic_hash": "478a2b45988cd435f38715ddf6e2b6b5"
+  },
+  "Assets/Breezeblocks/Audio/SFX/MUSIC_EFFECT_Solo_Chip_C64_Negative_03_stereo.wav": {
+    "mtime": 1779388494.3288207,
+    "ast_hash": "07990398077ab6a5309db0f0637251c7",
+    "semantic_hash": "07990398077ab6a5309db0f0637251c7"
+  },
+  "Assets/Breezeblocks/Audio/SFX/MUSIC_EFFECT_Solo_Chip_C64_Negative_05_stereo.wav": {
+    "mtime": 1779388494.331086,
+    "ast_hash": "a440fed3d341bd749ae4d187b0130a82",
+    "semantic_hash": "a440fed3d341bd749ae4d187b0130a82"
+  },
+  "Assets/Breezeblocks/Audio/SFX/MUSIC_EFFECT_Solo_Clean_Sawtooth_Positive_09_stereo.wav": {
+    "mtime": 1779388494.4242833,
+    "ast_hash": "a8dbf36931c4f173ceeb28a27424c147",
+    "semantic_hash": "a8dbf36931c4f173ceeb28a27424c147"
+  },
+  "Assets/Breezeblocks/Audio/SFX/UI_Beep_Single_Neutral_stereo.wav": {
+    "mtime": 1779388495.9169912,
+    "ast_hash": "fd19edfb1f31a6baf6417840e6e236a6",
+    "semantic_hash": "fd19edfb1f31a6baf6417840e6e236a6"
+  },
+  "Assets/Breezeblocks/Scripts/Level Manager/DoorScript.cs": {
+    "mtime": 1783448478.3262036,
+    "ast_hash": "3596ce3898c73f59058690e873060bd0",
+    "semantic_hash": ""
+  }
+}

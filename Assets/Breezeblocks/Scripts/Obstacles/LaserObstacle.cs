@@ -16,7 +16,14 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
         private LineRenderer lineRenderer;
 
         [SerializeField]
+        private GameObject laserHitObject;
+
+        [SerializeField]
         private bool startsActive = true;
+
+        [SerializeField]
+        [MinValue(0.01f)]
+        private float activationGrowSeconds = 0.2f;
 
         [SerializeField]
         private bool timedActivation;
@@ -33,9 +40,10 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
 
         private bool active;
         private float activationTimer;
+        private float currentRayDistance;
 
         /// <summary>
-        /// Prepares the line renderer for two-point laser drawing.
+        /// Prepares the line renderer and optional hit object for laser drawing.
         /// </summary>
         public void Initialize()
         {
@@ -43,24 +51,30 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
             {
                 lineRenderer.positionCount = 2;
             }
+
+            SetHitObjectVisible(false);
         }
 
         /// <summary>
-        /// Restores active state, timer state, and line visibility to level start.
+        /// Restores active state, timer state, growth distance, and line visibility to level start.
         /// </summary>
         public void ResetLevelState()
         {
             active = startsActive;
             activationTimer = active ? activeSeconds : inactiveSeconds;
+            currentRayDistance = 0f;
             SetLineVisible(active);
+            SetHitObjectVisible(false);
         }
 
         /// <summary>
-        /// Hides the laser line while the obstacle is disabled.
+        /// Hides the laser line and hit object while the obstacle is disabled.
         /// </summary>
         public void Stop()
         {
+            currentRayDistance = 0f;
             SetLineVisible(false);
+            SetHitObjectVisible(false);
         }
 
         /// <summary>
@@ -72,10 +86,13 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
 
             if (!active)
             {
+                currentRayDistance = 0f;
                 SetLineVisible(false);
+                SetHitObjectVisible(false);
                 return;
             }
 
+            UpdateRayGrowth(deltaTime, rayDistance);
             UpdateLaser(rayDistance, playerLayer, blockingLayer);
         }
 
@@ -99,6 +116,27 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
             active = !active;
             activationTimer = active ? activeSeconds : inactiveSeconds;
             SetLineVisible(active);
+
+            if (!active)
+            {
+                currentRayDistance = 0f;
+                SetHitObjectVisible(false);
+            }
+        }
+
+        /// <summary>
+        /// Advances the visible and damaging ray distance while the laser activates.
+        /// </summary>
+        private void UpdateRayGrowth(float deltaTime, float rayDistance)
+        {
+            if (activationGrowSeconds <= 0f)
+            {
+                currentRayDistance = rayDistance;
+                return;
+            }
+
+            float growthSpeed = rayDistance / activationGrowSeconds;
+            currentRayDistance = Mathf.MoveTowards(currentRayDistance, rayDistance, growthSpeed * deltaTime);
         }
 
         /// <summary>
@@ -114,18 +152,33 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
             SetLineVisible(true);
 
             Vector3 startPosition = firePoint.position;
-            Vector3 endPosition = startPosition + firePoint.right * rayDistance;
+            float castDistance = Mathf.Min(currentRayDistance, rayDistance);
+            Vector3 endPosition = startPosition + firePoint.right * castDistance;
+
+            if (castDistance <= 0f)
+            {
+                lineRenderer.SetPosition(0, startPosition);
+                lineRenderer.SetPosition(1, startPosition);
+                SetHitObjectVisible(false);
+                return;
+            }
+
             int rayMask = playerLayer.value | blockingLayer.value;
-            RaycastHit2D hit = Physics2D.Raycast(startPosition, firePoint.right, rayDistance, rayMask);
+            RaycastHit2D hit = Physics2D.Raycast(startPosition, firePoint.right, castDistance, rayMask);
 
             if (hit.collider != null)
             {
                 endPosition = hit.point;
+                UpdateHitObject(hit.point, hit.normal);
 
                 if (IsInLayer(hit.collider.gameObject, playerLayer))
                 {
                     LevelGameManager.Current?.RegisterDeath(hit.collider.gameObject);
                 }
+            }
+            else
+            {
+                SetHitObjectVisible(false);
             }
 
             lineRenderer.SetPosition(0, startPosition);
@@ -142,6 +195,63 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
                 lineRenderer.enabled = visible;
             }
         }
+
+        /// <summary>
+        /// Moves and shows the reusable hit object at the latest laser impact point.
+        /// </summary>
+        private void UpdateHitObject(Vector3 position, Vector2 normal)
+        {
+            if (laserHitObject == null)
+            {
+                return;
+            }
+
+            Transform hitTransform = laserHitObject.transform;
+            hitTransform.position = position;
+            hitTransform.rotation = Quaternion.FromToRotation(Vector3.up, normal);
+            SetHitObjectVisible(true);
+        }
+
+        /// <summary>
+        /// Shows or hides the reusable laser hit object when it exists.
+        /// </summary>
+        private void SetHitObjectVisible(bool visible)
+        {
+            if (laserHitObject != null && laserHitObject.activeSelf != visible)
+            {
+                laserHitObject.SetActive(visible);
+            }
+        }
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// Draws the authored maximum laser ray in the Scene view during play mode.
+        /// </summary>
+        public void DrawEditorDebugRay(float rayDistance, Color color)
+        {
+            if (firePoint == null)
+            {
+                return;
+            }
+
+            Vector3 startPosition = firePoint.position;
+            Debug.DrawLine(startPosition, startPosition + firePoint.right * rayDistance, color);
+        }
+
+        /// <summary>
+        /// Draws the authored maximum laser ray as an edit-mode Scene view gizmo.
+        /// </summary>
+        public void DrawEditorGizmoRay(float rayDistance)
+        {
+            if (firePoint == null)
+            {
+                return;
+            }
+
+            Vector3 startPosition = firePoint.position;
+            Gizmos.DrawLine(startPosition, startPosition + firePoint.right * rayDistance);
+        }
+#endif
 
         /// <summary>
         /// Checks whether a game object belongs to the supplied layer mask.
@@ -169,6 +279,15 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
 
     [SerializeField]
     private LaserFirePoint[] firePoints = new LaserFirePoint[0];
+
+#if UNITY_EDITOR
+    [Title("Debug")]
+    [SerializeField]
+    private bool drawDebugRaycasts = true;
+
+    [SerializeField]
+    private Color debugRayColor = Color.cyan;
+#endif
 
     /// <summary>
     /// Prepares all configured firepoints and caches root auto-rotation before gameplay starts.
@@ -206,6 +325,10 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
         {
             firePoints[i]?.Tick(deltaTime, rayDistance, playerLayer, blockingLayer);
         }
+
+#if UNITY_EDITOR
+        DrawEditorDebugRays();
+#endif
     }
 
     /// <summary>
@@ -225,6 +348,16 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
         autoRotation.Stop();
         StopFirePoints();
     }
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// Draws configured laser rays in edit mode so they are visible in the Scene view.
+    /// </summary>
+    private void OnDrawGizmos()
+    {
+        DrawEditorDebugGizmos();
+    }
+#endif
 
     /// <summary>
     /// Restores root auto-rotation and every firepoint to level-start state.
@@ -283,4 +416,43 @@ public sealed class LaserObstacle : MonoBehaviour, ILevelResettable
             firePoints[i]?.Stop();
         }
     }
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// Draws each configured firepoint ray in the Scene view for editor debugging.
+    /// </summary>
+    private void DrawEditorDebugRays()
+    {
+        if (!drawDebugRaycasts || firePoints == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < firePoints.Length; i++)
+        {
+            firePoints[i]?.DrawEditorDebugRay(rayDistance, debugRayColor);
+        }
+    }
+
+    /// <summary>
+    /// Draws each configured firepoint ray as an edit-mode Scene view gizmo.
+    /// </summary>
+    private void DrawEditorDebugGizmos()
+    {
+        if (!drawDebugRaycasts || firePoints == null)
+        {
+            return;
+        }
+
+        Color previousColor = Gizmos.color;
+        Gizmos.color = debugRayColor;
+
+        for (int i = 0; i < firePoints.Length; i++)
+        {
+            firePoints[i]?.DrawEditorGizmoRay(rayDistance);
+        }
+
+        Gizmos.color = previousColor;
+    }
+#endif
 }

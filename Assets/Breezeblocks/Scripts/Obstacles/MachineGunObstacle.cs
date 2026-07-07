@@ -114,6 +114,18 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
     [ShowIf(nameof(ShowFollowTarget))]
     private Transform followTarget;
 
+#if UNITY_EDITOR
+    [Title("Debug")]
+    [SerializeField]
+    private bool drawDebugRaycasts = true;
+
+    [SerializeField]
+    private Color debugRayColor = Color.cyan;
+
+    [SerializeField]
+    private Color debugCycleLimitColor = Color.yellow;
+#endif
+
     private LineRenderer targetingLine;
     private Coroutine activationRoutine;
     private Transform orbitPivot;
@@ -123,6 +135,7 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
     private float startCycleAngle;
     private float cycleDirection = 1f;
     private float orbitRadius;
+    private Transform activatedTarget;
     private MachineGunState state = MachineGunState.Targeting;
 
     [FoldoutGroup("Runtime Data")]
@@ -164,8 +177,13 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
         }
         else if (state == MachineGunState.Activated)
         {
+            UpdateActivatedAim();
             UpdateTargetingRay(true);
         }
+
+#if UNITY_EDITOR
+        DrawEditorDebugRaycasts();
+#endif
     }
 
     /// <summary>
@@ -184,6 +202,16 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
         StopActivationRoutine();
     }
 
+#if UNITY_EDITOR
+    /// <summary>
+    /// Draws configured machinegun rays in edit mode so they are visible in the Scene view.
+    /// </summary>
+    private void OnDrawGizmos()
+    {
+        DrawEditorDebugGizmos();
+    }
+#endif
+
     /// <summary>
     /// Restores fire point aim and targeting state to level-start values.
     /// </summary>
@@ -191,6 +219,7 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
     {
         StopActivationRoutine();
         state = MachineGunState.Targeting;
+        activatedTarget = null;
         RestoreFirePointStartState();
         SetTargetingLineVisible(true);
     }
@@ -249,12 +278,6 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
             return;
         }
 
-        if (followPlayer)
-        {
-            UpdateFollowPlayerAim();
-            return;
-        }
-
         cycleAngle += idleDegreesPerSecond * cycleDirection * Time.deltaTime;
 
         if (cycleAngle >= maximumAngle)
@@ -272,11 +295,16 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
     }
 
     /// <summary>
-    /// Rotates the fire point toward the detected player angle without passing the cycle limits.
+    /// Rotates toward the activated player target while preserving cycle angle limits.
     /// </summary>
-    private void UpdateFollowPlayerAim()
+    private void UpdateActivatedAim()
     {
-        Transform target = followTarget != null ? followTarget : GetRayPlayerTarget();
+        if (idleMode != IdleMode.Cycle || !followPlayer || orbitPivot == null)
+        {
+            return;
+        }
+
+        Transform target = GetFollowTarget();
 
         if (target == null)
         {
@@ -291,14 +319,11 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
     }
 
     /// <summary>
-    /// Gets the player transform currently visible to the targeting ray when no follow target is assigned.
+    /// Gets the assigned follow target or the player captured when the machinegun activated.
     /// </summary>
-    private Transform GetRayPlayerTarget()
+    private Transform GetFollowTarget()
     {
-        RaycastHit2D hit = CastTargetingRay();
-        return hit.collider != null && IsInLayer(hit.collider.gameObject, playerLayer)
-            ? hit.collider.transform
-            : null;
+        return followTarget != null ? followTarget : activatedTarget;
     }
 
     /// <summary>
@@ -346,19 +371,20 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
             return;
         }
 
-        StartActivation();
+        StartActivation(hit.collider.transform);
     }
 
     /// <summary>
-    /// Starts the active shooting routine.
+    /// Starts the active shooting routine and stores the target that triggered it.
     /// </summary>
-    private void StartActivation()
+    private void StartActivation(Transform target)
     {
         if (activationRoutine != null)
         {
             return;
         }
 
+        activatedTarget = target;
         state = MachineGunState.Activated;
         activationRoutine = StartCoroutine(ShootActivationRoutine());
     }
@@ -384,12 +410,14 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
         }
 
         state = MachineGunState.Deactivated;
+        activatedTarget = null;
         UpdateTargetingRay(false);
 
         if (!fullyDeactivateAfterShooting)
         {
             yield return new WaitForSeconds(reactivateAfterSeconds);
             state = MachineGunState.Targeting;
+            activatedTarget = null;
             SetTargetingLineVisible(true);
         }
 
@@ -491,6 +519,7 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
 
         StopCoroutine(activationRoutine);
         activationRoutine = null;
+        activatedTarget = null;
     }
 
     /// <summary>
@@ -500,4 +529,94 @@ public sealed class MachineGunObstacle : MonoBehaviour, ILevelResettable
     {
         return (layerMask.value & (1 << target.layer)) != 0;
     }
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// Draws the current static ray or both configured cycle limit rays in the Scene view.
+    /// </summary>
+    private void DrawEditorDebugRaycasts()
+    {
+        if (!drawDebugRaycasts || firePoint == null)
+        {
+            return;
+        }
+
+        if (idleMode == IdleMode.Cycle && orbitPivot != null)
+        {
+            DrawCycleLimitDebugRay(minimumAngle);
+            DrawCycleLimitDebugRay(maximumAngle);
+            return;
+        }
+
+        DrawDebugRay(firePoint.position, firePoint.right, debugRayColor);
+    }
+
+    /// <summary>
+    /// Draws one debug ray for a configured cycle endpoint angle.
+    /// </summary>
+    private void DrawCycleLimitDebugRay(float angle)
+    {
+        float radians = angle * Mathf.Deg2Rad;
+        Vector3 direction = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0f);
+        Vector3 startPosition = orbitPivot.position + direction * orbitRadius;
+        DrawDebugRay(startPosition, direction, debugCycleLimitColor);
+    }
+
+    /// <summary>
+    /// Draws one editor debug ray from the supplied start position and direction.
+    /// </summary>
+    private void DrawDebugRay(Vector3 startPosition, Vector3 direction, Color color)
+    {
+        Debug.DrawLine(startPosition, startPosition + direction.normalized * rayDistance, color);
+    }
+
+    /// <summary>
+    /// Draws the current static ray or both configured cycle limit rays as edit-mode Scene view gizmos.
+    /// </summary>
+    private void DrawEditorDebugGizmos()
+    {
+        if (!drawDebugRaycasts || firePoint == null)
+        {
+            return;
+        }
+
+        if (idleMode == IdleMode.Cycle)
+        {
+            Transform pivot = firePoint.parent != null ? firePoint.parent : transform;
+            float radius = Vector3.Distance(firePoint.position, pivot.position);
+            DrawCycleLimitGizmoRay(pivot, radius, minimumAngle);
+            DrawCycleLimitGizmoRay(pivot, radius, maximumAngle);
+            return;
+        }
+
+        DrawGizmoRay(firePoint.position, firePoint.right, debugRayColor);
+    }
+
+    /// <summary>
+    /// Draws one edit-mode gizmo ray for a configured cycle endpoint angle.
+    /// </summary>
+    private void DrawCycleLimitGizmoRay(Transform pivot, float radius, float angle)
+    {
+        if (pivot == null)
+        {
+            return;
+        }
+
+        float radians = angle * Mathf.Deg2Rad;
+        Vector3 direction = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0f);
+        Vector3 startPosition = pivot.position + direction * radius;
+        DrawGizmoRay(startPosition, direction, debugCycleLimitColor);
+    }
+
+    /// <summary>
+    /// Draws one edit-mode Scene view gizmo ray with temporary color state.
+    /// </summary>
+    private void DrawGizmoRay(Vector3 startPosition, Vector3 direction, Color color)
+    {
+        Color previousColor = Gizmos.color;
+        Gizmos.color = color;
+        Gizmos.DrawLine(startPosition, startPosition + direction.normalized * rayDistance);
+        Gizmos.color = previousColor;
+    }
+#endif
 }

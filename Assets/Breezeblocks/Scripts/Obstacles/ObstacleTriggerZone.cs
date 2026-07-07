@@ -22,6 +22,10 @@ public sealed class ObstacleTriggerZone : MonoBehaviour, ILevelResettable
     private RevealableObstacle obstacle;
 
     [SerializeField]
+    [ShowIf(nameof(IsMoveAction))]
+    private DoorScript door;
+
+    [SerializeField]
     private TriggerAction action = TriggerAction.Reveal;
 
     [Title("Player Filter")]
@@ -35,6 +39,8 @@ public sealed class ObstacleTriggerZone : MonoBehaviour, ILevelResettable
     private Collider2D triggerCollider;
     private bool startActiveState;
     private bool startColliderEnabled;
+
+    private bool IsMoveAction => action == TriggerAction.Move;
 
     /// <summary>
     /// Caches and configures the same-object trigger collider and reset state.
@@ -52,40 +58,48 @@ public sealed class ObstacleTriggerZone : MonoBehaviour, ILevelResettable
     /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (obstacle == null || !IsInPlayerLayer(other.gameObject))
+        if (!IsInPlayerLayer(other.gameObject))
         {
             return;
         }
 
+        bool handled = false;
+
         switch (action)
         {
             case TriggerAction.Reveal:
-                obstacle.Reveal(other.gameObject);
+                handled = TryRevealObstacle(other.gameObject);
                 break;
             case TriggerAction.Move:
-                obstacle.TriggerMove();
+                handled = TryMoveObstacle();
+                handled |= TryMoveDoor();
                 break;
             case TriggerAction.Follow:
-                obstacle.StartFollowing(other.transform);
+                handled = TryStartObstacleFollow(other.transform);
                 break;
             case TriggerAction.Teleport:
-                obstacle.TriggerTeleport();
+                handled = TryTeleportObstacle();
                 break;
             case TriggerAction.Hide:
-                obstacle.Hide();
+                handled = TryHideObstacle();
                 break;
             case TriggerAction.Shoot:
-                obstacle.TriggerShoot(other.gameObject);
+                handled = TryShootObstacle(other.gameObject);
                 break;
             case TriggerAction.ChangeDirection:
-                obstacle.TriggerDirectionChange();
+                handled = TryChangeObstacleDirection();
                 break;
             case TriggerAction.MoveAway:
-                obstacle.TriggerMoveAway();
+                handled = TryMoveObstacleAway();
                 break;
             case TriggerAction.Return:
-                obstacle.TriggerReturn();
+                handled = TryReturnObstacle();
                 break;
+        }
+
+        if (!handled)
+        {
+            return;
         }
 
         DeactivateAfterActivationIfNeeded();
@@ -110,6 +124,146 @@ public sealed class ObstacleTriggerZone : MonoBehaviour, ILevelResettable
     private bool IsInPlayerLayer(GameObject target)
     {
         return (playerLayer.value & (1 << target.layer)) != 0;
+    }
+
+    /// <summary>
+    /// Reveals the configured obstacle when one exists.
+    /// </summary>
+    private bool TryRevealObstacle(GameObject player)
+    {
+        if (obstacle == null)
+        {
+            return false;
+        }
+
+        obstacle.Reveal(player);
+        return true;
+    }
+
+    /// <summary>
+    /// Starts configured obstacle movement when one exists.
+    /// </summary>
+    private bool TryMoveObstacle()
+    {
+        if (obstacle == null)
+        {
+            return false;
+        }
+
+        obstacle.TriggerMove();
+        return true;
+    }
+
+    /// <summary>
+    /// Starts configured door movement when one exists.
+    /// </summary>
+    private bool TryMoveDoor()
+    {
+        if (door == null)
+        {
+            return false;
+        }
+
+        door.TriggerMove();
+        return true;
+    }
+
+    /// <summary>
+    /// Starts configured obstacle follow behavior when one exists.
+    /// </summary>
+    private bool TryStartObstacleFollow(Transform player)
+    {
+        if (obstacle == null)
+        {
+            return false;
+        }
+
+        obstacle.StartFollowing(player);
+        return true;
+    }
+
+    /// <summary>
+    /// Teleports the configured obstacle when one exists.
+    /// </summary>
+    private bool TryTeleportObstacle()
+    {
+        if (obstacle == null)
+        {
+            return false;
+        }
+
+        obstacle.TriggerTeleport();
+        return true;
+    }
+
+    /// <summary>
+    /// Hides the configured obstacle when one exists.
+    /// </summary>
+    private bool TryHideObstacle()
+    {
+        if (obstacle == null)
+        {
+            return false;
+        }
+
+        obstacle.Hide();
+        return true;
+    }
+
+    /// <summary>
+    /// Requests configured obstacle shooting behavior when one exists.
+    /// </summary>
+    private bool TryShootObstacle(GameObject player)
+    {
+        if (obstacle == null)
+        {
+            return false;
+        }
+
+        obstacle.TriggerShoot(player);
+        return true;
+    }
+
+    /// <summary>
+    /// Requests configured obstacle direction changes when one exists.
+    /// </summary>
+    private bool TryChangeObstacleDirection()
+    {
+        if (obstacle == null)
+        {
+            return false;
+        }
+
+        obstacle.TriggerDirectionChange();
+        return true;
+    }
+
+    /// <summary>
+    /// Requests configured obstacle move-away behavior when one exists.
+    /// </summary>
+    private bool TryMoveObstacleAway()
+    {
+        if (obstacle == null)
+        {
+            return false;
+        }
+
+        obstacle.TriggerMoveAway();
+        return true;
+    }
+
+    /// <summary>
+    /// Requests configured obstacle return behavior when one exists.
+    /// </summary>
+    private bool TryReturnObstacle()
+    {
+        if (obstacle == null)
+        {
+            return false;
+        }
+
+        obstacle.TriggerReturn();
+        return true;
     }
 
     /// <summary>

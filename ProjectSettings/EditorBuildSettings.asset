@@ -18,16 +18,16 @@ EditorBuildSettings:
     path: Assets/Breezeblocks/Scenes/Level3.unity
     guid: 3e91b71721d2bd148872c5eea64b2e5a
   - enabled: 1
-    path: Assets/Breezeblocks/Scenes/Level4.unity
+    path: Assets/Breezeblocks/Scenes/Level5.unity
     guid: 075b3ec71e64f104381cd6ca8b38897f
   - enabled: 1
-    path: Assets/Breezeblocks/Scenes/Level5.unity
+    path: Assets/Breezeblocks/Scenes/Level7.unity
     guid: 1e6eeff4a3aae172186a77c479498590
   - enabled: 1
     path: Assets/Breezeblocks/Scenes/Level6.unity
     guid: 8ff9de8133eabfabd985123856c6f0a2
   - enabled: 1
-    path: Assets/Breezeblocks/Scenes/Level7.unity
+    path: Assets/Breezeblocks/Scenes/Level8.unity
     guid: 6bc886ba955aa8dacb4a582bf69f5e77
   - enabled: 1
     path: Assets/Breezeblocks/Scenes/Level8.unity

@@ -142,7 +142,7 @@
   "Assets/Breezeblocks/Scripts/Obstacles/LaserObstacle.cs": {
     "mtime": 1783430592.9669673,
     "ast_hash": "2c8c83788a3b1be0b14c2f287ed5e682",
-    "semantic_hash": ""
+    "semantic_hash": "2c8c83788a3b1be0b14c2f287ed5e682"
   },
   "Assets/Breezeblocks/Scripts/Obstacles/MachineGunBulletEffect.cs": {
     "mtime": 1783345130.5532846,
@@ -152,7 +152,7 @@
   "Assets/Breezeblocks/Scripts/Obstacles/MachineGunObstacle.cs": {
     "mtime": 1783448451.0310411,
     "ast_hash": "2a11e45b8a9e938fc07a46a713ac1685",
-    "semantic_hash": ""
+    "semantic_hash": "2a11e45b8a9e938fc07a46a713ac1685"
   },
   "Assets/Breezeblocks/Scripts/Obstacles/MachineGunProjectile.cs": {
     "mtime": 1783345147.9532738,
@@ -167,7 +167,7 @@
   "Assets/Breezeblocks/Scripts/Obstacles/ObstacleTriggerZone.cs": {
     "mtime": 1783448520.515008,
     "ast_hash": "386e56471b72e32e1c1b9e14704056da",
-    "semantic_hash": ""
+    "semantic_hash": "386e56471b72e32e1c1b9e14704056da"
   },
   "Assets/Breezeblocks/Scripts/Obstacles/PlatformObstacle.cs": {
     "mtime": 1783354354.7224195,
@@ -1125,12 +1125,12 @@
     "semantic_hash": "3cc172b271fdc3fdfad5e6c2c8c65a33"
   },
   "Packages/manifest.json": {
-    "mtime": 1783370949.4778728,
+    "mtime": 1783541788.0708187,
     "ast_hash": "969d83e592e9c77f3a1e6ef853921d03",
     "semantic_hash": "969d83e592e9c77f3a1e6ef853921d03"
   },
   "Packages/packages-lock.json": {
-    "mtime": 1783370949.4797065,
+    "mtime": 1783541788.152163,
     "ast_hash": "409eca3c4af43e3b95d2ea044cc49862",
     "semantic_hash": "409eca3c4af43e3b95d2ea044cc49862"
   },
@@ -1318,16 +1318,6 @@
     "mtime": 1783424111.3285494,
     "ast_hash": "f401b3634515b4b0ad7db05f997d9aee",
     "semantic_hash": "f401b3634515b4b0ad7db05f997d9aee"
-  },
-  "Assets/Breezeblocks/Game Art/UI/Boss.png": {
-    "mtime": 1765199772.0,
-    "ast_hash": "922ec0a02e0cab69c0be702d85611025",
-    "semantic_hash": "922ec0a02e0cab69c0be702d85611025"
-  },
-  "Assets/Breezeblocks/Game Art/UI/Crown.png": {
-    "mtime": 1765199772.0,
-    "ast_hash": "a25c35e86641e11581e69a06af2051ea",
-    "semantic_hash": "a25c35e86641e11581e69a06af2051ea"
   },
   "Assets/Breezeblocks/Game Art/UI/Death.png": {
     "mtime": 1765199772.0,
@@ -1707,6 +1697,16 @@
   "Assets/Breezeblocks/Scripts/Level Manager/DoorScript.cs": {
     "mtime": 1783448647.1768923,
     "ast_hash": "bab73c027318255ce53ed78633a09f04",
-    "semantic_hash": ""
+    "semantic_hash": "bab73c027318255ce53ed78633a09f04"
+  },
+  ".claude/settings.local.json": {
+    "mtime": 1783542541.6096969,
+    "ast_hash": "49e0a231d84e1766338306033804473c",
+    "semantic_hash": "49e0a231d84e1766338306033804473c"
+  },
+  "ProjectSettings/Packages/com.unity.ai.assistant/Settings.json": {
+    "mtime": 1783541174.6788595,
+    "ast_hash": "49b041605e47ba44f2c817ebf4c6e422",
+    "semantic_hash": "49b041605e47ba44f2c817ebf4c6e422"
   }
 }
